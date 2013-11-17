@@ -1,0 +1,634 @@
+1130,1131c1130,1131
+< Asunción 8
+< Asunción's 10
+---
+> Asunción 9
+> Asunción's 11
+1144,1145c1144,1145
+< Atatürk 7
+< Atatürk's 9
+---
+> Atatürk 8
+> Atatürk's 10
+1572,1573c1572,1573
+< Bartók 6
+< Bartók's 8
+---
+> Bartók 7
+> Bartók's 9
+2129,2130c2129,2130
+< Bogotá 6
+< Bogotá's 8
+---
+> Bogotá 7
+> Bogotá's 9
+2278c2278
+< Boötes 6
+---
+> Boötes 7
+2684,2685c2684,2685
+< Buñuel 6
+< Buñuel's 8
+---
+> Buñuel 7
+> Buñuel's 9
+3803,3804c3803,3804
+< Concepción 10
+< Concepción's 12
+---
+> Concepción 11
+> Concepción's 13
+4980,4981c4980,4981
+< Dvorák 6
+< Dvorák's 8
+---
+> Dvorák 7
+> Dvorák's 9
+4996,4998c4996,4998
+< Dürer 5
+< Dürer's 7
+< Düsseldorf 10
+---
+> Dürer 6
+> Dürer's 8
+> Düsseldorf 11
+5259,5260c5259,5260
+< Elysée 6
+< Elysée's 8
+---
+> Elysée 7
+> Elysée's 9
+5470,5471c5470,5471
+< Esterházy 9
+< Esterházy's 11
+---
+> Esterházy 10
+> Esterházy's 12
+5613c5613
+< Fabergé 7
+---
+> Fabergé 8
+6096,6097c6096,6097
+< Furtwängler 11
+< Furtwängler's 13
+---
+> Furtwängler 12
+> Furtwängler's 14
+6383c6383
+< Gewürztraminer 14
+---
+> Gewürztraminer 15
+6781,6783c6781,6783
+< Gruyère 7
+< Grünewald 9
+< Grünewald's 11
+---
+> Gruyère 8
+> Grünewald 10
+> Grünewald's 12
+6895,6898c6895,6898
+< Gödel 5
+< Gödel's 7
+< Göteborg 8
+< Göteborg's 10
+---
+> Gödel 6
+> Gödel's 8
+> Göteborg 9
+> Göteborg's 11
+7748,7749c7748,7749
+< Héloise 7
+< Héloise's 9
+---
+> Héloise 8
+> Héloise's 10
+9259c9259
+< Köln 4
+---
+> Köln 5
+10083,10084c10083,10084
+< Lumière 7
+< Lumière's 9
+---
+> Lumière 8
+> Lumière's 10
+10388,10389c10388,10389
+< Mallarmé 8
+< Mallarmé's 10
+---
+> Mallarmé 9
+> Mallarmé's 11
+11825,11826c11825,11826
+< Münchhausen 11
+< Münchhausen's 13
+---
+> Münchhausen 12
+> Münchhausen's 14
+12819c12819
+< Paraná 6
+---
+> Paraná 7
+13304,13305c13304,13305
+< Poincaré 8
+< Poincaré's 10
+---
+> Poincaré 9
+> Poincaré's 11
+13314,13315c13314,13315
+< Pokémon 7
+< Pokémon's 9
+---
+> Pokémon 8
+> Pokémon's 10
+13534c13534
+< Provençal 9
+---
+> Provençal 10
+13660,13663c13660,13663
+< Pétain 6
+< Pétain's 8
+< Pôrto 5
+< Pôrto's 7
+---
+> Pétain 7
+> Pétain's 9
+> Pôrto 6
+> Pôrto's 8
+13722c13722
+< Québecois 9
+---
+> Québecois 10
+13754c13754
+< Ragnarök 8
+---
+> Ragnarök 9
+14807c14807
+< Schrödinger 11
+---
+> Schrödinger 12
+15969c15969
+< Sèvres 6
+---
+> Sèvres 7
+16096,16097c16096,16097
+< Tannhäuser 10
+< Tannhäuser's 12
+---
+> Tannhäuser 11
+> Tannhäuser's 13
+16338,16339c16338,16339
+< Thessaloníki 12
+< Thessaloníki's 14
+---
+> Thessaloníki 13
+> Thessaloníki's 15
+16985,16986c16985,16986
+< Valéry 6
+< Valéry's 8
+---
+> Valéry 7
+> Valéry's 9
+17054,17056c17054,17056
+< Velásquez 9
+< Velásquez's 11
+< Velázquez 9
+---
+> Velásquez 10
+> Velásquez's 12
+> Velázquez 10
+18096,18097c18096,18097
+< Zürich 6
+< Zürich's 8
+---
+> Zürich 7
+> Zürich's 9
+18151,18152c18151,18152
+< abbé 4
+< abbés 5
+---
+> abbé 5
+> abbés 6
+18978c18978
+< adiós 5
+---
+> adiós 6
+21154,21158c21154,21158
+< appliqué 8
+< appliqué's 10
+< appliquéd 9
+< appliquéing 11
+< appliqués 9
+---
+> appliqué 9
+> appliqué's 11
+> appliquéd 10
+> appliquéing 12
+> appliqués 10
+22175,22176c22175,22176
+< attaché 7
+< attachés 8
+---
+> attaché 8
+> attachés 9
+24973c24973
+< blasé 5
+---
+> blasé 6
+25950,25952c25950,25952
+< boutonnière 11
+< boutonnière's 13
+< boutonnières 12
+---
+> boutonnière 12
+> boutonnière's 14
+> boutonnières 13
+27520,27521c27520,27521
+< café 4
+< cafés 5
+---
+> café 5
+> cafés 6
+27810,27811c27810,27811
+< canapé 6
+< canapés 7
+---
+> canapé 7
+> canapés 8
+30143,30148c30143,30148
+< château 7
+< château's 9
+< châteaux 8
+< châtelaine 10
+< châtelaine's 12
+< châtelaines 11
+---
+> château 8
+> château's 10
+> châteaux 9
+> châtelaine 11
+> châtelaine's 13
+> châtelaines 12
+30637,30640c30637,30640
+< cliché 6
+< cliché's 8
+< clichéd 7
+< clichés 7
+---
+> cliché 7
+> cliché's 9
+> clichéd 8
+> clichés 8
+30649,30651c30649,30651
+< clientèle 9
+< clientèle's 11
+< clientèles 10
+---
+> clientèle 10
+> clientèle's 12
+> clientèles 11
+32487,32489c32487,32489
+< confrère 8
+< confrère's 10
+< confrères 9
+---
+> confrère 9
+> confrère's 11
+> confrères 10
+32778c32778
+< consommé 8
+---
+> consommé 9
+33692,33694c33692,33694
+< cortège 7
+< cortège's 9
+< cortèges 8
+---
+> cortège 8
+> cortège's 10
+> cortèges 9
+34770,34772c34770,34772
+< croûton 7
+< croûton's 9
+< croûtons 8
+---
+> croûton 8
+> croûton's 10
+> croûtons 9
+34804c34804
+< crudités 8
+---
+> crudités 9
+34927,34929c34927,34929
+< crèche 6
+< crèche's 8
+< crèches 7
+---
+> crèche 7
+> crèche's 9
+> crèches 8
+37095,37096c37095,37096
+< derrière 8
+< derrières 9
+---
+> derrière 9
+> derrières 10
+39152,39154c39152,39154
+< divorcée 8
+< divorcée's 10
+< divorcées 9
+---
+> divorcée 9
+> divorcée's 11
+> divorcées 10
+40408,40415c40408,40415
+< débutante 9
+< débutante's 11
+< débutantes 10
+< décolleté 9
+< dérailleur 10
+< dérailleur's 12
+< dérailleurs 11
+< détente 7
+---
+> débutante 10
+> débutante's 12
+> débutantes 11
+> décolleté 11
+> dérailleur 11
+> dérailleur's 13
+> dérailleurs 12
+> détente 8
+42053,42054c42053,42054
+< entrée 6
+< entrées 7
+---
+> entrée 7
+> entrées 8
+44472,44476c44472,44476
+< fiancé 6
+< fiancé's 8
+< fiancée 7
+< fiancées 8
+< fiancés 7
+---
+> fiancé 7
+> fiancé's 9
+> fiancée 8
+> fiancées 9
+> fiancés 8
+45108,45109c45108,45109
+< flambé 6
+< flambéed 8
+---
+> flambé 7
+> flambéed 9
+46498c46498
+< frappé 6
+---
+> frappé 7
+47197,47199c47197,47199
+< fête 4
+< fête's 6
+< fêtes 5
+---
+> fête 5
+> fête's 7
+> fêtes 6
+49886,49888c49886,49888
+< habitué 7
+< habitué's 9
+< habitués 8
+---
+> habitué 8
+> habitué's 10
+> habitués 9
+54663,54664c54663,54664
+< ingénue 7
+< ingénues 8
+---
+> ingénue 8
+> ingénues 9
+56220,56221c56220,56221
+< jalapeño 8
+< jalapeños 9
+---
+> jalapeño 9
+> jalapeños 10
+56261,56263c56261,56263
+< jardinière 10
+< jardinière's 12
+< jardinières 11
+---
+> jardinière 11
+> jardinière's 13
+> jardinières 12
+57159,57161c57159,57161
+< kindergärtner 13
+< kindergärtner's 15
+< kindergärtners 14
+---
+> kindergärtner 14
+> kindergärtner's 16
+> kindergärtners 15
+57458,57460c57458,57460
+< króna 5
+< króna's 7
+< krónur 6
+---
+> króna 6
+> króna's 8
+> krónur 7
+60066c60066
+< macramé 7
+---
+> macramé 8
+60644,60645c60644,60645
+< manqué 6
+< manqué's 8
+---
+> manqué 7
+> manqué's 9
+60706,60709c60706,60709
+< manège 6
+< manèged 7
+< manèges 7
+< manèging 8
+---
+> manège 7
+> manèged 8
+> manèges 8
+> manèging 9
+61132,61133c61132,61133
+< matinée 7
+< matinées 8
+---
+> matinée 8
+> matinées 9
+61200,61201c61200,61201
+< matériel 8
+< matériel's 10
+---
+> matériel 9
+> matériel's 11
+64287,64291c64287,64291
+< métier 6
+< métiers 7
+< mêlée 5
+< mêlée's 7
+< mêlées 6
+---
+> métier 7
+> métiers 8
+> mêlée 7
+> mêlée's 9
+> mêlées 8
+64330,64331c64330,64331
+< naiveté 7
+< naiveté's 9
+---
+> naiveté 8
+> naiveté's 10
+65785c65785
+< née 3
+---
+> née 4
+67097c67097
+< outré 5
+---
+> outré 6
+68568,68569c68568,68569
+< passé 5
+< passé's 7
+---
+> passé 6
+> passé's 8
+73548,73550c73548,73550
+< protégé 7
+< protégé's 9
+< protégés 8
+---
+> protégé 9
+> protégé's 11
+> protégés 10
+73658,73661c73658,73661
+< précis 6
+< précis's 8
+< précised 8
+< précising 9
+---
+> précis 7
+> précis's 9
+> précised 9
+> précising 10
+74248c74248
+< pères 5
+---
+> pères 6
+75644c75644
+< recherché 9
+---
+> recherché 10
+78400c78400
+< risqué 6
+---
+> risqué 7
+78869,78871c78869,78871
+< roué 4
+< roué's 6
+< roués 5
+---
+> roué 5
+> roué's 7
+> roués 6
+79843,79846c79843,79846
+< sauté 5
+< sautéed 7
+< sautéing 8
+< sautés 6
+---
+> sauté 6
+> sautéed 8
+> sautéing 9
+> sautés 7
+83815,83817c83815,83817
+< smörgåsbord 11
+< smörgåsbord's 13
+< smörgåsbords 12
+---
+> smörgåsbord 13
+> smörgåsbord's 15
+> smörgåsbords 14
+84261,84263c84261,84263
+< soirée 6
+< soirée's 8
+< soirées 7
+---
+> soirée 7
+> soirée's 9
+> soirées 8
+84573,84575c84573,84575
+< soufflé 7
+< soufflé's 9
+< soufflés 8
+---
+> soufflé 8
+> soufflé's 10
+> soufflés 9
+84617,84619c84617,84619
+< soupçon 7
+< soupçon's 9
+< soupçons 8
+---
+> soupçon 8
+> soupçon's 10
+> soupçons 9
+88761,88763c88761,88763
+< séance 6
+< séance's 8
+< séances 7
+---
+> séance 7
+> séance's 9
+> séances 8
+91255c91255
+< touché 6
+---
+> touché 7
+95406,95407c95406,95407
+< vicuña 6
+< vicuñas 7
+---
+> vicuña 7
+> vicuñas 8
+98555,98569c98555,98569
+< Ångström 8
+< éclair 6
+< éclair's 8
+< éclairs 7
+< éclat 5
+< éclat's 7
+< élan 4
+< élan's 6
+< émigré 6
+< émigrés 7
+< épée 4
+< épées 5
+< étude 5
+< étude's 7
+< études 6
+---
+> Ångström 10
+> éclair 7
+> éclair's 9
+> éclairs 8
+> éclat 6
+> éclat's 8
+> élan 5
+> élan's 7
+> émigré 8
+> émigrés 9
+> épée 6
+> épées 7
+> étude 6
+> étude's 8
+> études 7
