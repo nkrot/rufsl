@@ -1,0 +1,15 @@
+# -*- encoding: iso-8859-1; -*-
+
+@months = %w{ Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec}
+
+@numbers = %w[ uno dos tres cuatro cinco seis siete ocho nueve diez ]
+
+@fruits = %w{ pear apple strawberry apple bears }
+
+@trn_numbers = [
+    [1, "one",    "ein"],
+    [2, "two",   "zwei"],
+    [3, "three", "drei"],
+    [4, "four",  "vier"],
+    [5, "five",  "fünf"]
+]

@@ -1,0 +1,55 @@
+-*- coding: utf-8; -*-
+
+Задание
+=======
+
+Необходимо написать скрипт, который принимает на вход предложения в формате mtag (см. ниже) и выдает на выход обычное теггированное предложение. Выбор наилучшего тега надо производить по частоте, выбирая тег с наибольшей частотой. Если тегов с наибольшей частотой больше одного, выбирайте любой тег.
+
+вход: text.mtag.in
+ожидаемый выход: text.mtag.out
+
+ответ: syn_mtag2ts_max_freq.rb
+
+
+Что такое mtag
+===============
+
+mtag - multiple tags
+
+Теггер просао1 (TextTagger) состоит из последовательно запускаемых модулей, каждый из которых назначает теги тем словам, которым он может назначить теги. Есть возможность запустить каждый из теггеров отдельно.
+
+sent="Flowers of Bill grow well in a quantum well"
+
+> echo $sent | syn_s2mtag_notag | syn_mtag2mtag_wtwt | syn_mtag2mtag_cst | syn_mtag2mtag_dict | syn_mtag2mtag_np
+Flowers NNS/810_VBZ/10 of IN/10 Bill NP/1 grow VB/170 well NN/40_RB/150_VB/10 in IN/244500_RB/80_RP/4980 a AT/75680_NP/10 quantum NN/3 well NN/3
+
+Пошагово:
+---------
+
+1. Сначала надо привести исходное (нетеггированое) токенизированное предложение к формату mtag при помощи утилиты syn_s2mtag_notag. Все неизвестные слова (а на этом этапе все слова считаются неизвестными) получают тег NOTAG
+
+	Flowers NOTAG/0 grow NOTAG/0 well NOTAG/0 in NOTAG/0 a NOTAG/0 quantum NOTAG/0 well NOTAG/0
+
+2. Первый модуль в цепочке теггеров это wtwt (word-tag-word-tag), назначает теги цепочкам слов, если они есть в ресурсе ldbsrc-English/wtwt/*.srcwtwt. 
+
+	Flowers NOTAG/0 of NOTAG/0 Bill NOTAG/0 grow NOTAG/0 well NOTAG/0 in NOTAG/0 a NOTAG/0 quantum NN/3 well NN/3
+
+3. Следующий модуль CST (case-sensitive tagging) назначает словам на основании регистра написания слов. Этот теггер, как и все последующие, может назначить тег только слову, которое в данный момент имеет тег NOTAG.
+
+	Flowers NOTAG/0 of NOTAG/0 Bill NP/1 grow NOTAG/0 well NOTAG/0 in IN/244500_RB/80_RP/4980 a AT/75680_NP/10 quantum NN/3 well NN/3
+
+4. Далее все слова получают теги из словаря или по формальным признакам (syn_mtag2mtag_dict). Сначала слова получат теги из словаря, и, если таковых нет, то по формальным признаками (модули WGL, Suffixes, Prefixes). Есть возможность получать эти теги по-отдельности.
+
+	Flowers NNS/810_VBZ/10 of IN/10 Bill NP/1 grow VB/170 well NN/40_RB/150_VB/10 in IN/244500_RB/80_RP/4980 a AT/75680_NP/10 quantum NN/3 well NN/3
+
+5. Слова, все еще имеющие NOTAG, получают тег по умолчанию при помощи утилиты syn_mtag2mtag_np
+
+6. Выбор наилучшего тега из множества тегов производится согласно языковой модели HMM. Алгоритм реализован в syn_mtag2ts.
+
+7. Дальшейшая коррекция раскраски производится при помощи syn_ts2ts_rbta
+
+Так выглядит более менее полный пайп теггера. Более полная информация доступна на syntagma wiki.
+
+	>echo $sent | syn_s2mtag_notag | syn_mtag2mtag_wtwt | syn_mtag2mtag_cst | syn_mtag2mtag_dict | syn_mtag2mtag_np | syn_mtag2ts | syn_ts2ts_rbta
+
+
