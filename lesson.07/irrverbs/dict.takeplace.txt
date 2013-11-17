@@ -1,0 +1,7 @@
+TAKE PLACE   classes: VB-134/10 
+  convertions: 
+    VB-134 --> VBZ-139 TAKES PLACE 
+    VB-134 --> VBN-138 TAKEN PLACE 
+    VB-134 --> VBG-137 TAKING PLACE 
+    VB-134 --> VBD-136 TOOK PLACE 
+

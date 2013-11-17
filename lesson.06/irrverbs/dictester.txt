@@ -1,0 +1,40 @@
+CONFUSE   classes: VB-134/20 
+  convertions: 
+    VB-134 --> VBZ-139 CONFUSES 
+    VB-134 --> VBN-138 CONFUSED 
+    VB-134 --> VBG-137 CONFUSING 
+    VB-134 --> VBD-136 CONFUSED 
+    VB-134 --> NN-70 CONFUSION 
+    VB-134 --> JJ-59 CONFUSABLE 
+
+SAY   classes: VB-134/2260 NN-70/50 
+  convertions: 
+    VB-134 --> VBZ-139 SAYS 
+    VB-134 --> VBN-138 SAID 
+    VB-134 --> VBG-137 SAYING 
+    VB-134 --> VBD-136 SAID 
+
+DEFER   classes: VB-134/10 
+  convertions: 
+    VB-134 --> VBZ-139 DEFERS 
+    VB-134 --> VBN-138 DEFERRED 
+    VB-134 --> VBG-137 DEFERRING 
+    VB-134 --> VBD-136 DEFERRED 
+    VB-134 --> NN-70 DEFERENCE 
+
+GIVE   classes: VB-134/1590 
+  convertions: 
+    VB-134 --> VBZ-139 GIVES 
+    VB-134 --> VBN-138 GIVEN 
+    VB-134 --> VBG-137 GIVING 
+    VB-134 --> VBD-136 GAVE 
+    VB-134 --> NN-70 GIVING 
+
+ANNOTATE   classes: VB-134/10 
+  convertions: 
+    VB-134 --> VBZ-139 ANNOTATES 
+    VB-134 --> VBN-138 ANNOTATED 
+    VB-134 --> VBG-137 ANNOTATING 
+    VB-134 --> VBD-136 ANNOTATED 
+    VB-134 --> NN-70 ANNOTATION 
+

@@ -1,0 +1,17 @@
+DO   classes: DO-43/10 
+  convertions: 
+    VB-134 --> VBZ-139 DOES 
+    VB-134 --> VBD-136 DID 
+    VB-134 --> DOZ-45 DOES 
+    VB-134 --> DOD-44 DID 
+    DO-43 --> VBN-138 DONE 
+    DO-43 --> VBG-137 DOING 
+    DO-43 --> DOZ-45 DOES 
+    DO-43 --> DOD-44 DID 
+
+DID   classes: DOD-44/2080 
+  convertions: 
+    VBD-136 --> VB-134 DO 
+    DOD-44 --> VB-134 DO 
+    DOD-44 --> DO-43 DO 
+

@@ -1,0 +1,21 @@
+HAUL   classes: VB-134/10 NN-70/10 
+  convertions: 
+    VB-134 --> VBZ-139 HAULS 
+    VB-134 --> VBN-138 HAULED 
+    VB-134 --> VBG-137 HAULING 
+    VB-134 --> VBD-136 HAULED 
+    VB-134 --> NN-70 HAULAGE 
+    VB-134 --> NN-70 HAULING 
+    NN-70 --> NNS-77 HAULS 
+
+HAVE   classes: HV-52/10 
+  convertions: 
+    VB-134 --> VBZ-139 'S 
+    VB-134 --> VBZ-139 HAS 
+    VB-134 --> VBN-138 HAD 
+    VB-134 --> VBG-137 HAVING 
+    VB-134 --> VBD-136 'D 
+    VB-134 --> VBD-136 HAD 
+    VB-134 --> HVZ-56 HAS 
+    VB-134 --> HVN-55 HAD 
+    VB-134 --> HVG-54 HAVING 
