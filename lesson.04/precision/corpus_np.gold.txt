@@ -1,0 +1,5 @@
+Bill_NP Gates_NP owns_ZZ Microsoft_ZZ
+Gates_ZZ opened_ZZ slowly_ZZ
+Bill_NP kicked_ZZ the_ZZ gates_ZZ
+Gates_NP paid_ZZ the_ZZ bill_ZZ
+

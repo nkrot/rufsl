@@ -1,0 +1,21 @@
+
+Develop a script that finds (and counts) words in ESE dictionary that have both VBN and VBD tags such that the frequency of VBN tag is 10 or 10+ times larger than the frequency of VBD tag. Output list of words (w/o tags and freqs, just plain words) to stdout. Output counts to stderr.
+
+USAGE: DicTester --all | ./find_vbd_vbn.rb
+
+Before starting to work on the script, you may want to stufy the output format of the command:
+
+	   > DicTester --all
+
+When matching regular expressions you may extract each bracketed submatch using $1, $2 .. $9 variables
+For example, try the following in irb:
+
+	> str = "hello, world"
+ 	=> "hello, world" 
+	> str =~ /([^\s]+), ([^\s]+)/
+ 	=> 0 
+	> puts $1  # this is the substring captured by the 1st pair of ( )
+	hello
+	> puts $2  # this is the substring captured by the 2nd pair of ( )
+	world
+ 

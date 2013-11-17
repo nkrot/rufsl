@@ -1,0 +1,21 @@
+
+Develop a script that counts English words from ESE in three categories:
+1) having VB and NN and JJ tags
+2) having VB and NN tags but not having JJ tag
+3) having VB and not having NN and JJ tags
+
+as a source of data, use DicTester command:
+
+   > DicTester --all --brief | ./count_vb_nn_jj.rb
+
+Starter script: count_vb_nn_jj.rb
+
+Before you start, carefully investigate how DicTester outputs data with --all and --brief options.
+
+You may want to know what \b flag means in Ruby regexp, refer to:
+	http://www.tutorialspoint.com/ruby/ruby_regular_expressions.htm
+
+Expected output:
+VB+NN+JJ 264
+VB+NN    13
+VB       11

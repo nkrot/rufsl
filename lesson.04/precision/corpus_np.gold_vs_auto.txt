@@ -1,0 +1,15 @@
+-	Bill_NP	Bill_ZZ
+=	Gates_NP	Gates_NP
+=	owns_ZZ	owns_ZZ
+-	Microsoft_ZZ	Microsoft_NP
+-	Gates_ZZ	Gates_NP
+=	opened_ZZ	opened_ZZ
+=	slowly_ZZ	slowly_ZZ
+-	Bill_NP	Bill_ZZ
+=	kicked_ZZ	kicked_ZZ
+=	the_ZZ	the_ZZ
+-	gates_ZZ	gates_NP
+=	Gates_NP	Gates_NP
+=	paid_ZZ	paid_ZZ
+=	the_ZZ	the_ZZ
+=	bill_ZZ	bill_ZZ

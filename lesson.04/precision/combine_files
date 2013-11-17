@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# # #
+# USAGE: ThisScript corpus_np.gold.txt corpus_np.auto.txt
+#
+
+tmp1=`mktemp /tmp/tmp.1.XXXXXX`
+tmp2=`mktemp /tmp/tmp.2.XXXXXX`
+
+cat $1 | tr -s ' ' '\n' >$tmp1
+cat $2 | tr -s ' ' '\n' >$tmp2
+
+trap "rm -f $tmp1 $tmp2" EXIT
+
+paste $tmp1 $tmp2
+

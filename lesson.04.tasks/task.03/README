@@ -1,0 +1,28 @@
+
+Subtask 1
+=========
+
+Develop a script that extracts from ESE dictionary all adjectives (JJ) that have conversion to JJR.
+
+You should be able to run your script as follows:
+
+	> DicTester --all | ./find_jj_with_jjr.rb
+
+Starter script is: find_jj_with_jjr_stub.rb
+
+Before you start coding, you may want to investigate in detail the output format of DicTester --all.
+
+Compare the output of your script with the output of the given find_jj_with_jjr.rb
+
+
+Subtask 2
+=========
+
+Develop a script that extracts from ESE dictionary all adjectives (JJ) that do *NOT* have conversion to JJR.
+
+You should be able to run your script as follows:
+
+	> DicTester --all | ./find_jj_no_jjr.rb
+
+Compare the output of your script with the output of the given find_jj_no_jjr.rb
+
