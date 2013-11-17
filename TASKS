@@ -1,0 +1,145 @@
+Focus: Arrays
+=============
+
+FOLLOWUP to word_lengths
+ * find words whose length is measured differently when Encoding::default * is either set or not
+
+palindromes+volvograms	lesson.16,18-19/dromes
+  determine if the current word is a palindrome or a volvogram
+TOOLS: String#reverse, Array#push, Array#has?
+
+select_random_corpus	CAN NOT FIND IT
+* basic requirements: select 10 % of total corpus
+= where: lesson.09.tasks and answers in lesson.10
+
+select_random_corpus of sentence length, ignoring punctuation (see hw205)	
+* additional requirements: ignore punctuation when counting tokens (array#reject)
+
+	
+!!! check out tasks from the previous run of the course
+anagrams of a given word? followed by explanation of ARGV
+
+custom implementations of Array methods
+	sort
+	reverse
+	shuffle
+	uniq/uniq!
+
+Fun:
+* how to check that given element occurs in an array exactly once?
+-> Array#index should match Array#rindex
+
+other_tasks/arrays.rbta
+
+tasks involving sort: similar to what I do for ranking cmp difference.
+assume this is cmp tagging. build indices
+- Hash. change => [entry1, entry2, ...]. I will have to implement this logic myself.
+- [[change1, quantity1], [change2, quantity2], [change3, quantity3]]
+
+Focus: Hashes
+=============
+
+1. given a text, find the most frequent word that comes after the article 'the'
+requires: a hash [word] = count
+
+2. given a text, find the most frequent words that come after the articles 'a' 'an' 'the'
+requires: multidimensional hash: counts['a'][word1] = count
+
+3. given a list of word translations, join the lines so that all translations appear on the same line
+    in:
+	one	ein
+	one	uno
+	two	zwei
+	two	dos
+    out:
+	one	ein	uno
+	two	zwei	dos
+
+4. collect words with all case variants occurring in a text corpus.
+
+5. collect words and all its variants with diacritics. compute the probability of each diacritical spelling
+
+Focus: Logical expressions
+==========================
+
+1. From a tokenized corpus (one sentence per line) extract sentences with specified length:
+   a) length less than N tokens
+   b) length within specified range. USE: Range#include? or complex conditions
+
+Focus: User defined functions
+=============================
+
+1. recursion: compute how much money will be on a bank account with given interests (n %) after specified time lapse (K days) provided that capitalization occurs every day. Perhaps we will need Time or Date classes to compute the exact quantity of days between two dates.
+
+Focus: Unclassified
+===================
+
+1. Building a corpus:
+
+!!! добавить способ сгенерировать последовательность случайных чисел, как альтернатива к lesson.10/subcorpus/extract_random_corpus.rb
+
+2. Given a tagged sentence, extract all tag-tag bigrams and trigrams
+
+
+Projects:
+---------
+
+something similar to cmpsao_intersect:
+	given a file with tested difference, import it in another untested file
+	to imitate testing
+
+remove duplicates from cmp file
+	- when entries repeat literally
+	- when entries have lines in different order
++ w/o removing, mark duplicates or comment them out in the output
+
+rearrange cmp data so that
+	1) similar entries go together in a group
+	2) groups go sorted by size
+
+
+ruby quick reference:
+http://www.zenspider.com/Languages/Ruby/QuickRef.html#general-tips
+other learning resource:
+http://rubylearning.com/satishtalim/ruby_exceptions.html
+
+Arrays:
+http://www.tutorialspoint.com/ruby/ruby_arrays.htm
+
+C++ http://www.sparknotes.com/cs/
+	examples of trees, sorting
+
+ruby for newbies:
+http://net.tutsplus.com/sessions/ruby-for-newbies/
+
+interesting post
+http://stackoverflow.com/questions/1614147/odd-or-even-entries-in-a-ruby-array
+
+Statistics
+===========
+
+тема: mean, median, mode
+
+1. объяснить понятия на примерах к графиками, можно взять те примеры, что в книжке head first statistics. они простые и наглядные.
+
+2. написать свои методы, которые, получив на вход массив значений, вычисляют mean, median, mode. возможно также сделать, чтобы методы принимали на вход хэш, который соответствует табличному представлению данных:
+
+Value            | x1 | x2 | ... | xn
+---------------------|------|------|------|-----
+Frequency   | f1  | f3 | ...  | fn
+
+hash = {
+   x1 => f1,
+   x2 => f2,
+   ...
+   xn => f4
+}
+
+3. Самостоятельные задания
+
+mean - найти среднюю длину именной группы r__SNP (в словах) в разных языках.
+median  (срединное значение) - медиану для длин r__SNP (в словах) в разных языках.
+mode (самое частотное значение) - самый частотный тег? самая частотная длина  rSNP в словах.
+
+4. можно реализовать precision/recall/accuracy в виде своих методов. и потом вынести их в модуль. тут можно показать TDD
+

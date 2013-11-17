@@ -1,0 +1,18 @@
+code review #2:
+1) will start beginning of November. collect scripts around Nov.8
+
+Lesson.12:
+
+* (promissed) Bubble sort algorithm
+* show how to test a script? instead, would be good to implement a separate sort method and use it in tests: bubble_sort(arr) == gold_arr
+
+
+for code review
+----------------
+extract_nth_sentence.rb
+extract_random_subcorpus.rb
+extract_random_subcorpus.2.rb
+untag.rb
+untag_relations.rb
+word_lengths_2.rb
+

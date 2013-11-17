@@ -1,0 +1,326 @@
+
+O'ER   classes: RB-123/10 IN-57/10 
+  convertions: 
+    IN-57 --> IN-57 OVER 
+
+NIBS   classes: VBZ-139/10 NNS-77/10 NN-70/10 
+  convertions: 
+    VBZ-139 --> VB-134 NIB 
+    NNS-77 --> NN-70 NIB 
+
+NICE   classes: JJ-59/130 
+  convertions: 
+    JJ-59 --> JJT-65 NICEST 
+    JJ-59 --> JJR-63 NICER 
+
+NICK   classes: VB-134/10 NN-70/10 
+  convertions: 
+    VB-134 --> VBZ-139 NICKS 
+    VB-134 --> VBN-138 NICKED 
+    VB-134 --> VBG-137 NICKING 
+    VB-134 --> VBD-136 NICKED 
+    VB-134 --> NN-70 NICKING 
+    VB-134 --> JJ-59 NICKABLE 
+    NN-70 --> NNS-77 NICKS 
+--
+PLAY-ACTED   classes: VBN-138/10 VBD-136/1 
+  convertions: 
+
+PLAY-ACTOR   classes: NN-70/10 
+  convertions: 
+    NN-70 --> NNS-77 PLAY-ACTORS 
+
+NI-ZN   classes: NN-70/10 
+  convertions: 
+
+NICER   classes: JJR-63/10 
+  convertions: 
+    JJR-63 --> JJ-59 NICE 
+
+NICHE   classes: NN-70/10 
+  convertions: 
+    NN-70 --> NNS-77 NICHES 
+
+NICKS   classes: VBZ-139/10 NNS-77/10 
+  convertions: 
+    VBZ-139 --> VB-134 NICK 
+    NNS-77 --> NN-70 NICK 
+
+--
+    VB-134 --> VBG-137 UNHYBRIDISING 
+    VB-134 --> VBD-136 UNHYBRIDISED 
+
+UNHYBRIDIZE   classes: VB-134/10 
+  convertions: 
+    VB-134 --> VBZ-139 UNHYBRIDIZES 
+    VB-134 --> VBN-138 UNHYBRIDIZED 
+    VB-134 --> VBG-137 UNHYBRIDIZING 
+    VB-134 --> VBD-136 UNHYBRIDIZED 
+
+UNICELLULAR   classes: JJ-59/10 
+  convertions: 
+
+CARBOXYPROPANEAMIDO   classes: NN-70/10 
+  convertions: 
+
+METHYLBUTYLTHIO   classes: NN-70/10 
+  convertions: 
+
+FACTORIALLY   classes: RB-123/10 
+  convertions: 
+--
+
+CHAINSMOKED   classes: JJed-155/1 VBN-138/10 VBD-136/1 
+  convertions: 
+    VBN-138 --> VB-134 CHAINSMOKE 
+    VBD-136 --> VB-134 CHAINSMOKE 
+
+CHAINSMOKES   classes: VBZ-139/10 
+  convertions: 
+    VBZ-139 --> VB-134 CHAINSMOKE 
+
+OVER-NICENESS   classes: NN-70/10 
+  convertions: 
+
+VULTURINE   classes: JJ-59/10 
+  convertions: 
+
+VULTURISH   classes: JJ-59/10 
+  convertions: 
+
+VULTUROUS   classes: JJ-59/10 
+  convertions: 
+--
+
+WITHDRAWING   classes: JJing-154/10 VBG-137/40 NN-70/30 
+  convertions: 
+    VBG-137 --> VB-134 WITHDRAW 
+    NN-70 --> VB-134 WITHDRAW 
+    NN-70 --> NNS-77 WITHDRAWINGS 
+
+NEBRASKA   classes: NP-83/10 
+  convertions: 
+
+CORNICED   classes: JJ-59/10 
+  convertions: 
+
+CORNICES   classes: NNS-77/10 
+  convertions: 
+    NNS-77 --> NN-70 CORNICE 
+
+CORNICHE   classes: NN-70/10 
+  convertions: 
+
+DENUCLEARIZATIONS   classes: NNS-77/10 
+  convertions: 
+    NNS-77 --> NN-70 DENUCLEARIZATION 
+
+CORNMEAL   classes: NN-70/10 JJ-59/10 
+  convertions: 
+--
+ARROGATE   classes: VB-134/10 
+  convertions: 
+    VB-134 --> VBZ-139 ARROGATES 
+    VB-134 --> VBN-138 ARROGATED 
+    VB-134 --> VBG-137 ARROGATING 
+    VB-134 --> VBD-136 ARROGATED 
+
+ERGONOMICS   classes: NN-70/10 
+  convertions: 
+
+PICNICED   classes: VBN-138/10 VBD-136/1 
+  convertions: 
+
+PICNICKS   classes: VBZ-139/10 
+  convertions: 
+
+DEPERSONALISATION   classes: NN-70/10 
+  convertions: 
+    NN-70 --> NNS-77 DEPERSONALISATIONS 
+
+REHANDLING   classes: VBG-137/10 NN-70/10 
+--
+  convertions: 
+    NNS-77 --> NN-70 FLYWHEEL 
+
+BELLYACHERS   classes: NNS-77/10 
+  convertions: 
+    NNS-77 --> NN-70 BELLYACHER 
+
+BELLYACHING   classes: VBG-137/10 
+  convertions: 
+
+NICENESS   classes: NN-70/30 
+  convertions: 
+
+FORECLOSING   classes: JJing-154/10 VBG-137/10 
+  convertions: 
+    VBG-137 --> VB-134 FORECLOSE 
+
+FORECLOSURE   classes: NN-70/10 
+  convertions: 
+    NN-70 --> NNS-77 FORECLOSURES 
+
+AFFIRMANCES   classes: NNS-77/10 
+  convertions: 
+    NNS-77 --> NN-70 AFFIRMANCE 
+
+NON-POLARIZING   classes: JJ-59/10 
+  convertions: 
+
+NICETIES   classes: NNS-77/10 
+  convertions: 
+    NNS-77 --> NN-70 NICETY 
+
+PITCHERS   classes: NNS-77/10 
+  convertions: 
+    NNS-77 --> NN-70 PITCHER 
+
+PITCHING   classes: VBG-137/10 NN-70/10 
+  convertions: 
+    VBG-137 --> VB-134 PITCH 
+    NN-70 --> VB-134 PITCH 
+
+--
+  convertions: 
+
+PREMEMORIZING   classes: VBG-137/10 
+  convertions: 
+    VBG-137 --> VB-134 PREMEMORIZE 
+
+PHYLACTERY   classes: NN-70/10 
+  convertions: 
+    NN-70 --> NNS-77 PHYLACTERIES 
+
+LONICERA   classes: NN-70/10 
+  convertions: 
+
+HOLD TRUE OF   classes: VB-134/10 
+  convertions: 
+    VB-134 --> VBZ-139 HOLDS TRUE OF 
+    VB-134 --> VBN-138 HELD TRUE OF 
+    VB-134 --> VBG-137 HOLDING TRUE OF 
+    VB-134 --> VBD-136 HELD TRUE OF 
+
+AMBIGUOUSLY   classes: RB-123/10 
+--
+    NNS-77 --> NN-70 ELITE 
+
+TRIBOELECTRIFYING   classes: VBG-137/10 
+  convertions: 
+    VBG-137 --> VB-134 TRIBOELECTRIFY 
+
+ELIXIR   classes: NN-70/10 
+  convertions: 
+    NN-70 --> NNS-77 ELIXIRS 
+
+NICE-PACE   classes: JJ-59/10 
+  convertions: 
+
+UNPOWERS   classes: VBZ-139/10 
+  convertions: 
+    VBZ-139 --> VB-134 UNPOWER 
+
+HYDROXYBUTYLAMINOCARBONYL   classes: NN-70/10 
+  convertions: 
+
+ELOPED   classes: JJed-155/1 VBN-138/10 VBD-136/1 
+--
+
+NIBBLE   classes: VB-134/10 NN-70/10 
+  convertions: 
+    VB-134 --> VBZ-139 NIBBLES 
+    VB-134 --> VBN-138 NIBBLED 
+    VB-134 --> VBG-137 NIBBLING 
+    VB-134 --> VBD-136 NIBBLED 
+    VB-134 --> NN-70 NIBBLING 
+    NN-70 --> NNS-77 NIBBLES 
+
+NICELY   classes: RB-123/10 
+  convertions: 
+
+NICEST   classes: JJT-65/10 
+  convertions: 
+    JJT-65 --> JJ-59 NICE 
+
+NICETY   classes: NN-70/10 
+  convertions: 
+    NN-70 --> NNS-77 NICETIES 
+
+NICHED   classes: JJ-59/10 
+  convertions: 
+
+NICHES   classes: NNS-77/10 
+  convertions: 
+    NNS-77 --> NN-70 NICHE 
+
+NICISH   classes: JJ-59/10 
+  convertions: 
+--
+
+OVER-MANY   classes: JJ-59/10 
+  convertions: 
+
+SIXTY-FIVE   classes: CD-34/10 
+  convertions: 
+
+OVER-MUCH   classes: RB-123/10 JJ-59/10 
+  convertions: 
+
+OVER-NICE   classes: JJ-59/10 
+  convertions: 
+
+HYDROXYOCTADECAOATE   classes: NN-70/10 
+  convertions: 
+
+PROGNOSTICATING   classes: JJing-154/10 VBG-137/10 
+  convertions: 
+    VBG-137 --> VB-134 PROGNOSTICATE 
+
+PROGNOSTICATION   classes: NN-70/10 
+--
+  convertions: 
+    VBZ-139 --> VB-134 WINTER 
+    NNS-77 --> NN-70 WINTER 
+
+UNDOCKING   classes: VBG-137/10 NN-70/10 
+  convertions: 
+    VBG-137 --> VB-134 UNDOCK 
+    NN-70 --> VB-134 UNDOCK 
+    NN-70 --> NNS-77 UNDOCKINGS 
+
+OVER-NICETY   classes: NN-70/10 
+  convertions: 
+
+EPIGRAPHY   classes: NN-70/10 JJ-59/10 
+  convertions: 
+
+METHYLTHIODECANOYLAMINO   classes: NN-70/10 
+  convertions: 
+
+DIALLYLOXY   classes: NN-70/10 
+  convertions: 
+--
+    VBZ-139 --> VB-134 CORNER 
+    NNS-77 --> NN-70 CORNER 
+
+CORNETS   classes: NNS-77/10 
+  convertions: 
+    NNS-77 --> NN-70 CORNET 
+
+CORNETT   classes: NN-70/10 
+  convertions: 
+
+CORNICE   classes: NN-70/10 
+  convertions: 
+    NN-70 --> NNS-77 CORNICES 
+
+CORNIFY   classes: VB-134/10 
+  convertions: 
+    VB-134 --> VBZ-139 CORNIFIES 
+    VB-134 --> VBN-138 CORNIFIED 
+    VB-134 --> VBG-137 CORNIFYING 
+    VB-134 --> VBD-136 CORNIFIED 
+
+CORNILY   classes: RB-123/10 
+  convertions: 
