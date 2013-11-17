@@ -1,0 +1,138 @@
+#!/usr/bin/env ruby
+
+# # #
+# constraint: use non-destructive methods or at least ensure the original array is unchanged
+# use /^[[:upper:]]/ to check the title case, you can use =~  or !~
+
+all_title_words  = %w{ The Sun Shines Over The Earth}
+some_title_words = %w{ The Sun shines over the Earth}
+
+def all_title_1? words
+  words.all? {|w| w =~ /^[[:upper:]]/}
+end
+
+def all_title_2? words
+  !words.any? {|w| w !~ /^[[:upper:]]/}
+end
+
+# reject!, delete_if, keep_if
+
+def all_title_3? words
+  words.select {|w| w =~ /^[[:upper:]]/} == words
+end
+
+def all_title_4? words
+  words.reject {|w| w =~ /^[[:upper:]]/}.empty?  # .length == 0
+end
+
+def all_title_5? words
+  words.map {|w| w =~ /^[[:upper:]]/}.count(0) == words.length
+end
+
+def all_title_6? words
+  words.map {|w| w =~ /^[[:upper:]]/}.count(nil) == 0
+end
+
+def all_title_7? words
+  words.map {|w| w =~ /^[[:upper:]]/}.compact.length == words.length
+end
+
+def all_title_8? words
+  ! words.map {|w| w =~ /^[[:upper:]]/}.include?(nil)
+end
+
+def all_title_9? words
+  ! words.map {|w| w =~ /^[[:upper:]]/}.index(nil)
+end
+
+# wrong!
+#def all_title_10? words
+#  # careful! avoid finding nil :)
+#  puts words.map {|w| w =~ /^[[:upper:]]/}.find {|el| !el}.inspect
+#end
+
+def all_title_10? words
+  # same: for w in words
+  words.each {|w| 
+    return false  if w !~ /^[[:upper:]]/
+  }
+  true
+end
+
+def all_title_11? words
+  ! words.find {|w| w !~ /^[[:upper:]]/ }
+end
+
+def all_title_12? words
+  ! words.index {|w| w !~ /^[[:upper:]]/ }
+end
+
+def all_title_13? words
+  words.map {|w| w =~ /^[[:upper:]]/ }.all?  # implicit block is assumed
+end
+
+def all_title_14? words
+  !! (words.sort.last =~ /^[[:upper:]]/)
+
+  # the !! cast the integer or nil to a boolean and correspond to
+#  if words.sort.last =~ /^[[:upper:]]/
+#    true
+#  else
+#    false
+#  end
+
+  # or using a ternary operation
+#  words.sort.last =~ /^[[:upper:]]/ ? true : false
+end
+
+def all_title_15? words
+  words.count {|w| w !~ /^[[:upper:]]/ } == 0
+  # same as
+#  words.count {|w| w =~ /^[[:upper:]]/ } == words.length
+end
+
+puts all_title_1?(all_title_words)  == true
+puts all_title_1?(some_title_words) == false
+
+puts all_title_2?(all_title_words)  == true
+puts all_title_2?(some_title_words) == false
+
+puts all_title_3?(all_title_words)  == true
+puts all_title_3?(some_title_words) == false
+
+puts all_title_4?(all_title_words)  == true
+puts all_title_4?(some_title_words) == false
+
+puts all_title_5?(all_title_words)  == true
+puts all_title_5?(some_title_words) == false
+
+puts all_title_6?(all_title_words)  == true
+puts all_title_6?(some_title_words) == false
+
+puts all_title_7?(all_title_words)  == true
+puts all_title_7?(some_title_words) == false
+
+puts all_title_8?(all_title_words)  == true
+puts all_title_8?(some_title_words) == false
+
+puts all_title_9?(all_title_words)  == true
+puts all_title_9?(some_title_words) == false
+
+puts all_title_10?(all_title_words)  == true
+puts all_title_10?(some_title_words) == false
+
+puts all_title_11?(all_title_words)  == true
+puts all_title_11?(some_title_words) == false
+
+puts all_title_12?(all_title_words)  == true
+puts all_title_12?(some_title_words) == false
+
+puts all_title_13?(all_title_words)  == true
+puts all_title_13?(some_title_words) == false
+
+puts all_title_14?(all_title_words)  == true
+puts all_title_14?(some_title_words) == false
+
+puts all_title_15?(all_title_words)  == true
+puts all_title_15?(some_title_words) == false
+
