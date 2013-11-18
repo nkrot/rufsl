@@ -1,0 +1,3 @@
+r__VerbPhrase	the_ATI wether_NN	will_MD kill_VB												
+r__VerbPhrase	the_ATI weather_NN	will_MD weather_VB		the_ATI wether_NN										
+r__VerbPhrase	I_PP1A	wonder_VB												
