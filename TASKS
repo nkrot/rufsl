@@ -25,10 +25,6 @@ custom implementations of Array methods
 	shuffle
 	uniq/uniq!
 
-Fun:
-* how to check that given element occurs in an array exactly once?
--> Array#index should match Array#rindex
-
 other_tasks/arrays.rbta
 
 tasks involving sort: similar to what I do for ranking cmp difference.
@@ -58,6 +54,7 @@ requires: multidimensional hash: counts['a'][word1] = count
 4. collect words with all case variants occurring in a text corpus.
 
 5. collect words and all its variants with diacritics. compute the probability of each diacritical spelling
+	!!! corpus of french texts !!!
 
 Focus: Logical expressions
 ==========================
@@ -118,7 +115,7 @@ http://stackoverflow.com/questions/1614147/odd-or-even-entries-in-a-ruby-array
 Statistics
 ===========
 
-тема: mean, median, mode
+тема: mean, median, mode; range, variance, standard deviation
 
 1. объяснить понятия на примерах к графиками, можно взять те примеры, что в книжке head first statistics. они простые и наглядные.
 

@@ -1,13 +1,21 @@
 code review #2:
 1) will start beginning of November. collect scripts around Nov.8
 
-Lesson.12:
-
+Lesson.14:
+* Implement insert_sort(Array) in-place
+* Module, implement precision/recall/accuracy and move away into a module. Where Ruby searches for modules/classes; load/require; namespaces and fully qualified names
+   * create rufsl/lib
+   * place modules there: rufsl/lib/quality.rb
+* HW: create module Syn and a number of methods in it:
+   * place it into rufsl/lib/syn.rb
+   * untag (tw2w, ts2s)
+   * unwdc
+   * unword
+   * wt2tw
 * (promissed) Bubble sort algorithm
-* show how to test a script? instead, would be good to implement a separate sort method and use it in tests: bubble_sort(arr) == gold_arr
 
 
-for code review
+for code review #2
 ----------------
 extract_nth_sentence.rb
 extract_random_subcorpus.rb
@@ -15,4 +23,6 @@ extract_random_subcorpus.2.rb
 untag.rb
 untag_relations.rb
 word_lengths_2.rb
+
+
 
