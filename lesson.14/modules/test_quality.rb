@@ -1,9 +1,11 @@
 #!/usr/bin/env ruby
 
-require 'test/unit'
-require './quality'
+require 'test/unit' # obligatory
+require './quality' # your class/module you want to test
 
 class TestQuality < Test::Unit::TestCase
+
+  # every method MUST start with test_
 
   def test_accuracy_with_two_args
     assert_equal 0.8, Quality::accuracy(8, 2) # num_of_equal, num_of_diff 
@@ -22,3 +24,6 @@ class TestQuality < Test::Unit::TestCase
   end
 end
 
+#class Test...  < Test::Unit::TestCase
+#
+#end

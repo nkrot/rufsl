@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-@debug = !false
+@debug = false
 
 def insert_sort(arr)
   puts "Unsorted: #{arr.inspect}"  if @debug
