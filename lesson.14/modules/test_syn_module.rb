@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require './syn' # specifying relative path is a hack
+#require_relative 'syn'
 
 ["apples_NNS kill_VB", "Antanarivo_NP"].each do |str|
   puts str.inspect

@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'test/unit' # obligatory
-require './quality' # your class/module you want to test
+require_relative 'quality' # your class/module you want to test
 
 class TestQuality < Test::Unit::TestCase
 
