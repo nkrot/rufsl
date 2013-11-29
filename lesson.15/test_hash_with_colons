@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+numbers = {one: 'uno', two: 'dos', three: 'tres'}
+
+puts numbers.inspect
+
+numbers.each do |k,v|
+  puts "key #{k} is of class #{k.class}"
+end

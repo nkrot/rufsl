@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+
+# # #
+# USAGE: find_anagrams_of reward data/words.txt
+#
+
+query = ARGV.shift # read the first argument
+
+def hashcode_of wd
+  wd.downcase.split('').sort.join('')
+end
+
+query_hashcode = hashcode_of query
+
+c_out = 0
+while word = gets
+  word.chomp!
+
+  if word.length != query.length || word.casecmp(query) == 0
+    # ignore query word itself, in any letter case
+    # ignore all words that are shorter or longer than the requested one
+
+  elsif hashcode_of(word) == query_hashcode
+    c_out += 1
+    puts word
+  end
+end
+
+puts "Found #{c_out} more word(s)"

@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+# # #
+# USAGE: find_anagrams_of reward data/words.txt
+#
+
+query = ARGV.shift # read the first argument
+
+while ...
+end
+
+puts "Found #{c_out} more word(s)"
