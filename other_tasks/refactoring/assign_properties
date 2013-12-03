@@ -4,9 +4,11 @@
 #
 #
 
-def letter_case_class word
+require_relative 'synldb'
 
-  length_class = \
+######################################################################
+
+def length_class word
   case
   when word.length == 1
     '1'
@@ -15,31 +17,39 @@ def letter_case_class word
   else
     ''
   end
+end
 
-  lc_class = \
+######################################################################
+
+def letter_case_class word
+
   case
   when word =~ /^[[:upper:]]+$/
-    'lc_U'  + length_class
+    'lc_U'  + length_class(word)
+
   when word =~ /^[[:lower:]]+$/
-    'lc_l'  + length_class
+    'lc_l'  + length_class(word)
+
   when word =~ /^[[:upper:]][[:lower:]]+$/
-    'lc_Ul' + length_class
+    'lc_Ul' + length_class(word)
+
   when word =~ /[[:alpha:]]/
     # GNU/Linux -> U/Ul
     'lc_' + word.gsub(/[[:upper:]]+/, "U")
       .gsub(/[[:lower:]]+/, "l")
       .gsub(/\d+/, "d")
       .squeeze
+
   when word =~ /^\d+([,.]\d+)*$/
-    # digits
     'lc_d'
+
   when word !~ /[[:alpha:]]/
     'lc_noalpha'
+
   else
     'lc_other'
   end
 
-  lc_class
 end
 
 ######################################################################
@@ -54,15 +64,15 @@ end
 
 def tags_of_word_at pos
   if @lines[pos]
-    # get word
-    # get its tags
-    # TODO: load dictionary from a file
-  else
-    'NOTAG'
+    word = @lines[pos].split(/\t/).first
+    tags = @syn_ldb.tags(word)
   end
+  tags ? tags.join('_') : 'NOTAG'
 end
 
 ######################################################################
+
+@synldb = SynLDB.new
 
 while block = gets("")
 
@@ -84,10 +94,10 @@ while block = gets("")
     features += suffix_features(word)
 
     # add tags of the previous and the next word
-    features << tags_of_word_at(pos-1) << tags_of_word_at(pos+1)
+    features << tags_of_word_at(pos-1)
+    features << tags_of_word_at(pos+1)
   end
 
   puts @lines.join("\n")
 end
-
 
