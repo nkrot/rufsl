@@ -1,0 +1,93 @@
+#!/usr/bin/env ruby
+
+# # #
+#
+#
+
+def letter_case_class word
+
+  length_class = \
+  case
+  when word.length == 1
+    '1'
+  when word.length < 6
+    '5'
+  else
+    ''
+  end
+
+  lc_class = \
+  case
+  when word =~ /^[[:upper:]]+$/
+    'lc_U'  + length_class
+  when word =~ /^[[:lower:]]+$/
+    'lc_l'  + length_class
+  when word =~ /^[[:upper:]][[:lower:]]+$/
+    'lc_Ul' + length_class
+  when word =~ /[[:alpha:]]/
+    # GNU/Linux -> U/Ul
+    'lc_' + word.gsub(/[[:upper:]]+/, "U")
+      .gsub(/[[:lower:]]+/, "l")
+      .gsub(/\d+/, "d")
+      .squeeze
+  when word =~ /^\d+([,.]\d+)*$/
+    # digits
+    'lc_d'
+  when word !~ /[[:alpha:]]/
+    'lc_noalpha'
+  else
+    'lc_other'
+  end
+
+  lc_class
+end
+
+######################################################################
+
+def suffix_features word
+  suffixes = []
+  2.upto(4) { |l| suffixes << word[-l..-1] }
+  suffixes.compact.map{ |s| s.upcase }
+end
+
+######################################################################
+
+def tags_of_word_at pos
+  if @lines[pos]
+    # get word
+    # get its tags
+    # TODO: load dictionary from a file
+  else
+    'NOTAG'
+  end
+end
+
+######################################################################
+
+while block = gets("")
+
+  @lines = block.split(/\n/)
+
+  @lines.each_with_index do |line, pos|
+    line.chomp!
+
+    if line.empty? || line =~ /^#/
+      next
+    end
+
+    word, *features, tag = line.split(/\t/)
+
+    # add letter case properties
+    features << letter_case_class(word)
+
+    # add all suffix properties
+    features += suffix_features(word)
+
+    # add tags of the previous and the next word
+    features << tags_of_word_at(pos-1) << tags_of_word_at(pos+1)
+  end
+
+  puts @lines.join("\n")
+end
+
+
