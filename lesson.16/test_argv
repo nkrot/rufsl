@@ -1,0 +1,3 @@
+
+explain ARGV
+and ARGV.shift

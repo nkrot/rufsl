@@ -1,0 +1,89 @@
+#!/usr/bin/env ruby
+
+# # #
+#
+#
+
+require 'optparse'
+
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "
+USAGE: #{File.basename($0)} [OPTIONS] words_to_search text_file(s)
+"
+
+  options[:ignorecase] = false
+  opts.on('-i', '--ignore-case', 'self explaining') do
+    options[:ignorecase] = true
+  end
+end.parse!
+
+lines = File.readlines(ARGV.shift)
+
+lines.map!{ |line| 
+  line.chomp
+}.select!{ |line| 
+  ! line.empty?
+}
+
+# all possible lengths of phrases
+lengths = lines.map {|l| l.split.length }.uniq
+
+if options[:ignorecase]
+  lines.map!{ |line| line.upcase }
+end
+
+# TODO: are the following forms the same?
+#  lines.map! {|line| line.upcase  }
+#  lines.map  {|line| line.upcase! }
+#  lines.each {|line| line.upcase! }
+#  lines.each {|line| line.upcase  }
+
+queries = Hash[lines.map {|l| [l, 0]}]
+# OR
+#queries = {}
+#lines.each {|l| queries[l] = 0 }
+
+# selftests
+#puts queries.include?("word") == true
+#puts queries.include?("a phrase") == true
+
+while line = gets
+  line.chomp!
+
+  words = line.split
+
+  lengths.each do |phrlen|
+    0.upto(words.length-phrlen) do |pos|
+      phr = words[pos, phrlen] # which is faster: words[i] or words[i,1]
+      phr = phr.upcase  if options[:ignorecase]
+
+      if queries.include? phr
+        puts "%s\t%s\t%s" % [phr, pos, line]
+        queries[phr] += 1
+      end
+    end
+  end
+end
+
+# TASK:
+# experiment with data structures and algorithm to produce the slowest implementation
+# 1) make queries an array
+# 2) which is slower to iterate: queries.each or words.each ?
+# 3) use Array#intersect ?
+
+# TODO:
+# output counts of finds
+
+# step by step
+# 1. implement loading external resource
+#    File.readlines
+#    preprocess each line: chomp, dismiss empty lines (select or compact)
+# 2. assume there are no phrases on the list. implement searching
+#    HW: experiment with different algorithms: hashes, arrys, Array#intersect, etc
+#    HW: which the the slowest algo? run the scrip several times and use time -p or show them how to benchmark?
+# 3. add possibility to search case insensitively. output uppercased in #0 if --ignorecase is specified.
+# 4. add --output-totals: add option by analogy, add implementation, sort by number of finds
+#    TODO: Hash#sort
+# 5. what if the list of query words contains phrases of different lengths?
+#

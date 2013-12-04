@@ -1,0 +1,8 @@
+
+keys_and_values = [[1, 'one'], [2, 'two'], [3, 'san']]
+h = Hash[keys_and_values]
+
+TODO: what if keys_and_values is malformed
+
+antonym: Hash#to_a
+cf. what produces Hash#sort
