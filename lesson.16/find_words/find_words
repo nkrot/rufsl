@@ -9,14 +9,32 @@ require 'optparse'
 options = {}
 OptionParser.new do |opts|
   opts.banner = "
+  Find words/phrases from words_to_search in given text_files
 USAGE: #{File.basename($0)} [OPTIONS] words_to_search text_file(s)
+OPTIONS:
 "
+  opts.on('-h', '--help', 'display this message and exit') do
+    puts opts
+    exit 0
+  end
 
   options[:ignorecase] = false
-  opts.on('-i', '--ignore-case', 'self explaining') do
+  opts.on('-i', '--ignore-case', 'search case insensitively') do
     options[:ignorecase] = true
   end
+
+  options[:output_totals] = false
+  opts.on('-t', '--output-totals', 'output the number of finds of each query word (to stderr)') do
+    options[:output_totals] = true
+  end
+
+  opts.separator " "
+
 end.parse!
+
+######################################################################
+
+Encoding::default_external = 'Windows-1252'
 
 lines = File.readlines(ARGV.shift)
 
@@ -33,12 +51,6 @@ if options[:ignorecase]
   lines.map!{ |line| line.upcase }
 end
 
-# TODO: are the following forms the same?
-#  lines.map! {|line| line.upcase  }
-#  lines.map  {|line| line.upcase! }
-#  lines.each {|line| line.upcase! }
-#  lines.each {|line| line.upcase  }
-
 queries = Hash[lines.map {|l| [l, 0]}]
 # OR
 #queries = {}
@@ -48,6 +60,8 @@ queries = Hash[lines.map {|l| [l, 0]}]
 #puts queries.include?("word") == true
 #puts queries.include?("a phrase") == true
 
+######################################################################
+
 while line = gets
   line.chomp!
 
@@ -55,10 +69,12 @@ while line = gets
 
   lengths.each do |phrlen|
     0.upto(words.length-phrlen) do |pos|
-      phr = words[pos, phrlen] # which is faster: words[i] or words[i,1]
+      phr = words[pos, phrlen].join(' ')
       phr = phr.upcase  if options[:ignorecase]
 
-      if queries.include? phr
+#      puts "#{phr.inspect} in #{queries.inspect}"
+
+      if queries.key?(phr)
         puts "%s\t%s\t%s" % [phr, pos, line]
         queries[phr] += 1
       end
@@ -66,24 +82,11 @@ while line = gets
   end
 end
 
-# TASK:
-# experiment with data structures and algorithm to produce the slowest implementation
-# 1) make queries an array
-# 2) which is slower to iterate: queries.each or words.each ?
-# 3) use Array#intersect ?
+if options[:output_totals]
+  queries.sort_by { |query, count|
+    - count
+  }.each { |query, count|
+    $stderr.puts "#{query}\t#{count}"
+  }
+end
 
-# TODO:
-# output counts of finds
-
-# step by step
-# 1. implement loading external resource
-#    File.readlines
-#    preprocess each line: chomp, dismiss empty lines (select or compact)
-# 2. assume there are no phrases on the list. implement searching
-#    HW: experiment with different algorithms: hashes, arrys, Array#intersect, etc
-#    HW: which the the slowest algo? run the scrip several times and use time -p or show them how to benchmark?
-# 3. add possibility to search case insensitively. output uppercased in #0 if --ignorecase is specified.
-# 4. add --output-totals: add option by analogy, add implementation, sort by number of finds
-#    TODO: Hash#sort
-# 5. what if the list of query words contains phrases of different lengths?
-#

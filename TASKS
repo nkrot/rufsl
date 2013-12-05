@@ -38,7 +38,7 @@ Focus: Hashes
 1. given a text, find the most frequent word that comes after the article 'the'
 requires: a hash [word] = count
 
-2. given a text, find the most frequent words that come after the articles 'a' 'an' 'the'
+2. given a text, find 10 most frequent words that come after the articles 'a' 'an' 'the'
 requires: multidimensional hash: counts['a'][word1] = count
 
 3. given a list of word translations, join the lines so that all translations appear on the same line
@@ -111,6 +111,10 @@ http://net.tutsplus.com/sessions/ruby-for-newbies/
 
 interesting post
 http://stackoverflow.com/questions/1614147/odd-or-even-entries-in-a-ruby-array
+
+diagram of ruby core object
+http://jeromedalbert.com/a-diagram-of-the-ruby-core-object-model/
+https://lh4.googleusercontent.com/e_Eml6aYg1udItOLjQCzUKF1L2K1JcjyZTnzYwcP7A=w1530-h800-no
 
 Statistics
 ===========

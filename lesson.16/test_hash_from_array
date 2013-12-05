@@ -1,8 +1,12 @@
+#!/usr/bin/env ruby
 
 keys_and_values = [[1, 'one'], [2, 'two'], [3, 'san']]
+
 h = Hash[keys_and_values]
 
-TODO: what if keys_and_values is malformed
+puts "Array of key-value pairs"
+puts keys_and_values.inspect
 
-antonym: Hash#to_a
-cf. what produces Hash#sort
+puts "Hash obtained form that array"
+puts h.inspect
+

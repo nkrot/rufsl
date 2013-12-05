@@ -1,3 +1,7 @@
+#!/usr/bin/env ruby
 
-explain ARGV
-and ARGV.shift
+puts ARGV.inspect
+
+while line = gets
+  puts line
+end

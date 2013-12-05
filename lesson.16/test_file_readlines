@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+fname = "shortfile.txt"
+lines = File.readlines(fname)
+
+puts "The file #{fname} contains the following #{lines.length} lines:"
+puts lines.inspect
+
+
