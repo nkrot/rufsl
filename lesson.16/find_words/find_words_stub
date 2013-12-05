@@ -1,0 +1,36 @@
+#!/usr/bin/env ruby
+
+# # #
+#
+#
+
+require 'optparse'
+
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "
+  Find words/phrases from words_to_search in given text_files
+USAGE: #{File.basename($0)} [OPTIONS] words_to_search text_file(s)
+OPTIONS:
+"
+  opts.on('-h', '--help', 'display this message and exit') do
+    puts opts
+    exit 0
+  end
+
+  options[:ignorecase] = false
+  opts.on('-i', 'search case insensitively') do
+    options[:ignorecase] = true
+  end
+
+  opts.separator " "
+
+end.parse!
+
+ARGV.shift
+
+# selftests
+# TODO: you may delete them afterwards
+puts queries.include?("Although") == true
+puts queries.include?("although") == false
+puts queries.include?("Extensible Markup Language") == true
