@@ -1,11 +1,28 @@
-code review #3:
-1) will start beginning of December. collect scripts around ???
 
-Lesson.15
+Lesson.17
 =========
+[...] Hash#sort/#sort_by
+[+] lesson.17/cmpsort/ сортировка разницы по CCSplitter/MainWordExtractor
+[...] continue with find_words
 
-for code review #3
-----------------
+for code review #3 (lessons 13+)
+================================
+TODO: develop testcases for Syn module and handle them out as a supplement to code review 3
+
+1) maxfreqtag
+2) your own Syn module (syn.rb) that should implement the following methods
+	tags   -- given a tagged string, returns all tags as an array
+	words  -- given a tagged string, returns all words as an array
+	untag  -- given a tagged word/sentence/relation, returns untagged word/sentence/relation as a string.
+	unword -- given a tagged word/sentence, returns tag(s) as a string
+	unwdc  -- given a tagged sentence/relation, collapse compound words (see slide 127 for details)
+ * Hint: A relation can be distinguished from non-relations by presence of at least one \t character. The first field in the relation is always a relation name. 
+
+3) insert_sort_to_new
+4) insert_sort_in_place
+5) find_all_anagrams
+6) find_words
+7) assign_properties
 
 
 
