@@ -1,0 +1,35 @@
+#!/usr/bin/env ruby
+
+# # #
+# regroup the CCSplitter difference by the tag sequence of the input phrase
+#
+
+Encoding::default_external = 'Windows-1252'
+
+def compute_grouping_key text
+  line = text.split("\n").first.chomp
+  unword(line)
+end
+
+def unword ts
+  ts.gsub(/\S+_/, "")
+end
+
+groups = Hash.new {|h,k| h[k] = []}
+
+while block = gets("")
+  if block =~ /[<>]/ # helps skip non-cmp entries (e.g. summary)
+    grpname = compute_grouping_key(block)
+    groups[grpname] << block
+  end
+end
+
+groups.each_value { |blocks| blocks.uniq! }
+
+groups.sort_by do |grpname, blocks|
+  - blocks.length
+end.each do |grpname, blocks|
+  puts "SORTEDBY\t#{blocks.length}\t#{grpname}\n\n"
+  puts blocks.join
+end
+
