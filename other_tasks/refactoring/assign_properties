@@ -96,6 +96,8 @@ while block = gets("")
     # add tags of the previous and the next word
     features << tags_of_word_at(pos-1)
     features << tags_of_word_at(pos+1)
+
+    # TODO: insert features back into line
   end
 
   puts @lines.join("\n")

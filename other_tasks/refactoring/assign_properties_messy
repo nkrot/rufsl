@@ -1,0 +1,78 @@
+#!/usr/bin/ruby
+
+# # #
+#
+#
+
+require_relative 'synldb'
+
+def letter_case_class word
+
+  lc_class = nil
+
+  case
+  when word =~ /^[[:upper:]]+$/
+    lc_class = 'lc_U'  
+
+  when word =~ /^[[:lower:]]+$/
+    lc_class = 'lc_l'
+
+  when word =~ /^[[:upper:]][[:lower:]]+$/
+    lc_class = 'lc_Ul'
+
+  when word =~ /[[:alpha:]]/
+    # GNU/Linux -> U/Ul
+    lc_class = 'lc_' + word.gsub(/[[:upper:]]+/, "U")
+      .gsub(/[[:lower:]]+/, "l")
+      .gsub(/\d+/, "d")
+      .squeeze
+
+  when word =~ /^\d+([,.]\d+)*$/
+    return 'lc_d'
+
+  when word !~ /[[:alpha:]]/
+    return 'lc_noalpha'
+
+  else
+    return 'lc_other'
+  end
+
+  if lc_class == 'lc_U' || lc_class == 'lc_l' || lc_class == 'lc_Ul'
+    case
+    when word.length == 1
+      lc_class << '1'
+    when word.length < 6
+      lc_class << '5'
+    end
+  end
+
+  return lc_class
+end
+
+# BROKEN: create new instance of synldb on each call to it
+def synldb
+  SynLDB.new
+end
+
+lines = []
+while line = gets
+  line.chomp!
+
+  if line.empty?
+    # process a single block
+
+    0.upto(lines.length-1) do |pos|
+      line = lines.at(pos).chomp
+
+      if line !~ /^#/
+      end
+    end
+
+  else
+    # accumulate lines of a block
+    lines << line
+    next
+  end
+
+end
+
