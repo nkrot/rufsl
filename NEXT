@@ -5,6 +5,10 @@ Lesson.17
 [+] lesson.17/cmpsort/ сортировка разницы по CCSplitter/MainWordExtractor
 [...] continue with find_words
 
+Lesson.18
+=========
+slowest implementation of find_words, based on array. prepare a demo
+
 for code review #3 (lessons 13+)
 ================================
 TODO: develop testcases for Syn module and handle them out as a supplement to code review 3
