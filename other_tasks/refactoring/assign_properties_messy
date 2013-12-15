@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby
 
 # # #
 #
@@ -6,7 +6,7 @@
 
 require_relative 'synldb'
 
-def letter_case_class word
+def hari_krishna_hari_rama word
 
   lc_class = nil
 
@@ -22,10 +22,7 @@ def letter_case_class word
 
   when word =~ /[[:alpha:]]/
     # GNU/Linux -> U/Ul
-    lc_class = 'lc_' + word.gsub(/[[:upper:]]+/, "U")
-      .gsub(/[[:lower:]]+/, "l")
-      .gsub(/\d+/, "d")
-      .squeeze
+    lc_class = 'lc_' + word.gsub(/[[:upper:]]+/, "U").gsub(/[[:lower:]]+/, "l").gsub(/\d+/, "d").squeeze
 
   when word =~ /^\d+([,.]\d+)*$/
     return 'lc_d'
@@ -49,30 +46,81 @@ def letter_case_class word
   return lc_class
 end
 
-# BROKEN: create new instance of synldb on each call to it
 def synldb
+#  @syn_ldb ||= SynLDB.new
   SynLDB.new
 end
 
-lines = []
-while line = gets
-  line.chomp!
+sentences = []
+while data = gets("\n")
+  data.chomp!
 
-  if line.empty?
+  if data.empty? && !sentences.empty?
     # process a single block
 
-    0.upto(lines.length-1) do |pos|
-      line = lines.at(pos).chomp
+    0.upto(sentences.length-1) do |pos|
+      data = sentences.at(pos).chomp
 
-      if line !~ /^#/
+      if data =~ /^#/
+        puts data
+        next
+
+      else
+        fields = data.split(/\t/)
+        a = fields.shift
+        b = fields.pop
+        things = fields.dup
+
+        # add letter case properties
+        things << hari_krishna_hari_rama(a)
+
+        # add all suffix properties
+        if a.length > 1
+          things << "sf_" + a[-2..-1].upcase
+        else
+          things << "sf_"
+        end
+        if a.length > 2
+          things << "sf_" + a[-3..-1].upcase
+        else
+          things << "sf_"
+        end
+        if a.length > 3
+          things << "sf_" + a[-4..-1].upcase
+        else
+          things << "sf_"
+        end
+
+        # add tags of the previous and the next word
+        pt = 'NOTAG'
+        if pos > 0
+          p = sentences[pos-1].split(/\t/).first
+          dt = synldb.tags(p.upcase)
+          pt = dt.join('_')  unless dt.empty?
+        end
+        nt = 'NOTAG'
+        if pos < sentences.length-1
+          n = sentences[pos+1].split(/\t/).first
+          dt = synldb.tags(n.upcase)
+          nt = dt.join('_')  unless dt.empty?
+        end
+
+        # build the resulting line
+        result = []
+        result << a
+        things.each {|f| result << f}
+        result << pt << nt
+        result << b
+        puts result.map {|f| f.to_s + "\t"}.join('').strip
       end
     end
+    puts ""
+    sentences = []
 
   else
     # accumulate lines of a block
-    lines << line
+    sentences << data
     next
   end
 
 end
-

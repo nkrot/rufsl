@@ -4,7 +4,7 @@
 #
 #
 
-require_relative 'synldb'
+require_relative './synldb'
 
 ######################################################################
 
@@ -56,18 +56,21 @@ end
 
 def suffix_features word
   suffixes = []
-  2.upto(4) { |l| suffixes << word[-l..-1] }
-  suffixes.compact.map{ |s| s.upcase }
+  2.upto(4) { |l|
+    suffixes << "sf_" + (word[-l..-1] || "").upcase
+  }
+  suffixes
 end
 
 ######################################################################
 
 def tags_of_word_at pos
+  tags = []
   if @lines[pos]
     word = @lines[pos].split(/\t/).first
-    tags = @syn_ldb.tags(word)
+    tags = @synldb.tags(word)
   end
-  tags ? tags.join('_') : 'NOTAG'
+  tags.empty? ? 'NOTAG' : tags.join('_') 
 end
 
 ######################################################################
@@ -97,9 +100,11 @@ while block = gets("")
     features << tags_of_word_at(pos-1)
     features << tags_of_word_at(pos+1)
 
-    # TODO: insert features back into line
+    # insert features back into line
+    @lines[pos] = [word, features, tag].flatten.join("\t")
   end
 
   puts @lines.join("\n")
+  puts "\n"
 end
 

@@ -1,0 +1,27 @@
+#SENTENCENUM	1
+This	DT
+is	BEZ
+a	AT
+GNU/Linux	NN
+distibution	NN
+.	.
+
+#SENTENCENUM	2
+10	CD
+little	JJ
+monkeys	NNS
+jumping	VBG
+on	IN
+the	ATI
+bed	NN
+;	;
+One	CD1
+fell	VBD
+off	RP
+and	CC
+broke	VBD
+his	PP3
+head	NN
+.	.
+
+
