@@ -31,8 +31,8 @@
 Примерный результат рефакторинга: assign_properties
 
 Запускать так
-  > assign_features_messy corpus.wt     # ожидается выход как в corpus.wt.out
-  > assign_features_messy corpus.wlt    # ожидается выход как в corpus.wlt.out
+  > assign_properties_messy corpus.wt     # ожидается выход как в corpus.wt.out
+  > assign_properties_messy corpus.wlt    # ожидается выход как в corpus.wlt.out
 
 Класс со словарем SynLDB (synldb.rb) рефакторить не надо. Класс загружает данные из файла, имя которого задано хардкодом в synldb.rb (../../dictester/dictester.all.txt). Разрешается изменить это значение, если нужно.
 
