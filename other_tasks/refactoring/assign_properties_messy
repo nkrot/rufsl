@@ -10,6 +10,7 @@ def hari_krishna_hari_rama word
 
   lc_class = nil
 
+  no_add_length = false
   case
   when word =~ /^[[:upper:]]+$/
     lc_class = 'lc_U'  
@@ -23,6 +24,7 @@ def hari_krishna_hari_rama word
   when word =~ /[[:alpha:]]/
     # GNU/Linux -> U/Ul
     lc_class = 'lc_' + word.gsub(/[[:upper:]]+/, "U").gsub(/[[:lower:]]+/, "l").gsub(/\d+/, "d").squeeze
+    no_add_length = true
 
   when word =~ /^\d+([,.]\d+)*$/
     return 'lc_d'
@@ -36,6 +38,8 @@ def hari_krishna_hari_rama word
 
   if lc_class == 'lc_U' || lc_class == 'lc_l' || lc_class == 'lc_Ul'
     case
+    when no_add_length
+      # do not add length
     when word.length == 1
       lc_class << '1'
     when word.length < 6
