@@ -1,13 +1,9 @@
 
-Lesson.17
-=========
-[...] Hash#sort/#sort_by
-[+] lesson.17/cmpsort/ сортировка разницы по CCSplitter/MainWordExtractor
-[...] continue with find_words
-
 Lesson.18
 =========
 slowest implementation of find_words, based on array. prepare a demo
+[...] continue with find_words
+
 
 for code review #3 (lessons 13+)
 ================================
@@ -28,5 +24,7 @@ TODO: develop testcases for Syn module and handle them out as a supplement to co
 6) find_words
 7) assign_properties
 
-
+темы, которые надо рассмотреть
+==============================
+IO.popen
 
