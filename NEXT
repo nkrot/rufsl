@@ -1,7 +1,10 @@
 
 Lesson.18
 =========
-slowest implementation of find_words, based on array. prepare a demo
+[...] slowest implementation of find_words, based on array. prepare a demo
+        Array#intersect
+        sentence_words.each {|w| queries.include?(w)}
+        queries.each {|w| sentence_words.include?(w)}
 [...] continue with find_words
 
 
