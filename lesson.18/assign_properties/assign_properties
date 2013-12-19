@@ -1,0 +1,110 @@
+#!/usr/bin/env ruby
+
+# # #
+#
+#
+
+require_relative './synldb'
+
+######################################################################
+
+def length_class word
+  case
+  when word.length == 1
+    '1'
+  when word.length < 6
+    '5'
+  else
+    ''
+  end
+end
+
+######################################################################
+
+def letter_case_class word
+
+  case
+  when word =~ /^[[:upper:]]+$/
+    'lc_U'  + length_class(word)
+
+  when word =~ /^[[:lower:]]+$/
+    'lc_l'  + length_class(word)
+
+  when word =~ /^[[:upper:]][[:lower:]]+$/
+    'lc_Ul' + length_class(word)
+
+  when word =~ /[[:alpha:]]/
+    # GNU/Linux -> U/Ul
+    'lc_' + word.gsub(/[[:upper:]]+/, "U")
+      .gsub(/[[:lower:]]+/, "l")
+      .gsub(/\d+/, "d")
+      .squeeze
+
+  when word =~ /^\d+([,.]\d+)*$/
+    'lc_d'
+
+  when word !~ /[[:alpha:]]/
+    'lc_noalpha'
+
+  else
+    'lc_other'
+  end
+
+end
+
+######################################################################
+
+def suffix_features word
+  suffixes = []
+  2.upto(4) { |l|
+    suffixes << "sf_" + (word[-l..-1] || "").upcase
+  }
+  suffixes
+end
+
+######################################################################
+
+def tags_of_word_at pos
+  tags = []
+  if @lines[pos]
+    word = @lines[pos].split(/\t/).first
+    tags = @synldb.tags(word)
+  end
+  tags.empty? ? 'NOTAG' : tags.join('_') 
+end
+
+######################################################################
+
+@synldb = SynLDB.new
+
+while block = gets("")
+
+  @lines = block.split(/\n/)
+
+  @lines.each_with_index do |line, pos|
+    line.chomp!
+
+    if line.empty? || line =~ /^#/
+      next
+    end
+
+    word, *features, tag = line.split(/\t/)
+
+    # add letter case properties
+    features << letter_case_class(word)
+
+    # add all suffix properties
+    features += suffix_features(word)
+
+    # add tags of the previous and the next word
+    features << tags_of_word_at(pos-1)
+    features << tags_of_word_at(pos+1)
+
+    # insert features back into line
+    @lines[pos] = [word, features, tag].flatten.join("\t")
+  end
+
+  puts @lines.join("\n")
+  puts "\n"
+end
+

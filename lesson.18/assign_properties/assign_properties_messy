@@ -1,0 +1,130 @@
+#!/usr/bin/env ruby
+
+# # #
+#
+#
+
+require_relative 'synldb'
+
+def hari_krishna_hari_rama word
+
+  lc_class = nil
+
+  no_add_length = false
+  case
+  when word =~ /^[[:upper:]]+$/
+    lc_class = 'lc_U'  
+
+  when word =~ /^[[:lower:]]+$/
+    lc_class = 'lc_l'
+
+  when word =~ /^[[:upper:]][[:lower:]]+$/
+    lc_class = 'lc_Ul'
+
+  when word =~ /[[:alpha:]]/
+    # GNU/Linux -> U/Ul
+    lc_class = 'lc_' + word.gsub(/[[:upper:]]+/, "U").gsub(/[[:lower:]]+/, "l").gsub(/\d+/, "d").squeeze
+    no_add_length = true
+
+  when word =~ /^\d+([,.]\d+)*$/
+    return 'lc_d'
+
+  when word !~ /[[:alpha:]]/
+    return 'lc_noalpha'
+
+  else
+    return 'lc_other'
+  end
+
+  if lc_class == 'lc_U' || lc_class == 'lc_l' || lc_class == 'lc_Ul'
+    case
+    when no_add_length
+      # do not add length
+    when word.length == 1
+      lc_class << '1'
+    when word.length < 6
+      lc_class << '5'
+    end
+  end
+
+  return lc_class
+end
+
+def synldb
+#  @syn_ldb ||= SynLDB.new
+  SynLDB.new
+end
+
+sentences = []
+while data = gets("\n")
+  data.chomp!
+
+  if data.empty? && !sentences.empty?
+    # process a single block
+
+    0.upto(sentences.length-1) do |pos|
+      data = sentences.at(pos).chomp
+
+      if data =~ /^#/
+        puts data
+        next
+
+      else
+        fields = data.split(/\t/)
+        a = fields.shift
+        b = fields.pop
+        things = fields.dup
+
+        # add letter case properties
+        things << hari_krishna_hari_rama(a)
+
+        # add all suffix properties
+        if a.length > 1
+          things << "sf_" + a[-2..-1].upcase
+        else
+          things << "sf_"
+        end
+        if a.length > 2
+          things << "sf_" + a[-3..-1].upcase
+        else
+          things << "sf_"
+        end
+        if a.length > 3
+          things << "sf_" + a[-4..-1].upcase
+        else
+          things << "sf_"
+        end
+
+        # add tags of the previous and the next word
+        pt = 'NOTAG'
+        if pos > 0
+          p = sentences[pos-1].split(/\t/).first
+          dt = synldb.tags(p.upcase)
+          pt = dt.join('_')  unless dt.empty?
+        end
+        nt = 'NOTAG'
+        if pos < sentences.length-1
+          n = sentences[pos+1].split(/\t/).first
+          dt = synldb.tags(n.upcase)
+          nt = dt.join('_')  unless dt.empty?
+        end
+
+        # build the resulting line
+        result = []
+        result << a
+        things.each {|f| result << f}
+        result << pt << nt
+        result << b
+        puts result.map {|f| f.to_s + "\t"}.join('').strip
+      end
+    end
+    puts ""
+    sentences = []
+
+  else
+    # accumulate lines of a block
+    sentences << data
+    next
+  end
+
+end
