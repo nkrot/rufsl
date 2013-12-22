@@ -60,7 +60,6 @@ while data = gets("\n")
   data.chomp!
 
   if data.empty? && !sentences.empty?
-    # process a single block
 
     0.upto(sentences.length-1) do |pos|
       data = sentences.at(pos).chomp
@@ -75,10 +74,8 @@ while data = gets("\n")
         b = fields.pop
         things = fields.dup
 
-        # add letter case properties
         things << hari_krishna_hari_rama(a)
 
-        # add all suffix properties
         if a.length > 1
           things << "sf_" + a[-2..-1].upcase
         else
@@ -95,7 +92,6 @@ while data = gets("\n")
           things << "sf_"
         end
 
-        # add tags of the previous and the next word
         pt = 'NOTAG'
         if pos > 0
           p = sentences[pos-1].split(/\t/).first
@@ -109,7 +105,6 @@ while data = gets("\n")
           nt = dt.join('_')  unless dt.empty?
         end
 
-        # build the resulting line
         result = []
         result << a
         things.each {|f| result << f}
@@ -122,7 +117,6 @@ while data = gets("\n")
     sentences = []
 
   else
-    # accumulate lines of a block
     sentences << data
     next
   end
