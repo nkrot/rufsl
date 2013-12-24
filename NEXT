@@ -7,6 +7,23 @@ Lesson.18
         queries.each {|w| sentence_words.include?(w)}
 [...] continue with find_words
 
+- algorithm on how to search using hash
+- compare how searching using hash works in comparison with searching in array
+  - use the same text
+  - use larger wordlist, e.g. all words from the text
+- show different possibilities of loading words from the external wordlist into a Hash
+   using map
+   using each
+   using Hash[]
+- algorithm of generating phrases from a sentence
+- operations on sets: intersection, union, subtraction (complement, difference)
+   task: develop a methods that a.intersect(b) => common, uniq_in_a, uniq_in_b
+   task: respect number of occurrences when subtracting
+	a = [1,2,3,4,1,2,3]
+	b = [2,3,4]
+	NOW: a - b => [1, 1] 
+	SHOULD BE: a - b => [1,1,2,3]
+
 
 for code review #3 (lessons 13+)
 ================================
