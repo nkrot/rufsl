@@ -1,29 +1,8 @@
 
-Lesson.18
+Lesson.19
 =========
-[...] slowest implementation of find_words, based on array. prepare a demo
-        Array#intersect
-        sentence_words.each {|w| queries.include?(w)}
-        queries.each {|w| sentence_words.include?(w)}
-[...] continue with find_words
-
-- algorithm on how to search using hash
-- compare how searching using hash works in comparison with searching in array
-  - use the same text
-  - use larger wordlist, e.g. all words from the text
-- show different possibilities of loading words from the external wordlist into a Hash
-   using map
-   using each
-   using Hash[]
-- algorithm of generating phrases from a sentence
-- operations on sets: intersection, union, subtraction (complement, difference)
-   task: develop a methods that a.intersect(b) => common, uniq_in_a, uniq_in_b
-   task: respect number of occurrences when subtracting
-	a = [1,2,3,4,1,2,3]
-	b = [2,3,4]
-	NOW: a - b => [1, 1] 
-	SHOULD BE: a - b => [1,1,2,3]
-
+- Introductory lecture on CRF
+- assign_properties_messy
 
 for code review #3 (lessons 13+)
 ================================
@@ -46,5 +25,13 @@ TODO: develop testcases for Syn module and handle them out as a supplement to co
 
 темы, которые надо рассмотреть
 ==============================
-IO.popen
+- IO.popen
+
+- operations on sets: intersection, union, subtraction (complement, difference)
+   task: develop a methods that a.intersect(b) => common, uniq_in_a, uniq_in_b
+   task: respect number of occurrences when subtracting
+	a = [1,2,3,4,1,2,3]
+	b = [2,3,4]
+	NOW: a - b => [1, 1] 
+	SHOULD BE: a - b => [1,1,2,3]
 
