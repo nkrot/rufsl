@@ -10,11 +10,18 @@ queries = {}
 File.readlines(ARGV.shift).each do |line|
   line.chomp!
   unless line.empty?
+    # #1
     if ignorecase
       queries[line.upcase] = nil
     else
       queries[line] = nil
     end
+
+    # #2
+    line.upcase!  if ignorecase
+    queries[line] = nil
+
+    # #3
     # same effect in less lines using ternary operation
     # result = condition ? result-if-true : result-if-false
 #    key = ignorecase ? line.upcase : line
