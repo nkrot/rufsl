@@ -1,0 +1,27 @@
+#!/usr/bin/env ruby
+
+# # #
+# USAGE: load_queries queries.txt [other_file(s)]
+#
+
+ignorecase = !false
+
+queries = {}
+File.readlines(ARGV.shift).each do |line|
+  line.chomp!
+  unless line.empty?
+    if ignorecase
+      queries[line.upcase] = nil
+    else
+      queries[line] = nil
+    end
+    # same effect in less lines using ternary operation
+    # result = condition ? result-if-true : result-if-false
+#    key = ignorecase ? line.upcase : line
+#    queries[key] = nil
+  end
+end
+
+puts "Hash of query words"
+puts queries.inspect
+

@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+word = "abcdefghijklmno"
+len = 3
+
+0.upto(word.length-3) do |sp|
+  puts "len=#{len} starting at #{sp}"
+  puts word[sp,len]
+end

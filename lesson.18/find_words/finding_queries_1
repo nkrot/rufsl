@@ -1,0 +1,40 @@
+#!/usr/bin/env ruby
+
+# # #
+# USAGE: load_queries data/words.txt [other_file(s)]
+#
+
+Encoding::default_external = 'Windows-1252'
+
+ignorecase = true
+
+queries = File.readlines(ARGV.shift).select do |line|
+  line.chomp!
+  unless line.empty?
+    line.upcase!  if ignorecase
+  end
+end
+
+puts "A few words from the beginning and end of the array"
+puts queries.values_at(0..2, -3..-1).inspect
+
+puts "Now searching..."
+while line = gets
+  line.chomp!
+
+  words = line.split
+
+  if ignorecase
+    words.map {|w| w.upcase!}
+  end
+
+  common_words = words & queries
+
+  unless common_words.empty?
+    common_words.each do |common_word|
+      puts "#{common_word}\t#{line}"
+    end
+  end
+
+end
+

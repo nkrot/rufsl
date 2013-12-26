@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+word = "abcdefghijklmno"
+
+sp=3 # starting position
+
+sp.upto(word.length-1) do |ep| # ep -- end position
+  puts sp..ep
+  puts word[sp..ep]
+end
+
+

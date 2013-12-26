@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+# # #
+# USAGE: load_queries queries.txt [other_file(s)]
+#
+
+file_with_queries = ARGV.shift
+
+lines = File.readlines(file_with_queries)
+
+puts lines.inspect
+

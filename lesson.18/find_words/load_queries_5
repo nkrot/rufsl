@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+# # #
+# USAGE: load_queries queries.txt [other_file(s)]
+#
+
+ignorecase = false
+
+queries = {}
+File.readlines(ARGV.shift).each do |line|
+  line.chomp!
+  unless line.empty?
+    queries[line] = nil
+  end
+end
+
+puts "Hash of query words"
+puts queries.inspect

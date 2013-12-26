@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+word = "abcdefghijklmno"
+
+sp=3 # starting position
+
+# 01234
+# abcde
+1.upto(word.length-sp) do |len|
+  puts "len=#{len}"
+  puts word[sp,len]
+end
+

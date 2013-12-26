@@ -1,0 +1,44 @@
+#!/usr/bin/env ruby
+
+# # #
+# USAGE: load_queries queries.txt [other_file(s)]
+#
+
+file_with_queries = ARGV.shift
+
+lines = File.readlines(file_with_queries).select do |line|
+  line.chomp!
+  !line.empty?
+end
+
+puts "Array of lines:"
+puts lines.inspect
+
+#
+# convert to hash
+#
+key_value_pairs = lines.map do |line|
+  [line, nil]
+end
+
+puts "Lines as key-value pairs"
+puts key_value_pairs.inspect
+
+queries = Hash[key_value_pairs]
+
+puts "Hash of query words"
+puts queries.inspect
+
+#
+# can be abbreviated to
+#
+queries = Hash[
+               lines.map do |line|
+                 [line, nil]
+               end
+              ]
+# same as
+#queries = Hash[ lines.map {|line| [line, nil] }]
+
+puts "The same hash of query words"
+puts queries.inspect
