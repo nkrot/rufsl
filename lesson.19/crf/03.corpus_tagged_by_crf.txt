@@ -1,0 +1,100 @@
+Ich	lc_Ul5	sf2_ch	sf3_ich	sf4_	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	P	P	P
+konnte	lc_l	sf2_te	sf3_nte	sf4_nnte	sf5_onnte	sf6_konnte	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	V	V	V
+mit	lc_l5	sf2_it	sf3_mit	sf4_	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	APD QVP R	APD	APD
+dieser	lc_l	sf2_er	sf3_ser	sf4_eser	sf5_ieser	sf6_dieser	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	DD DG DN P	DD	DD
+Festplatte	lc_Ul	sf2_te	sf3_tte	sf4_atte	sf5_latte	sf6_platte	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	NA ND NG NN	ND	ND
+meinem	lc_l	sf2_em	sf3_nem	sf4_inem	sf5_einem	sf6_meinem	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	DD P	DD	DD
+alten	lc_l5	sf2_en	sf3_ten	sf4_lten	sf5_alten	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	JA JD JG JN NA ND NG NN	JD	JD
+Notebook	lc_Ul	sf2_ok	sf3_ook	sf4_book	sf5_ebook	sf6_tebook	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	NA ND NN	ND	ND
+Beine	lc_Ul5	sf2_ne	sf3_ine	sf4_eine	sf5_beine	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	NA ND NG NN	NA	NA
+machen	lc_l	sf2_en	sf3_hen	sf4_chen	sf5_achen	sf6_machen	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	V	V	V
+.	lc_noalpha	sf2_	sf3_	sf4_	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	PM	PM	PM
+
+Dieser	lc_Ul	sf2_er	sf3_ser	sf4_eser	sf5_ieser	sf6_dieser	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	DD DG DN P	DN	DN
+Thermoplast	lc_Ul	sf2_st	sf3_ast	sf4_last	sf5_plast	sf6_oplast	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	J JA JD JG JN N NA ND NG NN R V	NN	NN
+ist	lc_l5	sf2_st	sf3_ist	sf4_	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	V	V	V
+vorzugsweise	lc_l	sf2_se	sf3_ise	sf4_eise	sf5_weise	sf6_sweise	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	J JA JN R	R	R
+ein	lc_l5	sf2_in	sf3_ein	sf4_	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	D DA DN QVP R	DN	DN
+faserverstärktes	lc_l	sf2_es	sf3_tes	sf4_ktes	sf5_rktes	sf6_ärktes	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	J JA JD JG JN N NA ND NG NN R V	JN	JN
+Polyamid	lc_Ul	sf2_id	sf3_mid	sf4_amid	sf5_yamid	sf6_lyamid	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	NA ND NN	NN	NN
+.	lc_noalpha	sf2_	sf3_	sf4_	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	PM	PM	PM
+
+Die	lc_Ul5	sf2_ie	sf3_die	sf4_	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	DA DN P	DN	DN
+Modelle	lc_Ul	sf2_le	sf3_lle	sf4_elle	sf5_delle	sf6_odelle	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	NA ND NG NN	NN	NN
+werden	lc_l	sf2_en	sf3_den	sf4_rden	sf5_erden	sf6_werden	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	NA ND NN V	V	V
+in	lc_l5	sf2_in	sf3_	sf4_	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	APA APD	APA	APA
+eine	lc_l5	sf2_ne	sf3_ine	sf4_eine	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	DA DN P V	DA	DA
+Form	lc_Ul5	sf2_rm	sf3_orm	sf4_form	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	NA ND NG NN	NA	NA
+eingesetzt	lc_l	sf2_zt	sf3_tzt	sf4_etzt	sf5_setzt	sf6_esetzt	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	J V	V	V
+und	lc_l5	sf2_nd	sf3_und	sf4_	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	C	C	C
+in	lc_l5	sf2_in	sf3_	sf4_	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	APA APD	APA	APA
+eine	lc_l5	sf2_ne	sf3_ine	sf4_eine	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	DA DN P V	DA	DA
+Masse	lc_Ul5	sf2_se	sf3_sse	sf4_asse	sf5_masse	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	NA ND NG NN V	NA	NA
+eingebettet	lc_l	sf2_et	sf3_tet	sf4_ttet	sf5_ettet	sf6_bettet	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	J V	V	V
+.	lc_noalpha	sf2_	sf3_	sf4_	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	PM	PM	PM
+
+Nachfolgend	lc_Ul	sf2_nd	sf3_end	sf4_gend	sf5_lgend	sf6_olgend	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	J R V	R	R
+werden	lc_l	sf2_en	sf3_den	sf4_rden	sf5_erden	sf6_werden	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	NA ND NN V	V	V
+anhand	lc_l	sf2_nd	sf3_and	sf4_hand	sf5_nhand	sf6_anhand	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	APG	APG	APG
+der	lc_l5	sf2_er	sf3_der	sf4_	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	DD DG DN P Q	DG	DG
+Zeichnung	lc_Ul	sf2_ng	sf3_ung	sf4_nung	sf5_hnung	sf6_chnung	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	NA ND NG NN	NG	NG
+mehrere	lc_l	sf2_re	sf3_ere	sf4_rere	sf5_hrere	sf6_ehrere	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	DA DN P	DN	DA
+Beispiele	lc_Ul	sf2_le	sf3_ele	sf4_iele	sf5_piele	sf6_spiele	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	NA ND NG NN	NN	NA
+der	lc_l5	sf2_er	sf3_der	sf4_	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	DD DG DN P Q	DG	DG
+Erfindung	lc_Ul	sf2_ng	sf3_ung	sf4_dung	sf5_ndung	sf6_indung	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	NA ND NG NN	NG	NG
+erläutert	lc_l	sf2_rt	sf3_ert	sf4_tert	sf5_utert	sf6_äutert	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	J V	V	V
+.	lc_noalpha	sf2_	sf3_	sf4_	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	PM	PM	PM
+
+Das	lc_Ul5	sf2_as	sf3_das	sf4_	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	DA DN P	DN	DN
+Gehäuse	lc_Ul	sf2_se	sf3_use	sf4_äuse	sf5_häuse	sf6_ehäuse	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	NA ND NG NN	NN	NN
+4	lc_d	sf2_	sf3_	sf4_	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	Z	Z	Z
+ist	lc_l5	sf2_st	sf3_ist	sf4_	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	V	V	V
+an	lc_l5	sf2_an	sf3_	sf4_	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	APA APC APD QVP R	APD	APD
+dem	lc_l5	sf2_em	sf3_dem	sf4_	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	DD P	DD	DD
+dem	lc_l5	sf2_em	sf3_dem	sf4_	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	DD P	DD	DD
+Werkzeug	lc_Ul	sf2_ug	sf3_eug	sf4_zeug	sf5_kzeug	sf6_rkzeug	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	NA ND NN	ND	ND
+abgewandten	lc_l	sf2_en	sf3_ten	sf4_dten	sf5_ndten	sf6_andten	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	JA JD JG JN	JD	JD
+Ende	lc_Ul5	sf2_de	sf3_nde	sf4_ende	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	NA ND NN V	ND	ND
+mittels	lc_l	sf2_ls	sf3_els	sf4_tels	sf5_ttels	sf6_ittels	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	APD APG APN NG	APG	APG
+eines	lc_l5	sf2_es	sf3_nes	sf4_ines	sf5_eines	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	DG P	DG	DG
+Deckels	lc_Ul	sf2_ls	sf3_els	sf4_kels	sf5_ckels	sf6_eckels	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	NG	NG	NG
+11	lc_d	sf2_11	sf3_	sf4_	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	Z	Z	Z
+verschlossen	lc_l	sf2_en	sf3_sen	sf4_ssen	sf5_ossen	sf6_lossen	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	J R V	V	V
+;	lc_noalpha	sf2_	sf3_	sf4_	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	PM	PM	PM
+nach	lc_l5	sf2_ch	sf3_ach	sf4_nach	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	APD QVP R	APD	APD
+dessen	lc_l	sf2_en	sf3_sen	sf4_ssen	sf5_essen	sf6_dessen	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	P	P	P
+Abnahme	lc_Ul	sf2_me	sf3_hme	sf4_ahme	sf5_nahme	sf6_bnahme	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	NA ND NG NN	ND	ND
+kann	lc_l5	sf2_nn	sf3_ann	sf4_kann	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	V	V	V
+das	lc_l5	sf2_as	sf3_das	sf4_	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	DA DN P	DN	DN
+gesamte	lc_l	sf2_te	sf3_mte	sf4_amte	sf5_samte	sf6_esamte	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	JA JN	JN	JN
+Aggregat	lc_Ul	sf2_at	sf3_gat	sf4_egat	sf5_regat	sf6_gregat	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	NA ND NN	NN	NN
+5	lc_d	sf2_	sf3_	sf4_	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	Z	Z	Z
+entnommen	lc_l	sf2_en	sf3_men	sf4_mmen	sf5_ommen	sf6_nommen	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	J V	V	V
+werden	lc_l	sf2_en	sf3_den	sf4_rden	sf5_erden	sf6_werden	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	NA ND NN V	V	V
+.	lc_noalpha	sf2_	sf3_	sf4_	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	PM	PM	PM
+
+Das	lc_Ul5	sf2_as	sf3_das	sf4_	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	DA DN P	DN	DN
+Ventil	lc_Ul	sf2_il	sf3_til	sf4_ntil	sf5_entil	sf6_ventil	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	NA ND NN	NN	NN
+15	lc_d	sf2_15	sf3_	sf4_	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	Z	Z	Z
+besteht	lc_l	sf2_ht	sf3_eht	sf4_teht	sf5_steht	sf6_esteht	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	V	V	V
+aus	lc_l5	sf2_us	sf3_aus	sf4_	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	APC APD QVP R	APD	APD
+einem	lc_l5	sf2_em	sf3_nem	sf4_inem	sf5_einem	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	DD P	DD	DD
+rotationssymmetrischen	lc_l	sf2_en	sf3_hen	sf4_chen	sf5_schen	sf6_ischen	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	J JA JD JG JN N NA ND NG NN R V	JD	JD
+Körper	lc_Ul	sf2_er	sf3_per	sf4_rper	sf5_örper	sf6_körper	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	NA ND NG NN	ND	ND
+,	lc_noalpha	sf2_	sf3_	sf4_	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	PM	PM	PM
+der	lc_l5	sf2_er	sf3_der	sf4_	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	DD DG DN P Q	P	P
+sich	lc_l5	sf2_ch	sf3_ich	sf4_sich	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	P	P	P
+in	lc_l5	sf2_in	sf3_	sf4_	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	APA APD	APA	APD
+drei	lc_l5	sf2_ei	sf3_rei	sf4_drei	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	NA ND NG NN Z	Z	Z
+Abschnitte	lc_Ul	sf2_te	sf3_tte	sf4_itte	sf5_nitte	sf6_hnitte	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	NA NG NN V	NA	NA
+unterteilen	lc_l	sf2_en	sf3_len	sf4_ilen	sf5_eilen	sf6_teilen	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	NA ND NN V	V	V
+lässt	lc_l5	sf2_st	sf3_sst	sf4_ässt	sf5_lässt	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	V	V	V
+,	lc_noalpha	sf2_	sf3_	sf4_	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	PM	PM	PM
+in	lc_l5	sf2_in	sf3_	sf4_	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	APA APD	APA	APA
+einen	lc_l5	sf2_en	sf3_nen	sf4_inen	sf5_einen	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	DA DD DG DN NA ND NN P V	DA	DA
+Abschnitt	lc_Ul	sf2_tt	sf3_itt	sf4_nitt	sf5_hnitt	sf6_chnitt	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	NA ND NN V	NA	NA
+15a	lc_dl	sf2_5a	sf3_15a	sf4_	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	J JA JD JG JN N NA ND NG NN R V Z	Z	Z
+,	lc_noalpha	sf2_	sf3_	sf4_	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	PM	PM	PM
+der	lc_l5	sf2_er	sf3_der	sf4_	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	DD DG DN P Q	P	P
+den	lc_l5	sf2_en	sf3_den	sf4_	sf5_	sf6_	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	DA DD P	DA	DA
+Schliess-	lc_Ul-	sf2_s-	sf3_ss-	sf4_ess-	sf5_iess-	sf6_liess-	qvp_	qvp_rule_	qvp_rule_	qvp_rule_	J JA JD JG JN N NA ND NG NN R V EL	EL	EL

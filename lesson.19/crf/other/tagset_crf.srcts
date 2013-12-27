@@ -1,0 +1,154 @@
+#
+# mapping of the whole tagset to the subtagset used in CRF
+#
+#
+# Notation TAG/o means that this tag is open category (can be marken only once)
+# when necessary, CRFData::Tagset class with use this info to build a list
+# of open pos tags
+
+PMx	-->	PM
+! , ? : ; . ... --> PM
+
+CS       --> CS
+CC CM CI --> C
+
+#APx	-->	AP
+APPN       --> APN
+APPG APTG  --> APG
+APPD APTD  --> APD
+APPA APTA  --> APA
+APC        --> APC
+
+# all determiners go into single category
+# grammatical case is encoded
+ATDMN ATDNN ATDFN ATDPN --> DN
+ATIMN ATINN ATIFN       --> DN
+ATNMN ATNNN ATNFN ATNPN --> DN
+DIMN DINN DIFN DIPN     --> DN
+DNMN DNNN DNPN          --> DN
+DPMN DPNN DPFN DPPN     --> DN
+DTMN DTNN DTFN DTPN     --> DN
+DZMN DZNN DZFN DZPN     --> DN
+KPMN KPNN KPFN KPPN     --> DN
+KCPN                    --> DN
+KSMN KSNN KSFN KSPN     --> DN
+
+ATDMG ATDNG ATDFG ATDPG  --> DG
+ATIMG ATING ATIFG ATNMG  --> DG
+ATNNG ATNFG ATNPG        --> DG
+DISG DIMG DING DIFG DIPG --> DG
+DNMG DNNG DNPG           --> DG
+DPMG DPNG DPFG DPPG      --> DG
+DTMG DTNG DTFG DTPG      --> DG
+DZMG DZNG DZFG DZPG      --> DG
+KPMG KPNG KPFG KPPG      --> DG
+KCPG KSMG KSNG KSFG KSPG --> DG
+
+ATDMD ATDND ATDFD ATDPD  --> DD
+ATIMD ATIND ATIFD ATNMD  --> DD
+ATNND ATNFD ATNPD        --> DD
+DIMD DIND DIFD DIPD      --> DD
+DNMD DNND DNPD           --> DD
+DPMD DPND DPFD DPPD      --> DD
+DTMD DTND DTFD DTPD      --> DD
+DZMD DZND DZFD DZPD      --> DD
+KPMD KPND KPFD KPPD      --> DD
+KCPD                     --> DD
+KSMD KSND KSFD KSPD      --> DD
+
+ATDMA ATDNA ATDFA ATDPA  --> DA
+ATIMA ATINA ATIFA        --> DA
+ATNMA ATNNA ATNFA ATNPA  --> DA
+DIMA DINA DIFA DIPA      --> DA
+DNMA DNNA DNPA           --> DA
+DPMA DPNA DPFA DPPA      --> DA
+DTMA DTNA DTFA DTPA      --> DA
+DZMA DZNA DZFA DZPA      --> DA
+KPMA KPNA KPFA KPPA      --> DA
+KCPA                     --> DA
+KSMA KSNA KSFA KSPA      --> DA
+
+# short determiners
+DI DN DT DTS DZ KP KC KS --> D
+
+# adjectives, participles (JPA,JPP,JPZ), ordinal numbers (ZO)
+# the grammatical case is encoded
+#
+# non-flective
+JP JC JS JPA JPZ JPP ZO --> J/o
+# ..nominative
+ZOMN ZONN ZOFN ZOPN     --> JN/o
+JPMN JPNN JPFN JPPN     --> JN
+JCMN JCNN JCFN JCPN     --> JN
+JSMN JSNN JSFN JSPN     --> JN
+JPAMN JPANN JPAFN JPAPN --> JN
+JPZMN JPZNN JPZFN JPZPN --> JN
+JPPMN JPPNN JPPFN JPPPN --> JN
+# ..genitive
+ZOMG ZONG ZOFG ZOPG     --> JG/o
+JPMG JPNG JPFG JPPG     --> JG
+JCMG JCNG JCFG JCPG     --> JG
+JSMG JSNG JSFG JSPG     --> JG
+JPAMG JPANG JPAFG JPAPG --> JG
+JPZMG JPZNG JPZFG JPZPG --> JG
+JPPMG JPPNG JPPFG JPPPG --> JG
+# ..dative
+ZOMD ZOND ZOFD ZOPD     --> JD/o
+JPMD JPND JPFD JPPD     --> JD
+JCMD JCND JCFD JCPD     --> JD
+JSMD JSND JSFD JSPD     --> JD
+JPAMD JPAND JPAFD JPAPD --> JD
+JPZMD JPZND JPZFD JPZPD --> JD
+JPPMD JPPND JPPFD JPPPD --> JD
+# ..accusative
+ZOMA ZONA ZOFA ZOPA     --> JA/o
+JPMA JPNA JPFA JPPA     --> JA
+JCMA JCNA JCFA JCPA     --> JA
+JSMA JSNA JSFA JSPA     --> JA
+JPAMA JPANA JPAFA JPAPA --> JA
+JPZMA JPZNA JPZFA JPZPA --> JA
+JPPMA JPPNA JPPFA JPPPA --> JA
+
+# personal pronouns
+PPx  --> P
+PI   --> P
+PIx  --> P
+PSx  --> P
+PREF --> P
+PREZ --> P
+PZH  --> P
+
+# cardinal numerals
+ZC ZCx ZF --> Z
+
+# verbs
+VLx	-->	V/o
+VHx	-->	V
+VSx	-->	V
+VWx	-->	V
+VMx	-->	V
+
+# nouns
+NCMSN NCMPN NCFSN NCFPN NCNSN NCNPN NCXPN --> NN/o
+NCMSG NCMPG NCFSG NCFPG NCNSG NCNPG NCXPG --> NG/o
+NCMSD NCMPD NCFSD NCFPD NCNSD NCNPD NCXPD --> ND/o
+NCMSA NCMPA NCFSA NCFPA NCNSA NCNPA NCXPA --> NA/o
+
+NP NPP  --> N
+NPG     --> NG
+NPD     --> ND
+
+NU  --> N/o
+FO	-->	N
+FW	-->	N
+LA	-->	N
+
+# adverbs
+Rx	-->	R/o
+INJ	-->	R
+
+# particles
+QVP	-->	QVP
+QNEG QZU QG	-->	Q
+
+ELx	-->	EL
