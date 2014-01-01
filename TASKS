@@ -1,23 +1,7 @@
 Focus: Arrays
 =============
 
-FOLLOWUP to word_lengths
- * find words whose length is measured differently when Encoding::default * is either set or not
-
-palindromes+volvograms	lesson.16,18-19/dromes
-  determine if the current word is a palindrome or a volvogram
-TOOLS: String#reverse, Array#push, Array#has?
-
-select_random_corpus	CAN NOT FIND IT
-* basic requirements: select 10 % of total corpus
-= where: lesson.09.tasks and answers in lesson.10
-
-select_random_corpus of sentence length, ignoring punctuation (see hw205)	
-* additional requirements: ignore punctuation when counting tokens (array#reject)
-
-	
-!!! check out tasks from the previous run of the course
-anagrams of a given word? followed by explanation of ARGV
+сортировать релейшны (rVP --numbered) по самому левому слову или по размаху (разница между положением самого левого слова в предложении и положением самого правого слова в предложении). на вход идет выход EXTester2 c --tagged-sentence --tagged-relations --numbered-relations
 
 custom implementations of Array methods
 	sort
@@ -56,6 +40,8 @@ requires: multidimensional hash: counts['a'][word1] = count
 5. collect words and all its variants with diacritics. compute the probability of each diacritical spelling
 	!!! corpus of french texts !!!
 
+6. scrabble game
+
 Focus: Logical expressions
 ==========================
 
@@ -77,6 +63,10 @@ Focus: Unclassified
 
 2. Given a tagged sentence, extract all tag-tag bigrams and trigrams
 
+Ruby quiz
+==========
+
+154 - Making change
 
 Projects:
 ---------
@@ -84,15 +74,6 @@ Projects:
 something similar to cmpsao_intersect:
 	given a file with tested difference, import it in another untested file
 	to imitate testing
-
-remove duplicates from cmp file
-	- when entries repeat literally
-	- when entries have lines in different order
-+ w/o removing, mark duplicates or comment them out in the output
-
-rearrange cmp data so that
-	1) similar entries go together in a group
-	2) groups go sorted by size
 
 
 ruby quick reference:
@@ -151,4 +132,15 @@ mode (самое частотное значение) - самый частот�
 - дана разница по SAO, вызванная словарем, нужно ее как-то сгруппировать
 - даны также два файла со старым словарем и новым (в формате DicTester --all --brief)
   в жизни разницу по словарь придется делать иначе: сравнивать теги слов из Sentence original в старом и новом словарях
+
+Задачи
+======
+- lang detect - use probabilities
+- similarity (динамическое программирование)
+- document similarity
+
+Heapsort
+========
++ реализация other_tasks/heapsort/heapsort_to_new
+! дополнительное задание для самостоятельной работы: сделать in-place. объяснить как оно должно работать. TODO: предоставить готовую реализацию
 
