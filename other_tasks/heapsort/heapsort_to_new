@@ -1,0 +1,160 @@
+#!/usr/bin/env ruby
+
+# # #
+#
+#
+
+@verbose = false
+
+def verboser msg
+  if @verbose
+    puts msg
+  end
+end
+
+######################################################################
+
+# TODO: subtask #1 -- these three methods
+def left_child_idx i
+  i*2 + 1
+end
+
+def right_child_idx i
+  i*2 + 2
+end
+
+def parent_idx i
+  (i-1) / 2
+end
+
+if false
+  puts  1 ==  left_child_idx(0)
+  puts  2 == right_child_idx(0)
+  puts  3 ==  left_child_idx(1)
+  puts  4 == right_child_idx(1)
+  puts  5 ==  left_child_idx(2)
+  puts  6 == right_child_idx(2)
+  puts  7 ==  left_child_idx(3)
+  puts  8 == right_child_idx(3)
+  puts  9 ==  left_child_idx(4)
+  puts 10 == right_child_idx(4)
+  puts 11 ==  left_child_idx(5)
+  puts 12 == right_child_idx(5)
+
+  puts 0 == parent_idx(1)
+  puts 0 == parent_idx(2)
+  puts 1 == parent_idx(3)
+  puts 1 == parent_idx(4)
+  puts 2 == parent_idx(5)
+  puts 2 == parent_idx(6)
+  puts 3 == parent_idx(7)
+  puts 3 == parent_idx(8)
+  puts 4 == parent_idx(9)
+  puts 4 == parent_idx(10)
+end
+
+######################################################################
+
+# TODO: this is subtask #2
+# rearrange the p-th element and its children, if necessary, to meet
+# the heap property: A[parent_value] >= A[child_value]
+def heapify nums, p
+  verboser "heapify: #{nums.inspect} below nums[#{p}]=#{nums[p]}"
+
+  l = left_child_idx(p)
+  r = right_child_idx(p)
+  
+  verboser "p/l/r: #{p}=#{nums[p]} / #{l}=#{nums[l]} / #{r}=#{nums[r]}"
+
+  largest_idx = select_idx_with_largest_value(nums, p, l)
+  largest_idx = select_idx_with_largest_value(nums, largest_idx, r)
+
+  if p != largest_idx
+    verboser "Swapping nums[##{p}] <=> nums[##{largest_idx}]"
+    verboser "Before: #{nums.inspect}"
+
+    nums[p], nums[largest_idx] = nums[largest_idx], nums[p]
+
+    verboser "After : #{nums.inspect}"
+
+    heapify(nums, largest_idx)
+  end
+end
+
+def select_idx_with_largest_value nums, i1, i2
+  if i2 < nums.length && nums[i2] > nums[i1] 
+    i2
+  else
+    i1
+  end
+end
+
+#
+# tests
+#
+
+if false
+  input    = [1,16,8,14,4,7,2,10,3,9]
+  expected = [1,16,8,14,9,7,2,10,3,4]
+  heapify(input, 4)
+  puts expected == input
+  
+  input    = [16,1,8,14,9,7,2,10,3,4]
+  expected = [16,14,8,10,9,7,2,1,3,4]
+  heapify(input, 1)
+  puts expected == input
+end
+
+######################################################################
+
+def build_heap nums
+  verboser "Starting building the heap: #{nums.inspect}"
+
+  last_parent = nums.length/2-1
+  verboser "Last parent: #{last_parent}/#{nums[last_parent]}"
+
+  last_parent.downto(0) do |i|
+    heapify(nums, i)
+  end
+  verboser "The heap was built: #{nums.inspect}"
+end
+
+def heapsort nums
+  verboser "Initial: #{nums.inspect}"
+
+  nums = nums.dup  # INSTUB
+  build_heap(nums) # modifies nums itself; INSTUB
+
+  sorted = []           # INSTUB
+  while nums.length > 1 # INSTUB
+    verboser "Extracting max number nums[0]=#{nums[0]}"
+    # INSTUB: comments for the belos steps should be in the stub while the commands should not
+    sorted.unshift nums.shift # extract the topmost item that is the max item
+    nums.unshift nums.pop     # place the last leaf of the heap to the top of the heap
+    heapify(nums, 0)          # reorder from the top
+  end
+  unless nums.empty?
+    sorted.unshift nums.shift  # INSTUB: comment for this stem
+  end
+
+  verboser "Sorted: #{sorted.inspect}\n\n"
+  sorted # INSTUB
+end
+
+numbers = [16,14,10,1,8,7,9,3,2,4,4,1]
+puts numbers.sort == heapsort(numbers)
+
+numbers = [16,14,10,8,7,9,3,2,4,1].reverse
+puts numbers.sort == heapsort(numbers)
+
+numbers = [1,2,3,4,5,6]
+puts numbers.sort == heapsort(numbers)
+
+numbers = [1,2,3,4,5].reverse
+puts numbers.sort == heapsort(numbers)
+
+numbers = []
+puts numbers.sort == heapsort(numbers)
+
+numbers = [1]
+puts numbers.sort == heapsort(numbers)
