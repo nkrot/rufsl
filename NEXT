@@ -4,9 +4,16 @@ Lesson.19
 - Introductory lecture on CRF
 - assign_properties_messy
 
+Lesson.20
+=========
+in view of the fact that some people will be on vacation, it makes sense that this lesson is pure practice.
++ another sorting algorithm (radix sort - поразрдная сортировка)
+- HW: adapt it for sorting strings (that can be of different length)
+
 for code review #3 (lessons 13+)
 ================================
 TODO: develop testcases for Syn module and handle them out as a supplement to code review 3
+      publish them in lesson.xx.addon/
 
 1) maxfreqtag
 2) your own Syn module (syn.rb) that should implement the following methods
@@ -25,7 +32,27 @@ TODO: develop testcases for Syn module and handle them out as a supplement to co
 
 темы, которые надо рассмотреть
 ==============================
+
+- сложные логические выражения
+  + таблицы истинности
+  ! упражнения на вычисление p && r || q
+
+- оператор precedence
+  + and or не то же самое, что && и ||
+  + { } сильнее чем do end
+  + присваивание: a = b || c || d
+
+- String
+  + какие полезные методы есть у String
+  + как правильно делать upcase/downcase/capitalize
+  + строки стали encoding-aware, как избегать проблем с invalid byte sequence
+  + как работать с юникодом (правильно считать длину строки, правильно ее разбивать на символы)
+
 - IO.popen
+  + как запускать отдельные команды, которые получают вход из скрипта
+  + как запускать команды, которые не получают входа (типа date)
+  + как запускать пайпы (несколько команд). проблемы буферизации
+  ! Задание: сделать библиотеку вокруг какой-либо команды из коллекции утилит просао
 
 - operations on sets: intersection, union, subtraction (complement, difference)
    task: develop a methods that a.intersect(b) => common, uniq_in_a, uniq_in_b
@@ -35,3 +62,19 @@ TODO: develop testcases for Syn module and handle them out as a supplement to co
 	NOW: a - b => [1, 1] 
 	SHOULD BE: a - b => [1,1,2,3]
 
+- Regexp
+  + синтаксис РВ (повторение)
+  + расширения для РВ, которые есть в руби (и возможно других языках), отличные от POSIX
+    в том числе ключи /m /i /u
+  + операторы, работающие с РВ. автоматические глобальные переменные $1 $`
+    TODO: найти полный список глобальных $-переменных руби
+  + MatchData
+  + как работать в юникодными РВ
+  + будет ли ключ /i правильно работать с диакритиками
+
+- Теория вероятности
+  + lang detect
+
+- TF-IDF
+
+  
