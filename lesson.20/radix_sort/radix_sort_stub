@@ -1,0 +1,61 @@
+#!/usr/bin/env ruby
+
+# # #
+# Radix sort for numbers
+#
+
+######################################################################
+# positions are counted from 1 up, being 1 the rightmost position
+#   ex: 54321
+# for any position out of range, 0 will be returned, which is ok
+# since prepending 0s to a number does not change its value
+#   54321 = 054321 = 0054321 and so on
+
+def digit_at_pos num, pos
+  base = 10
+  return base # TODO
+end
+
+if true
+  # TODO: add more tests here
+  num = 543021
+  puts 1 == digit_at_pos(num, 1)
+  puts 0 == digit_at_pos(num, 3)
+  puts 0 == digit_at_pos(num, 7)
+end
+
+######################################################################
+# find the length of the longest number
+#  [1,11,8,222,111] => 3, which is the length of 111 or 222
+
+def longest_number_length(numbers)
+  # TODO: write your cool code here
+  0
+end
+
+######################################################################
+
+def radix_sort numbers
+  buckets = []
+
+  1.upto(longest_number_length(numbers)) do |pos|
+    # TODO: use numbers and digit_at_pos here
+  end
+
+  # TODO: return sorted array here
+end
+
+######################################################################
+# tests
+
+numbers = [100,2,1,20,0]
+puts numbers.sort == radix_sort(numbers)
+
+# TODO:
+# add tests for the following cases:
+# * an empty array
+# * an array with a single item
+# * an array that is already sorted
+# * an array that is sorted in reverse order
+# * other you consider appropriate
+#

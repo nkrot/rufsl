@@ -1,0 +1,93 @@
+#!/usr/bin/env ruby
+
+# # #
+# Radix sort for numbers
+#
+
+@verbose = false
+def verboser msg
+  if @verbose
+    puts msg
+  end
+end
+
+######################################################################
+# positions are counted from 1 up, being 1 the rightmost position
+#   ex: 54321
+# for any position out of range, 0 will be returned, which is ok
+# since prepending 0s to a number does not change its value
+#   54321 = 054321 = 0054321 and so on
+
+def digit_at_pos num, pos
+  base = 10
+  (num % base ** pos) / base ** (pos-1)
+end
+
+if false
+  num = 543021
+  puts 1 == digit_at_pos(num, 1)
+  puts 2 == digit_at_pos(num, 2)
+  puts 0 == digit_at_pos(num, 3)
+  puts 3 == digit_at_pos(num, 4)
+  puts 4 == digit_at_pos(num, 5)
+  puts 5 == digit_at_pos(num, 6)
+  puts 0 == digit_at_pos(num, 7)
+#  exit 100
+end
+
+######################################################################
+
+def longest_number_length(numbers)
+  numbers.map {|n| n.to_s.length }.max || 0
+end
+
+######################################################################
+
+def radix_sort numbers
+  buckets = []
+
+  1.upto(longest_number_length(numbers)) do |pos|
+    verboser "Iteration: #{pos}"
+
+    buckets.clear
+    numbers.each do |number|
+      digit = digit_at_pos(number, pos)
+      verboser "In #{number} [##{pos}]=#{digit}"
+      (buckets[digit] ||= []) << number
+    end
+
+    verboser "Buckets: #{buckets.inspect}"
+    numbers = buckets.flatten.compact
+  end
+
+  verboser "Sorted: #{numbers.inspect}"
+  numbers
+end
+
+numbers = [100,2,1,20,0]
+puts numbers.sort == radix_sort(numbers)
+
+# boundary case: sorting an empty array
+numbers = []
+puts numbers.sort == radix_sort(numbers)
+
+numbers = [1]
+puts numbers.sort == radix_sort(numbers)
+
+numbers = [1,10,100,55,551,9,910,91,1000]
+puts numbers.sort == radix_sort(numbers)
+
+numbers = [1,10,100,55,551,9,910,91].reverse
+puts numbers.sort == radix_sort(numbers)
+
+# if already sorted
+numbers = [1,10,100,55,551,9,910,91].sort
+puts numbers.sort == radix_sort(numbers)
+
+# the worst case: sorted in reverse order
+numbers = [1,10,100,55,551,9,910,91].sort.reverse
+puts numbers.sort == radix_sort(numbers)
+
+# lengths of numbers are not contiguous: 1,[2],3,[4],5
+numbers = [9,1,999,11111]
+puts numbers.sort == radix_sort(numbers)
