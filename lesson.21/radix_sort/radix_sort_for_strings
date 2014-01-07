@@ -1,0 +1,176 @@
+#!/usr/bin/env ruby
+
+# # #
+# Radix sort for strings
+# USAGE: ThisScript --scan-order=r2l|l2r
+
+
+require 'optparse'
+
+OptionParser.new do |opts|
+
+  orders = [:l2r, :r2l]
+  @direction = :r2l # right-to-left
+  #@direction = :l2r # left-to-right
+  opts.on('--scan-order=ORDER', orders, 'scanning order, valid values are one of: ',
+          orders.join(", ")) do |val|
+    @direction = val
+  end
+
+  @verbose = false
+  opts.on('-v', '--verbose', 'be verbose') do
+    @verbose = true
+  end
+
+  @alignment = :left
+end.parse!
+
+def verboser msg
+  if @verbose
+    puts msg
+  end
+end
+
+######################################################################
+
+## this is ok
+#def char_at_pos str, pos, width=0
+#  if @direction == :r2l && @alignment == :right
+#    str[-pos,1] || ""
+#  elsif @@direction == :r2l
+#    str[width-pos,1] || ""
+#  else
+#    str[pos-width-1,1] || ""
+#  end
+#end
+
+if @direction == :r2l
+  if @alignment == :right
+
+    def char_at_pos str, pos, width=0
+      str[-pos,1] || ""
+    end
+
+  else
+
+    # this is the one
+    def char_at_pos str, pos, width=0
+      str[width-pos,1] || ""
+    end
+
+  end
+else
+
+  def char_at_pos str, pos, width=0
+    str[pos-width-1,1] || ""
+  end
+
+end
+
+if !true
+  str = "abcde"
+  print "Tests for char_at_pos"
+  if @direction == :r2l
+    print " in right-to-left direction"
+    if @alignment == :right
+      print " with alignment to the right \"  #{str}\"\n"
+      puts "e" == char_at_pos(str, 1)
+      puts "d" == char_at_pos(str, 2)
+      puts "c" == char_at_pos(str, 3)
+      puts "b" == char_at_pos(str, 4)
+      puts "a" == char_at_pos(str, 5)
+      puts ""  == char_at_pos(str, 6)
+    else
+      print " with alignment to the left \"#{str}  \"\n"
+      puts "a" == char_at_pos(str, 8, 8)
+      puts "b" == char_at_pos(str, 7, 8)
+      puts "c" == char_at_pos(str, 6, 8)
+      puts "d" == char_at_pos(str, 5, 8)
+      puts "e" == char_at_pos(str, 4, 8)
+      puts ""  == char_at_pos(str, 3, 8)
+      puts ""  == char_at_pos(str, 2, 8)
+      puts ""  == char_at_pos(str, 1, 8)
+    end
+  else
+    print " in left-to-right direction\n"
+    puts ""  == char_at_pos(str, 1, 8)
+    puts ""  == char_at_pos(str, 2, 8)
+    puts ""  == char_at_pos(str, 3, 8)
+    puts "a" == char_at_pos(str, 4, 8)
+    puts "b" == char_at_pos(str, 5, 8)
+    puts "c" == char_at_pos(str, 6, 8)
+    puts "d" == char_at_pos(str, 7, 8)
+    puts "e" == char_at_pos(str, 8, 8)
+  end
+  exit 100
+end
+
+######################################################################
+
+def longest_length(strings)
+  strings.map {|n| n.length }.max || 0
+end
+
+######################################################################
+
+def char2num(ch)
+  ch.empty? ? 0 : ch.ord
+end
+
+######################################################################
+
+def radix_sort items
+  buckets = []
+
+  longest = longest_length(items)
+  1.upto(longest) do |pos|
+    verboser "Iteration: #{pos}"
+
+    buckets.clear
+    items.each do |item|
+      char = char_at_pos(item, pos, longest)
+      verboser "In #{item} [##{pos}]=#{char}"
+      (buckets[char2num(char)] ||= []) << item
+    end
+
+    verboser "Buckets: #{buckets.inspect}"
+    items = buckets.flatten.compact
+  end
+
+  verboser "Sorted: #{items.inspect}"
+  items
+end
+
+# this case work with both left-to-right and right-to-left scanning
+strings = ["ramp", "lamp", "camp"]
+puts strings.sort == radix_sort(strings)
+
+# other cases are necessary to show correct left-to-right scanning
+strings = ["apples", "apple pie", "ramp", "lamp", "camping", "apple"]
+puts strings.sort == radix_sort(strings)
+
+# check that space is interpreted correctly
+strings = [" lamps", "lamp", "  lamp", " lamps "]
+puts strings.sort == radix_sort(strings)
+
+strings = []
+puts strings.sort == radix_sort(strings)
+
+strings = ["one"]
+puts strings.sort == radix_sort(strings)
+
+strings = ["ac", "a", "c", "aa", "bbb", "b"]
+puts strings.sort == radix_sort(strings)
+
+# if already sorted
+strings = ["a", "aa", "ac", "b", "bbb", "c"]
+puts strings.sort == radix_sort(strings)
+
+# the worst case: sorted in reverse order
+strings = ["a", "aa", "ac", "b", "bbb", "c"].sort.reverse
+puts strings.sort == radix_sort(strings)
+
+# lengths of strings are not contiguous: 1,[2],3,[4],5
+strings = ["b","a",  "aab", "aaa", "aaaaa","aaaab","aaaba"]
+puts strings.sort == radix_sort(strings)
+
