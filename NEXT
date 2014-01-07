@@ -1,12 +1,12 @@
 
-TODO: опциональное ДЗ из lesson.20 - сделать radix_sort_for_strings.
-
 Lesson.21
 =========
-- (promissed) Heap sort, dedicate the lesson.21 to programming
+- radix sort for strings
+- maybe bubble sort as a hometask
 
-Lesson.21+
+Lesson.22+
 ==========
+- (promissed) Heap sort, dedicate the lesson.21 to programming
 - IO.open and IO.popen and how to run external commands in a ruby script
 
 
