@@ -1,0 +1,37 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+
+OptionParser.new do |opts|
+  @order = :asc
+
+  opts.on('-a', '--asc', '[default] sort in ascending order') do
+    @order = :asc
+  end
+
+  opts.on('-d', '--desc', '[default] sort in descending order') do
+    @order = :desc
+  end
+end.parse!
+
+######################################################################
+
+def mysort_desc(nums)
+  puts "Sorting in descending order"
+  nums.sort.reverse
+end
+
+def mysort_asc(nums)
+  puts "Sorting in ascending order"
+  nums.sort
+end
+
+sorters = {
+  :asc  => :mysort_asc,
+  :desc => :mysort_desc
+}
+
+######################################################################
+
+numbers = [2,1,10,22,2,100]
+puts send(sorters[@order], numbers).inspect
