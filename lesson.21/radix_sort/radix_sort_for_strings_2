@@ -1,0 +1,71 @@
+#!/usr/bin/env ruby
+
+# # #
+# Radix sort for strings
+#
+
+def char_at_pos str, pos
+#  str[pos-1]  # this can return nil
+  str[pos-1,1] # this can return "" or nil
+end
+
+def longest_length(strings)
+  strings.map {|n| n.length }.max || 0
+end
+
+def char2num(ch)
+  # we need .to_s because ch can come equal "" or nil
+  ch.to_s.empty? ? 0 : ch.ord
+end
+
+def radix_sort items
+  buckets = []
+
+  longest = longest_length(items)
+  longest.downto(1) do |pos|
+
+    buckets.clear
+    items.each do |item|
+      char = char_at_pos(item, pos)
+      (buckets[char2num(char)] ||= []) << item
+    end
+
+    items = buckets.flatten.compact
+  end
+
+  items
+end
+
+# this case work with both left-to-right and right-to-left scanning
+strings = ["ramp", "lamp", "camp"]
+puts strings.sort == radix_sort(strings)
+
+# other cases are necessary to show correct left-to-right scanning
+strings = ["apples", "apple pie", "ramp", "lamp", "camping", "apple"]
+puts strings.sort == radix_sort(strings)
+
+# check that space is interpreted correctly
+strings = [" lamps", "lamp", "  lamp", " lamps "]
+puts strings.sort == radix_sort(strings)
+
+strings = []
+puts strings.sort == radix_sort(strings)
+
+strings = ["one"]
+puts strings.sort == radix_sort(strings)
+
+strings = ["ac", "a", "c", "aa", "bbb", "b"]
+puts strings.sort == radix_sort(strings)
+
+# if already sorted
+strings = ["a", "aa", "ac", "b", "bbb", "c"]
+puts strings.sort == radix_sort(strings)
+
+# the worst case: sorted in reverse order
+strings = ["a", "aa", "ac", "b", "bbb", "c"].sort.reverse
+puts strings.sort == radix_sort(strings)
+
+# lengths of strings are not contiguous: 1,[2],3,[4],5
+strings = ["b","a",  "aab", "aaa", "aaaaa","aaaab","aaaba"]
+puts strings.sort == radix_sort(strings)
+
