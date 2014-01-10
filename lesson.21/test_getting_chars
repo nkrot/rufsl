@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+
+# # #
+# (not so) funny discrepancies
+#
+
+puts "getting a char within string boundaries"
+
+puts "a"[0,1] == "a"
+puts "a"[0]   == "a"
+
+puts "a"[-1,1] == "a"
+puts "a"[-1]   == "a"
+
+puts "\ngetting a char out of string boundries"
+
+puts "a"[1,1] == ""
+puts "a"[1]   == nil
+
+puts "a"[-2,1] == nil # WTF!
+puts "a"[-2]   == nil
