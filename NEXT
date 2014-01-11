@@ -1,11 +1,12 @@
 
-Lesson.21
-=========
-- radix sort for strings
-- maybe bubble sort as a hometask
+Possible HW 21->22
+- sort relations by verious fields: first by action, then by object, then by indirect object (like you would do for PPA)
+  see other_tasks/sort_relations
+
 
 Lesson.22+
 ==========
+- bubble sort?
 - (promissed) Heap sort, dedicate the lesson.21 to programming
 - IO.open and IO.popen and how to run external commands in a ruby script
 
