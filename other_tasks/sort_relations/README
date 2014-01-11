@@ -1,0 +1,3 @@
+Suppose you are working on prepositional phrase attachment. You have collected data -- VerbPhrase relations from a large amount of textual data -- and want to build XXX
+
+More precisely, you need to extract entries having an action with more than one preposition, and sort by preposition, then by action
