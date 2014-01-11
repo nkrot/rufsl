@@ -8,7 +8,7 @@ while block = gets("")
 
   counts = Hash.new {|h,k| h[k] = 0}
   lines.each do |line|
-    if line =~ /r__VerbPhrase/
+    if line =~ /r__VerbPhrase|NounPhrase_additional/
       fields = line.split(/\t/, -1)
       unless fields[prep].empty?
         counts[fields[action]] += 1

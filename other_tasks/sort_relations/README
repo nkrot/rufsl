@@ -1,3 +1,10 @@
-Suppose you are working on prepositional phrase attachment. You have collected data -- VerbPhrase relations from a large amount of textual data -- and want to build XXX
+Suppose you are working on prepositional phrase attachment. You have collected data -- r__VerbPhrase and r__NounPhrase_additional relations from a large amount of textual data -- and want to build XXX
 
-More precisely, you need to extract entries having an action with more than one preposition, and sort by preposition, then by action
+More precisely, you want to analyse cases of attachment of a preposition to multiple antecedents. To make working with, probably viewing, data more confortable, you want to reorganize relations such that:
+1) rVP and rNPA with the same preposition and indirect object are placed adjacent
+2) within each group relations are sorted by the relation name: r__VerbPhrases go first and rNPA follow them
+3) groups appear in the order in which the prepositions come in the sentence
+4) all other relations are not shown
+   you dont want preposition that appear only once (in the real life, you may want them, mayn't you?, -- they are nonambiguous attachments)
+
+
