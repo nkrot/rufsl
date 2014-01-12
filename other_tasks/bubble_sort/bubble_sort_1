@@ -1,0 +1,84 @@
+#!/usr/bin/env ruby
+
+# # #
+# in-place implementation
+#
+
+#class Array
+#  alias sort_orig sort
+#  def sort
+#    puts "Sorting: #{self.inspect}"
+#    sort_orig
+#  end
+#end
+
+@verbose = true
+def verboser msg
+  if @verbose
+    puts msg
+  end
+end
+
+def bubble_sort nums
+
+  len = nums.length
+  (len-1).times do |it|
+    verboser "Iteration ##{it}: #{nums.inspect}"
+    rb = len - 2 - it
+    verboser "Scanning 0..#{rb}"
+    0.upto(rb) do |i|
+      if nums[i] > nums[i+1]
+        nums[i], nums[i+1] = nums[i+1], nums[i]
+        puts "Swap ##{i} ##{i+1}  : #{nums.inspect}"
+      end
+    end
+  end
+
+  # Dispite bubble_sort is in-place sorting, we return the sorted array
+  # as well thus mimic Ruby Array#sort! behaviour
+  nums
+end
+
+puts "CASE: 1"
+numbers = [5,4,3,2,1]
+puts numbers.sort == bubble_sort(numbers)
+
+#exit 100
+
+puts "CASE: 2"
+numbers = [3,2,3,5,1,9,1,11]
+puts numbers.sort == bubble_sort(numbers)
+
+puts "CASE: sorting empty array"
+numbers = []
+puts numbers.sort == bubble_sort(numbers)
+
+puts "CASE: sorting 1-element array"
+numbers = [1]
+puts numbers.sort == bubble_sort(numbers)
+
+puts "CASE: sorting 2-element sorted array"
+numbers = [1,2]
+puts numbers.sort == bubble_sort(numbers)
+
+puts "CASE: sorting 2-element unsorted array"
+numbers = [2,1]
+puts numbers.sort == bubble_sort(numbers)
+
+puts "CASE: already sorted"
+numbers = [1,2,2,5,6,9,11]
+puts numbers.sort == bubble_sort(numbers)
+
+# worst case: sorted in opposite order
+puts "CASE: sorted in reverse order"
+numbers = [1,2,2,5,6,9,11].reverse
+puts numbers.sort == bubble_sort(numbers)
+
+puts "CASE: almost sorted 1"
+numbers = [2,3,4,5,6,9,1]
+puts numbers.sort == bubble_sort(numbers)
+
+# very inefficient on this array
+puts "CASE: almost sorted 2"
+numbers = [1,2,3,6,5,9,11,12,20]
+puts numbers.sort == bubble_sort(numbers)

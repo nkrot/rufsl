@@ -1,0 +1,21 @@
+bubble_sort_1
+  the right boundary is treat trivially: it decreases by one at each iteration
+  but:
+  the following testcase shows that many iterations just not alter the array!
+    >puts "CASE: almost sorted 2"
+    >numbers = [1,2,3,6,5,9,11,12,20]
+    >puts numbers.sort == bubble_sort(numbers)
+  we could try to avoid this many iterations and extra comparisons
+  => try controlling right boundary more more smartly
+  
+
+bubble_sort_2
+  better control of the rigth boundary: the position of the last swap operation
+  but:
+  the following testcase shows the problem of turtles and rabbits
+    >puts "CASE: almost sorted 1"
+    >numbers = [2,3,4,5,6,9,1]
+    >puts numbers.sort == bubble_sort(numbers)
+  all but one element is sorted. due to the fact that the element out of sort order
+  is the last one, we still need n-1 iterations to pull it to the beginning
+  => see cocktail sort fixes the problem of turtles

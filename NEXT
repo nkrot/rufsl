@@ -6,7 +6,8 @@ Possible HW 21->22
 
 Lesson.22+
 ==========
-- bubble sort?
+- bubble sort? see other_tasks/bubble_sort
+  TODO:  show conditional method definition on bubble sort (define greater_than(a,b)).
 - (promissed) Heap sort, dedicate the lesson.21 to programming
 - IO.open and IO.popen and how to run external commands in a ruby script
 
