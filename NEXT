@@ -4,8 +4,13 @@ Possible HW 21->22
   see other_tasks/sort_relations
 
 
-Lesson.22+
+Lesson.22
 ==========
+- check the locale on the TV set and ensure Ruby scripts work there
+- CRF. what to do next with text-spacer for the Russian language?
+
+
+
 - bubble sort? see other_tasks/bubble_sort
   TODO:  show conditional method definition on bubble sort (define greater_than(a,b)).
 - (promissed) Heap sort, dedicate the lesson.21 to programming
