@@ -5,10 +5,19 @@
 # The resulting model is saved to: textspacer.bin
 #
 # USAGE: train_crf corpus.txt
+# USAGE: time -p train_crf corpus.txt
 #
 
-cat $@ | synb_crf --bin=textspacer.bin --min-feat=2 --config=crf_text_spacer.cfg
+get_part() {
+	awk '1; !NF {c++}; c == 5000 {exit}'
+}
+
+cat $@ |
+get_part |
+synb_crf --bin=textspacer.bin --min-feat=2 --config=crf_text_spacer.cfg
 
 # or with additional properties
-#cat $@ | assign_properties |
+# cat $@ |
+# get_part |
+# assign_properties |
 # synb_crf --bin=textspacer.bin --min-feat=2 --config=crf_text_spacer.cfg
