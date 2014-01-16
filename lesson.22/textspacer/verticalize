@@ -1,0 +1,89 @@
+#!/usr/bin/env ruby
+
+# # #
+#
+#
+
+require 'optparse'
+
+OptionParser.new do |opts|
+  opts.banner = "
+  Convert the text to the format valid for feeding the text to CRF utils.
+USAGE: #{File.basename($0)} [OPTIONS] text_file(s)
+OPTIONS:
+"
+
+  @add_tags = false
+  opts.on('--add-tags', 'add tags to each character') do
+    @add_tags = true
+  end
+
+  opts.separator " "
+
+end.parse!
+
+Encoding::default_external = 'UTF-8'
+
+def pick_tag pch, nch
+  if pch == ' ' && nch == ' '
+    'SW'
+  elsif pch == ' '
+    'SI'
+  elsif nch == ' '
+    'SL'
+  else
+    'SM'
+  end
+end
+
+# Given an array of characters, add a tag to each character.
+# This method modifies the given array in place.
+#
+# ex: A bat is flying
+#  before     after
+# -------------------
+#   "A"      "A\tSW"    # a preceeding space is assumed
+#   " "      " "        # NB! will be deleted outside of the method
+#   "b"      "b\tSI"
+#   "a"      "a\tSM"
+#   "t"      "t\tSF"
+#   " "      " "
+#   "i"      "i\tSI"
+#   "s"      "s\tSF"
+#   " "      " "
+#   "f"      "f\tSI"
+#   "l"      "l\tSM"
+#   "y"      "y\tSM"
+#   "i"      "i\tSM"
+#   "n"      "n\tSM"
+#   "g"      "g\tSL"    # subsequent space is assumed
+
+def add_tags chars
+  chars.map!.each_with_index do |ch, idx|
+    if ch == ' '
+      [ch]
+    else
+      prev_ch = idx > 0 ? chars[idx-1][0] : ' '
+      next_ch = chars[idx+1] || ' '
+
+      [ch, pick_tag(prev_ch, next_ch)]
+    end
+  end
+  chars.map! {|*arr| arr.join("\t")}
+end
+
+while line = gets
+  line.chomp!
+
+  unless line.empty?
+    chars = line.squeeze(' ').split('')
+
+    if @add_tags
+      add_tags(chars)
+      chars.delete(' ')
+    end
+
+    puts chars.join("\n")
+    puts ""
+  end
+end

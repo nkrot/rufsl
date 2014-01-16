@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+# -*- coding: utf-8; -*-
+#
+
+#Encoding::default_external = 'UTF-8'
+
+while line = gets(" ")
+  line.chomp!
+  puts "#{line}\t#{line.length}\t#{line.split('').inspect}"
+end
+

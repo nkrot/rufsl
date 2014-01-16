@@ -1,0 +1,35 @@
+#!/usr/bin/env ruby
+# -*- coding: utf-8; -*-
+#
+
+# this is still needed to correctly recognize multibyte characters
+Encoding::default_external = 'UTF-8'
+
+@use_mb_chars = !true
+
+if @use_mb_chars
+  require 'active_support/lazy_load_hooks' # 
+  require 'active_support/core_ext/string' # multibyte mechanism is here
+end
+
+def case_conversions str
+  # standard ruby String#upcase and String#downcase
+  data = [str, str.upcase, str.downcase]
+
+  if @use_mb_chars
+    data << "||"
+    # Multibyte available in ActiveSupport extensions
+    # puts str.mb_chars.upcase.class #=> ActiveSupport::Multibyte::Chars
+    data << str.mb_chars.upcase      # add .to_s if necessary
+    data << str.mb_chars.downcase
+  end
+  data
+end
+
+while line = gets
+  line.chomp!
+  line.split.each do |word|
+    puts case_conversions(word).join("\t")
+  end
+end
+

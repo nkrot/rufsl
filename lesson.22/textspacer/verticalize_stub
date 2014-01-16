@@ -1,0 +1,78 @@
+#!/usr/bin/env ruby
+
+# # #
+#
+#
+
+require 'optparse'
+
+OptionParser.new do |opts|
+  opts.banner = "
+  Convert the text to the format valid for feeding the text to CRF utils.
+USAGE: #{File.basename($0)} [OPTIONS] text_file(s)
+OPTIONS:
+"
+
+  opts.on('--help', 'display this message and exit') do
+    puts opts.to_s
+    exit 0
+  end
+
+  @add_tags = false
+
+  opts.separator " "
+
+end.parse!
+
+def pick_tag pch, nch
+  if pch == ' ' && nch == ' '
+    'SW'  # a complete word
+  elsif pch == ' '
+    'SI'  # word initial
+  elsif nch == ' '
+    'SL'  # word last character
+  else
+    'SM'  # word middle character
+  end
+end
+
+# Given an array of characters, add a tag to each character.
+# This method modifies the given array in place.
+#
+# ex: A bat is flying
+#  before     after
+# -------------------
+#   "A"      "A\tSW"    # a preceeding space is assumed
+#   " "      " "        # you can delete the space if you want
+#   "b"      "b\tSI"
+#   "a"      "a\tSM"
+#   "t"      "t\tSF"
+#   " "      " "        # you can delete the space if you want
+#   "i"      "i\tSI"
+#   "s"      "s\tSF"
+#   " "      " "        # you can delete the space if you want
+#   "f"      "f\tSI"
+#   "l"      "l\tSM"
+#   "y"      "y\tSM"
+#   "i"      "i\tSM"
+#   "n"      "n\tSM"
+#   "g"      "g\tSL"    # subsequent space is assumed
+
+def add_tags chars
+  # TODO: write your code here
+end
+
+while line = gets
+  line.chomp!
+
+  unless line.empty?
+    chars = line.squeeze(' ').split_me_somehow
+
+    if @add_tags
+      # ...
+    end
+
+    puts chars.join("\n")
+    puts ""
+  end
+end

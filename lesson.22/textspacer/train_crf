@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# # #
+# Train CRF on the given file(s)
+# The resulting model is saved to: textspacer.bin
+#
+# USAGE: train_crf corpus.txt
+#
+
+cat $@ | synb_crf --bin=textspacer.bin --min-feat=2 --config=crf_text_spacer.cfg
+
+# or with additional properties
+#cat $@ | assign_properties |
+# synb_crf --bin=textspacer.bin --min-feat=2 --config=crf_text_spacer.cfg
