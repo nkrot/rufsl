@@ -81,6 +81,8 @@ while line = gets
     if @add_tags
       add_tags(chars)
       chars.delete(' ')
+    else
+      chars.map! {|ch| ch + "\t"}
     end
 
     puts chars.join("\n")
