@@ -1,0 +1,81 @@
+#!/usr/bin/env ruby
+# -*- coding: utf-8; -*-
+
+# # #
+#
+#
+
+require 'optparse'
+
+tagset = {
+  'SI' => 'initial character, space on the left',
+  'SM' => 'middle character, no spaces around',
+  'SL' => 'last character, space on the ritht',
+  'SW' => 'character is a word, spaces on both sides'
+}
+
+OptionParser.new do |opts|
+  opts.banner = "
+  Given the data outputted by CRF (in vertical form), restore spaces
+based in the following meaning of the tags:
+#{tagset.map {|a| "    " + a.join(' -- ')}.join("\n")}
+Note: for the script to work correctly the file must end with an empty line
+USAGE: #{File.basename($0)} [OPTIONS] input_file(s)
+OPTIONS:
+"
+
+  opts.on('-h', '--help', 'display this message and exit') do
+    puts opts
+    exit 0
+  end
+
+  @restore_empty_lines = true
+  opts.on('--[no-]restore-empty-lines',
+          'replace #!#EMPTYLINE with an empty line',
+          'The default is to automatically recognize the label') do |val|
+    @restore_empty_lines = val
+  end
+
+  opts.separator " "
+end.parse!
+
+Encoding::default_external = 'UTF-8'
+
+# TODO: you have to implement this method
+# add spaces to the given character depending on the value of the tag
+def restore_spaces(ch, tag)
+# puts "char/tag: #{char}/#{tag}"
+  case tag
+  when 'SW'
+    ch
+  when 'SP'
+    ch
+  else
+    ch
+  end
+end
+
+# TODO: you have to implement this method
+def join_chars lines
+  line = "   apples  and  iphones " # fake
+
+  return line.squeeze(' ').strip
+end
+
+lines = []
+while line = gets
+  line.chomp!
+
+  if line == "#!#EMPTYLINE" && @restore_empty_lines
+    puts ""
+
+  elsif line.empty?
+    # TODO: write your code here
+    puts join_chars(lines)
+
+  else
+    lines << line
+  end
+
+end
+

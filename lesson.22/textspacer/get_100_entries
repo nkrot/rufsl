@@ -4,4 +4,4 @@
 # extract first 100 entries from the CRF input data (in vertical form)
 #
 
-cat $@ | awk '1; !NF {c++}; c == 100 {exit}'
+cat $@ | awk '1; !NF && prev {c++}; {prev=$0}; c == 100 {exit}'
