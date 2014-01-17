@@ -18,6 +18,13 @@ OPTIONS:
     @add_tags = true
   end
 
+  @label_empty_lines = false
+  opts.on('--label-empty-lines',
+          'output empty lines prepending #!#EMPTYLINE',
+          'to them. Can later be used with --skip-line= option') do
+    @label_empty_lines = true
+  end
+
   opts.separator " "
 
 end.parse!
@@ -75,7 +82,13 @@ end
 while line = gets
   line.chomp!
 
-  unless line.empty?
+  if line.empty?
+
+    if @label_empty_lines
+      puts "#!#EMPTYLINE"
+    end
+
+  else
     chars = line.squeeze(' ').split('')
 
     if @add_tags

@@ -9,7 +9,7 @@
 #
 
 get_part() {
-	awk '1; !NF {c++}; c == 5000 {exit}'
+	awk '1; !NF && prev {c++}; {prev=$0}; c == 5000 {exit}'
 }
 
 cat $@ |
