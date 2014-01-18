@@ -20,16 +20,23 @@ OPTIONS:
 
   @add_tags = false
 
+  @label_empty_lines = false
+  opts.on('--label-empty-lines',
+          'output empty lines prepending #!#EMPTYLINE',
+          'to them. Can later be used with --skip-line= option') do
+    @label_empty_lines = false
+  end
+
   opts.separator " "
 
 end.parse!
 
-def pick_tag pch, nch
-  if pch == ' ' && nch == ' '
+def pick_tag prev_char, next_char
+  if prev_char == ' ' && next_char == ' '
     'SW'  # a complete word
-  elsif pch == ' '
-    'SI'  # word initial
-  elsif nch == ' '
+  elsif prev_char == ' '
+    'SI'  # word initial character
+  elsif next_char == ' '
     'SL'  # word last character
   else
     'SM'  # word middle character
@@ -65,11 +72,20 @@ end
 while line = gets
   line.chomp!
 
-  unless line.empty?
+  if line.empty?
+
+    if @label_empty_lines
+      puts "#!#EMPTYLINE"
+    end
+
+  else
     chars = line.squeeze(' ').split_me_somehow
 
     if @add_tags
-      # ...
+      # TODO: add your code here
+    else
+      # still need to append a tab before the missing TAG
+      chars.map! {|ch| ch + "\t"}
     end
 
     puts chars.join("\n")

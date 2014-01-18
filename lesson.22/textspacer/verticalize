@@ -95,6 +95,7 @@ while line = gets
       add_tags(chars)
       chars.delete(' ')
     else
+      # still need to append a tab before the missing TAG
       chars.map! {|ch| ch + "\t"}
     end
 
