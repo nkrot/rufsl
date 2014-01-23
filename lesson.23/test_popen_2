@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+cmd = IO.popen("./repeat | ./rev ", "w+")
+
+while line = gets
+  line.chomp!
+  puts line
+
+  cmd.puts line
+#  cmd.flush
+  enil = cmd.gets
+  enil.chomp!  if enil
+
+  puts enil
+  puts ""
+end
+
+cmd.close

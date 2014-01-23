@@ -1,0 +1,7 @@
+#!/usr/bin/ruby -nl
+
+puts $_ * 2
+$stdout.flush
+
+#exit 0
+

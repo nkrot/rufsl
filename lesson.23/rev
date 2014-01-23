@@ -1,0 +1,8 @@
+#!/usr/bin/ruby -nl
+
+# ruby options:
+# -n  simulates 'while gets' loop, instantiates $_ with the current line
+# -l  enables end of line processing (chomp)
+
+puts $_.reverse
+$stdout.flush
