@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+puts "Today's date:"
+today = `date --utc`
+puts today.inspect
+
+puts "-" * 30
+
+list_of_files = `ls -lt | grep -v ^d`
+puts "List of files (no dirs) in the current directory:"
+puts list_of_files
+
+puts "Process status information available in $? : #{$?}"
+

@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+
+corpus = [
+	"Der Tisch steht da",
+	"Es gibt einen Tisch da"
+]
+
+corpus.each do |sent|
+  puts `echo #{sent} | TextTagger`
+end
+
+# Alternatively, in a single shot:
+#text = corpus.join("\n")
+#puts `echo #{text} | TextTagger`
+
