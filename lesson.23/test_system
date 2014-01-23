@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+
+# directly prints to stdout. can not catch the output of the command
+system "ls -1 | wc -l"
+puts "Exit code: #{$?.inspect}"
+puts "Was it succesful? #{$?.success?}, with exit status #{$?.exitstatus}"
+
+puts "-" * 20
+
+# system() command provides some info on the command executed
+if system "date; false"
+  puts "will not be printed because the above command returned "
+else
+  puts "we have come to the else branch"
+end
+puts "process info of the false command: #{$?}"
+
+puts "-" * 20
+
+# Bash command false always exits with non-zero exit code
+exitcode = system("echo Now investigating false command; false")
+puts exitcode.inspect #=> false
+puts "process info of the false command: #{$?}"
+

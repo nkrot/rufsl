@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+puts "Example of using exec to run external commands"
+
+puts "In total the script prints 4 lines but you will see only 3"
+exec 'echo -n "hello, $USER. Current date is "; date'
+
+puts "The 4th line. Never shows up"
