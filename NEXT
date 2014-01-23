@@ -1,20 +1,21 @@
 
-Possible HW 21->22
-- sort relations by verious fields: first by action, then by object, then by indirect object (like you would do for PPA)
-  see other_tasks/sort_relations
-
-
-Lesson.22
+Lesson.23 -- continue with CRF
 ==========
-- check the locale on the TV set and ensure Ruby scripts work there
-- CRF. what to do next with text-spacer for the Russian language?
+!!! get active record working on laptops. error with Zlib !!!
+!!! need to access syn-proc and run commands !!!
+- show how to build the model and use the model
+- add more (what?) properties? 
+  - longer letter sequences (to detect affixes)
+  - numeric feature of how often given char/affix occurs at the beginning or end of the wordйс
+- IO.open and IO.popen and how to run external commands in a ruby script. 
+  - piping issues.
+  - splitting a pipe into individual commands and managing them separately to bypass buffering issue. --output-data
 
-
-
+Next Lesson
+===========
 - bubble sort? see other_tasks/bubble_sort
   TODO:  show conditional method definition on bubble sort (define greater_than(a,b)).
 - (promissed) Heap sort, dedicate the lesson.21 to programming
-- IO.open and IO.popen and how to run external commands in a ruby script
 
 
 for code review #3 (lessons 13+)
