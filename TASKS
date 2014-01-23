@@ -63,6 +63,10 @@ Focus: Unclassified
 
 2. Given a tagged sentence, extract all tag-tag bigrams and trigrams
 
+3. Task using radix sort (radix sort studied in lesson 21)
+   sort relations by verious fields: first by action, then by object, then by indirect object (like you would do for PPA). see other_tasks/sort_relations
+
+
 Ruby quiz
 ==========
 
