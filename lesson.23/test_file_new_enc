@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+# # #
+# USAGE: ThisScript
+#
+
+fname="test_russian_utf8.txt"
+file = File.new(fname, "r:UTF-8:Windows-1251")
+puts file.read
+file.close
+
+file = File.new(fname, "r", external_encoding:'UTF-8', internal_encoding:'Windows-1251')
+puts file.read
+file.close

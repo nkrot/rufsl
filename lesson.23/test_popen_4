@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+IO.popen("./repeat | ./rev ", "w+") do |pipe|
+  puts pipe.inspect
+
+  puts "Now will read input file(s) line by line and mangle each line:"
+  while line = gets
+    pipe.puts line
+    puts "#{line.chomp} --> #{pipe.gets}" 
+  end
+end
+

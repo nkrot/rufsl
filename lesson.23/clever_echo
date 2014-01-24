@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+# # #
+# print each line as many times as the number of characters in contains
+#
+
+while line = gets
+  (line.length-1).times do
+    puts line
+  end
+  puts ""
+  $stdout.flush
+end

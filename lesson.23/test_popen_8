@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+# # #
+# USAGE: ThisScript words.txt
+#
+pipe = IO.popen("./clever_echo", "w+")
+
+while line = gets
+  pipe.puts line
+
+  while out = pipe.gets
+    out.chomp!
+    puts out
+
+    break  if out.empty?
+  end
+end
+

@@ -1,0 +1,35 @@
+#!/usr/bin/ruby
+
+# # #
+# USAGE: ThisScript
+#
+
+#puts "1"
+#IO.popen("date") { |io| puts io.gets }
+
+#puts "2"
+#IO.popen("date", "r+") { |io| puts io.gets }
+
+#puts "3" 
+#IO.popen("date", "w") { |io| puts io.gets }
+
+#puts "4" 
+#IO.popen("date", "w+") { |io| puts io.gets }
+
+#puts "5" 
+#IO.popen("./rev", "r") { |io| puts io.gets }
+
+#puts "6" 
+#IO.popen("./rev", "r+") { |io| puts io.gets }
+
+#puts "6" 
+#IO.popen("./rev", "w") { |io| 
+#  io.puts "hello"
+#  puts io.gets
+#}
+
+#puts "7" 
+#IO.popen("./rev", "w+") { |io| 
+#  io.puts "hello"
+#  puts io.gets
+#}

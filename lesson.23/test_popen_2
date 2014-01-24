@@ -15,4 +15,6 @@ while line = gets
   puts ""
 end
 
+puts "Pipe closed? #{cmd.closed?}"
+
 cmd.close

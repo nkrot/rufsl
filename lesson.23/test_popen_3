@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+IO.popen("ls -l") do |cmd|
+  puts cmd.read
+end
+

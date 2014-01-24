@@ -1,0 +1,7 @@
+#!/usr/bin/ruby
+
+io = File.new("file_that_never_existed_6", "w")
+
+puts "Reading a line from the file"
+puts io.gets
+

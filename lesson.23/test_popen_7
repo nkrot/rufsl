@@ -1,0 +1,46 @@
+#!/usr/bin/ruby
+
+# # #
+# USAGE: ThisScript
+#
+
+## ok. the date command does not accept input, so opening for reading is fine
+#puts "1"
+#IO.popen("date") { |io| puts io.gets }
+
+## ok. the date command does not accept input, opening for writing
+## anyway, trying to write to io will fail
+#puts "2"
+#IO.popen("date", "r+") { |io| puts io.gets }
+
+## f#&king bizarre! the date is outputted even if the error is raised or puts is omitted
+## not open for reading --> will raise an error
+#puts "3" 
+#IO.popen("date", "w") { |io| puts io.gets }
+
+## ok. same as r+
+#puts "4" 
+#IO.popen("date", "w+") { |io| puts io.gets }
+
+## weird. works for a single line (type in anything) but aborts on the second line
+## looks like the output is the result of puts in ./rev itself
+#puts "5" 
+#IO.popen("./rev", "r") { |io| puts io.gets }
+
+## weird. does not abort and does not output anything, whatever you type
+#puts "6" 
+#IO.popen("./rev", "r+") { |io| puts io.gets }
+
+## error. not opened for reading
+#puts "6" 
+#IO.popen("./rev", "w") { |io| 
+#  io.puts "hello"
+#  puts io.gets
+#}
+
+## ok, both read/write ends are functioning
+#puts "7" 
+#IO.popen("./rev", "w+") { |io| 
+#  io.puts "hello"
+#  puts io.gets
+#}
