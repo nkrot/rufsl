@@ -14,10 +14,12 @@ tagset = {
   'SW' => 'character is a word, spaces on both sides'
 }
 
+empty_line_label = '#!#EMPTYLINE'
+
 OptionParser.new do |opts|
   opts.banner = "
   Given the data outputted by CRF (in vertical form), restore spaces
-based in the following meaning of the tags:
+based on the following meaning of the tags:
 #{tagset.map {|a| "    " + a.join(' -- ')}.join("\n")}
 Note: for the script to work correctly the file must end with an empty line
 USAGE: #{File.basename($0)} [OPTIONS] input_file(s)
@@ -31,7 +33,7 @@ OPTIONS:
 
   @restore_empty_lines = true
   opts.on('--[no-]restore-empty-lines',
-          'replace #!#EMPTYLINE with an empty line',
+          "replace #{empty_line_label} with an empty line",
           'The default is to automatically recognize the label') do |val|
     @restore_empty_lines = val
   end
@@ -71,7 +73,7 @@ lines = []
 while line = gets
   line.chomp!
 
-  if line == "#!#EMPTYLINE" && @restore_empty_lines
+  if line == empty_line_label && @restore_empty_lines
     puts ""
 
   elsif line.empty?
