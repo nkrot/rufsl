@@ -1,0 +1,189 @@
+#!/usr/bin/env ruby
+# -*- coding: utf-8; -*-
+
+# # #
+# TODO: when run for the train corpus, should the actual tokenization be used only
+# or the whole dictionary?
+
+require 'active_support/core_ext/string'
+
+Encoding::default_external = 'UTF-8'
+
+@dict = {
+  'невозможность' => nil,
+  'возможность' => nil,
+  'невозможно' => nil,
+  'возможно' => nil,
+  'можно' => nil,
+  'воз' => nil,
+  'нос' => nil,
+  'не' => nil,
+  'но' => nil,
+  'в' => nil
+}
+
+addon = %w{как успокоить младенца часть фото часто причины детского плача так и остаются загадкой
+кроха может просто реагировать на изменившуюся погоду все груднички метеозависимы
+или волноваться в период полнолуния при
+китай требует дешевых лекарств
+китайские власти стали признавать важность информирования населения о безопасном сексе
+две китайские фармацевтические компании подали заявки на производство дешевых версий лекарств против спида}
+
+addon.each {|w| @dict[w] = nil}
+
+def in_dict? word
+  @dict.include?(word)
+end
+
+# TODO: can be more specific -- max length of the word starting with specific character
+def dict_word_max_length
+  @longest_word_length ||= @dict.keys.max{ |a,b| a.length <=> b.length }.length
+end
+
+######################################################################
+
+def reset_dict_info
+  @dict_info ||= []
+  @dict_info.clear
+end
+
+def add_dict_info pos, info
+#  puts "Adding #{info} to #{pos}"
+  @dict_info[pos] ||= []
+  @dict_info[pos] << info
+end
+
+def show_dict_info chars
+  @dict_info.each_with_index do |data, idx|
+    puts "##{idx}\t#{chars[idx]}\t#{data.inspect}"
+  end
+end
+
+######################################################################
+
+def get_dictionary_properties(pos)
+  props = []
+  if @dict_info[pos]
+    ['d_si', 'd_sm', 'd_sl', 'd_sw'].each do |prop|
+      if @dict_info[pos].include?(prop)
+        props << prop
+      else
+        props << 'd_'
+      end
+    end
+  else
+    props = ['d_', 'd_', 'd_', 'd_']
+  end
+  props
+end
+
+######################################################################
+# subtasks:
+# 1. be able to find all possible substrings of a string starting from
+#    the given position.
+#    1a) Do not generate repetitions that come from hitting out-of-range characters
+#FOUND: [2,11]'возможность' is known to the dictionary
+#FOUND: [2,12]'возможность' is known to the dictionary
+#FOUND: [2,13]'возможность' is known to the dictionary
+#FOUND: [2,14]'возможность' is known to the dictionary
+#FOUND: [2,15]'возможность' is known to the dictionary
+
+
+def find_dictionary_words_at_pos(chars, start_pos)
+  max_iterations = [chars.length-start_pos, dict_word_max_length].min # 1a
+
+  max_iterations.times do |offset|
+    end_pos = start_pos+offset
+    subword = chars[start_pos..end_pos].join('')
+#    puts "subword: #{subword}"
+
+    if in_dict?(subword)
+#      puts "FOUND: [#{start_pos}..#{end_pos}]='#{subword}' is known to the dictionary"
+      if subword.length == 1
+        add_dict_info(start_pos, 'd_sw')
+      else
+        add_dict_info(start_pos, 'd_si')
+        add_dict_info(end_pos, 'd_sl')
+        (start_pos+1).upto(end_pos-1) do |pos|
+          add_dict_info(pos, 'd_sm')
+        end
+      end
+    end
+  end
+end
+
+def find_dictionary_words chars
+  reset_dict_info
+  chars.each_index do |pos|
+    find_dictionary_words_at_pos(chars, pos)
+  end
+end
+
+if false
+  chars = 'невозможность'.split('')
+  puts chars.inspect
+
+  find_dictionary_words(chars)
+
+  #@dict_info = []
+  #mark_dictionary_words_at_pos(chars, 0)
+  #mark_dictionary_words_at_pos(chars, 2)
+  #puts @dict_info.inspect
+
+  #puts get_dictionary_properties(0).inspect
+  #puts get_dictionary_properties(2).inspect
+
+  show_dict_info(chars)
+
+  exit 100
+end
+
+######################################################################
+
+def extract_chars lines
+  chars = lines.map do |line|
+    unless line.empty? || line =~ /^#!#/
+      line.split(/\t/).first.mb_chars.downcase.to_s
+    end
+  end.compact
+  chars
+end
+
+######################################################################
+# TODO: add option to autoadd current word to the dictionary
+
+while block = gets("")
+
+  lines = block.split(/\n/)
+
+  # extract individual characters
+  chars = extract_chars(lines)
+#  puts chars.inspect
+
+  # index the characters with respect to their availability/position
+  # in the known dictionary
+  find_dictionary_words(chars)
+#  show_dict_info(chars)
+
+  pos = -1
+  lines.each_with_index do |line, i|
+    line.chomp!
+
+    if line.empty? || line =~ /^#!#/
+      next
+    end
+
+    pos += 1 # corresponds to the number of characters in chars
+    char, *properties, tag = line.split(/\t/)
+
+    # mark characters that start/end dictionary words
+    properties += get_dictionary_properties(pos)
+
+    # insert properties back into line
+    lines[i] = [char, properties, tag].flatten.join("\t")
+  end
+
+  puts lines.join("\n")
+  puts "\n"
+end
+
