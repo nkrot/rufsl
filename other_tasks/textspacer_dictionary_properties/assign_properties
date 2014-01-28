@@ -5,9 +5,57 @@
 # TODO: when run for the train corpus, should the actual tokenization be used only
 # or the whole dictionary?
 
-require 'active_support/core_ext/string'
-
 Encoding::default_external = 'UTF-8'
+
+require 'ru_utf8'
+require 'optparse'
+
+
+def validate_file_exists path
+  unless File.exists?(path)
+    raise "File not found: #{path}"
+  end
+  path
+end
+
+@dict_props = {
+  'd_si' => 'the character starts a substring that is a dictionary word',
+  'd_sm' => 'the character occurs in the middle of a dictionary word', 
+  'd_sl' => 'the character ends a substring that is a dictionary word',
+  'd_sw' => 'the character is a separate dictionary word'
+}
+
+@options = {}
+
+OptionParser.new do |opts|
+  opts.banner = "
+  Assign properties
+1. dictionary properties: #{@dict_props.keys.join(', ')}
+USAGE: #{File.basename($0)} [OPTIONS] ...
+OPTIONS:
+"
+
+  @options[:dict_file] = nil
+  opts.on('--dict=FILE', 'path to dictionary file') do |val|
+    @options[:dict_file] = validate_file_exists(val)
+  end
+
+  @options[:use_gold_tags] = false
+  opts.on('--gold-corpus',
+          'tells that the file(s) being processed has/have gold tags',
+          'and that the gold tags should be used instead of the dictionary',
+          'for setting dictionary properties.') do
+    @options[:use_gold_tags] = true
+  end
+
+  opts.separator "FORMAT OF DICTIONARY FILE"
+  opts.separator "One word per line, in the correct letter case."
+  opts.separator "Any number of fields are allowed on a single line, the 1st one is assumed"
+  opts.separator "to be the word itself."
+  opts.separator " "
+end.parse!
+
+puts @options.inspect
 
 @dict = {
   'невозможность' => nil,
@@ -64,7 +112,7 @@ end
 def get_dictionary_properties(pos)
   props = []
   if @dict_info[pos]
-    ['d_si', 'd_sm', 'd_sl', 'd_sw'].each do |prop|
+    @dict_props.keys.each do |prop|
       if @dict_info[pos].include?(prop)
         props << prop
       else
@@ -138,12 +186,31 @@ if false
   exit 100
 end
 
+def find_dictionary_words_from_tags(chars_tags)
+  reset_dict_info
+
+  chars_tags.each_with_index do |(char, tag), pos| # TODO: explain this trick with ( )
+    puts "#{char}-#{tag}-#{pos}"
+    raise 'Stopped here'
+  end
+end
+
 ######################################################################
 
 def extract_chars lines
   chars = lines.map do |line|
     unless line.empty? || line =~ /^#!#/
-      line.split(/\t/).first.mb_chars.downcase.to_s
+      line.split(/\t/).first.downcase
+    end
+  end.compact
+  chars
+end
+
+def extract_chars_and_tags(lines)
+  chars = lines.map do |line|
+    unless line.empty? || line =~ /^#!#/
+      fields = line.split(/\t/)
+      [fields.first.downcase, fields.last]
     end
   end.compact
   chars
@@ -156,14 +223,23 @@ while block = gets("")
 
   lines = block.split(/\n/)
 
-  # extract individual characters
-  chars = extract_chars(lines)
-#  puts chars.inspect
+  if @options[:use_gold_tags]
+    chars_tags = extract_chars_and_tags(lines)
+    find_dictionary_words_from_tags(chars_tags)
 
-  # index the characters with respect to their availability/position
-  # in the known dictionary
-  find_dictionary_words(chars)
-#  show_dict_info(chars)
+    puts chars_tags.inspect
+    exit 100
+
+  else
+    # extract individual characters
+    chars = extract_chars(lines)
+    #puts chars.inspect
+
+    # index the characters with respect to their availability/position
+    # in the known dictionary
+    find_dictionary_words(chars)
+    #show_dict_info(chars)
+  end
 
   pos = -1
   lines.each_with_index do |line, i|
@@ -173,7 +249,7 @@ while block = gets("")
       next
     end
 
-    pos += 1 # corresponds to the number of characters in chars
+    pos += 1 # corresponds to the numbering of characters in chars
     char, *properties, tag = line.split(/\t/)
 
     # mark characters that start/end dictionary words
