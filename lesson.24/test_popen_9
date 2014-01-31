@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+
+# # #
+#
+#
+
+puts "NOTE: this works in ruby 1.9 and 2.x"
+
+env = {"ADDRESSEE" => "Betelgeuse"}
+puts "Running say_hello with custom environment #{env.inspect}:"
+#cmd = IO.popen([env, "./say_hello --twice"], "r") # does not work
+cmd = IO.popen([env, "./say_hello", "--twice"], "r")
+puts cmd.readlines
+cmd.close
+puts "\n"
+
+puts "NOTE: this form is supported since ruby 2.x"
+
+env = {"ADDRESSEE" => "Castor"}
+puts "Running say_hello with custom environment #{env.inspect}:"
+cmd = IO.popen(env, "./say_hello --twice", "r")
+puts cmd.readlines
+cmd.close
+puts "\n"
+
+env = {"ADDRESSEE" => "Pollux"}
+puts "Running say_hello with custom environment #{env.inspect}:"
+cmd = IO.popen(env, ["./say_hello", "--twice"], "r")
+puts cmd.readlines
+cmd.close
+puts "\n"
+

@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+twice = ARGV.delete('--twice')
+
+puts "Hello #{ENV['ADDRESSEE']}"
+if twice
+  puts "I repeat, hello #{ENV['ADDRESSEE']}"
+end
+
+STDOUT.flush
+

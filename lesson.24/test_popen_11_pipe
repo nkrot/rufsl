@@ -1,0 +1,27 @@
+#!/usr/bin/env ruby
+
+# # #
+# tested with ruby 1.9.3p194
+#
+# in conclusion: Ruby is stupid with pipes :)
+
+path = '/shared/autobuild/prosao1_2014_01_23/bin/ldb-German/'
+
+# 1. ok
+#cmd = "TextTagger --flush | syn_ts2ps | syn_ps2rl --relations=r__VerbPhrase --flush --tagged-sentence"
+
+# 2. does not work, each item is treated as a single token
+#cmd = ["TextTagger --flush", "syn_ts2ps", "syn_ps2rl --relations=r__VerbPhrase --flush --tagged-sentence"]
+
+# 3. just does not work
+#cmd = [["TextTagger", "--flush"], ["syn_ts2ps"], ["syn_ps2rl", "--relations=r__VerbPhrase", "--flush", "--tagged-sentence"]]
+
+extractor = IO.popen(cmd, "w+")
+#puts extractor.inspect
+
+extractor.puts "Es gibt einen Monitor hier"
+#extractor.flush
+
+while line = extractor.gets
+    puts line
+end

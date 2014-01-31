@@ -1,0 +1,45 @@
+#!/usr/bin/env ruby
+
+# # #
+# tested with ruby 1.9.3p194
+#
+
+path = '/shared/autobuild/prosao1_2014_01_23/bin/ldb-German/'
+
+# 1. ok
+#cmd = "EXTester2 --relations=r__VerbPhrase --flush --tagged-sentence --line"
+
+# 2. does not work.
+# ../src/synlib/ENLinguisticDatabase.cpp(1828) : Can't open file. ldb/english.binunkn: 2 (0x80070002)
+#cmd = "LDBPATH=${path} EXTester2 --relations=r__VerbPhrase --flush --tagged-sentence --line"
+
+# 3. ok
+#cmd = ["EXTester2", "--relations=r__VerbPhrase", "--flush", "--tagged-sentence", "--line"]
+
+# 4. does not work!
+# treats the whole line as a single token
+#cmd = ["EXTester2", "--relations=r__VerbPhrase --flush --tagged-sentence --line"]
+
+# 5. does not work
+# treats the whole line as a single token
+#env = { 'LDBPATH' => path }
+#cmd = [env, "EXTester2 --relations=r__VerbPhrase --flush --tagged-sentence --line"]
+
+# 6. ok
+env = { 'LDBPATH' => path }
+cmd = [env, "EXTester2", "--relations=r__VerbPhrase", "--flush", "--tagged-sentence", "--line"]
+
+# 7. does not work:
+# `popen': wrong first argument (ArgumentError)
+#env = { 'LDBPATH' => path }
+#cmd = [env, ["EXTester2", "--relations=r__VerbPhrase", "--flush", "--tagged-sentence", "--line"]]
+
+extractor = IO.popen(cmd, "w+")
+#puts extractor.inspect
+
+extractor.puts "Es gibt einen Monitor hier"
+#extractor.flush
+
+while line = extractor.gets
+    puts line
+end
