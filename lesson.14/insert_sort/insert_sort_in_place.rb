@@ -6,17 +6,25 @@ def insert_sort(arr)
   puts "Unsorted: #{arr.inspect}"  if @debug
   arr.each_with_index do |el, i|
     puts "Current[##{i}]=#{el}"  if @debug
+
+    # find the position at which the current EL can be inserted
+    # and clear this position for the element EL, moving the original
+    # element from this position one step to the right
+    ins = 0
     (i-1).downto(0) do |j|
       if el < arr[j]
         puts "Moving #{arr[j]} to the right" if @debug
-        arr[j+1] = arr[j]
+        arr[j+1] = arr[j] # move to the right
       else
-        j = j+1
+        ins = j+1
+        puts "Breaking out, ins=#{ins}" if @debug
         break  # breaks out of downto
       end
-      arr[j] = el
-      puts "Inserted #{el} at #{j}: #{arr.inspect}" if @debug
     end
+
+    # do the actual insertion into the computed position
+    arr[ins] = el
+    puts "Inserted #{el} at #{ins}: #{arr.inspect}" if @debug
   end
 end
 
