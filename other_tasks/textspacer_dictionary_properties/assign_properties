@@ -25,7 +25,11 @@ end
   'd_sw' => 'the character is a separate dictionary word'
 }
 
-@options = {}
+
+@options = {
+  verbose: true,
+  adjust_for_punctuation: true
+}
 
 OptionParser.new do |opts|
   opts.banner = "
@@ -55,40 +59,71 @@ OPTIONS:
   opts.separator " "
 end.parse!
 
-puts @options.inspect
+#puts @options.inspect
 
-@dict = {
-  'невозможность' => nil,
-  'возможность' => nil,
-  'невозможно' => nil,
-  'возможно' => nil,
-  'можно' => nil,
-  'воз' => nil,
-  'нос' => nil,
-  'не' => nil,
-  'но' => nil,
-  'в' => nil
-}
+if !@options[:use_gold_tags] && !@options[:dict_file]
+  $stderr.puts "ERROR: you should use either --gold-corpus or --dict=FILE options"
+  exit 1
+end
 
-addon = %w{как успокоить младенца часть фото часто причины детского плача так и остаются загадкой
-кроха может просто реагировать на изменившуюся погоду все груднички метеозависимы
-или волноваться в период полнолуния при
-китай требует дешевых лекарств
-китайские власти стали признавать важность информирования населения о безопасном сексе
-две китайские фармацевтические компании подали заявки на производство дешевых версий лекарств против спида}
+def verboser msg
+  if @options[:verbose]
+    $stderr.puts msg
+  end
+end
 
-addon.each {|w| @dict[w] = nil}
+######################################################################
+# DICTIONARY
+
+if @options[:dict_file]
+  verboser "Loading the dictionary from #{@options[:dict_file]}..."
+  @dict = {}
+  f = File.new(@options[:dict_file])
+  f.each do |line|
+    line.chomp!
+    if line.empty? || line =~ /^#/
+      # skip
+    else
+      @dict[line.split.first] = nil
+    end
+  end
+  f.close
+  verboser "Words in dictionary: #{@dict.length}"
+end
+
+## fake dictionary
+# @dict = {
+#   'невозможность' => nil,
+#   'возможность' => nil,
+#   'невозможно' => nil,
+#   'возможно' => nil,
+#   'можно' => nil,
+#   'воз' => nil,
+#   'нос' => nil,
+#   'не' => nil,
+#   'но' => nil,
+#   'в' => nil
+# }
+#
+# addon = %w{как успокоить младенца часть фото часто причины детского плача так и остаются загадкой
+# кроха может просто реагировать на изменившуюся погоду все груднички метеозависимы
+# или волноваться в период полнолуния при
+# китай требует дешевых лекарств
+# китайские власти стали признавать важность информирования населения о безопасном сексе
+# две китайские фармацевтические компании подали заявки на производство дешевых версий лекарств против спида}
+#
+# addon.each {|w| @dict[w] = nil}
 
 def in_dict? word
   @dict.include?(word)
 end
 
-# TODO: can be more specific -- max length of the word starting with specific character
 def dict_word_max_length
   @longest_word_length ||= @dict.keys.max{ |a,b| a.length <=> b.length }.length
 end
 
 ######################################################################
+# DICTIONARY INFO
 
 def reset_dict_info
   @dict_info ||= []
@@ -101,6 +136,14 @@ def add_dict_info pos, info
   @dict_info[pos] << info
 end
 
+def set_dict_info pos, info
+  if info
+#    puts "Adding #{info} at pos=#{pos}"
+    @dict_info[pos].clear
+    @dict_info[pos] << info
+  end
+end
+
 def show_dict_info chars
   @dict_info.each_with_index do |data, idx|
     puts "##{idx}\t#{chars[idx]}\t#{data.inspect}"
@@ -109,18 +152,20 @@ end
 
 ######################################################################
 
+# computes correct property from precomputed dictionary info
 def get_dictionary_properties(pos)
   props = []
   if @dict_info[pos]
     @dict_props.keys.each do |prop|
-      if @dict_info[pos].include?(prop)
-        props << prop
+      count = @dict_info[pos].count(prop)
+      if count > 0
+        props << prop + count.to_s
       else
         props << 'd_'
       end
     end
   else
-    props = ['d_', 'd_', 'd_', 'd_']
+    props = ['d_'] * @dict_props.length
   end
   props
 end
@@ -173,9 +218,8 @@ if false
 
   find_dictionary_words(chars)
 
-  #@dict_info = []
-  #mark_dictionary_words_at_pos(chars, 0)
-  #mark_dictionary_words_at_pos(chars, 2)
+  #find_dictionary_words_at_pos(chars, 0)
+  #din_dictionary_words_at_pos(chars, 2)
   #puts @dict_info.inspect
 
   #puts get_dictionary_properties(0).inspect
@@ -186,12 +230,90 @@ if false
   exit 100
 end
 
-def find_dictionary_words_from_tags(chars_tags)
+def get_tag_from_dict_info(pos)
+  if @dict_info[pos]
+    props = @dict_info[pos].compact
+    if props.length == 1
+      dict_prop2tag(props.first)
+    else
+      raise "Multiple properties are present, can not produce a single tag"
+    end
+  end
+end
+
+# NOTE:
+# in a sequence of PMs, the non-last ones will be assigned incorrect property
+# if only the original tag of the previous character is considered
+# set_dict_info(pos-1, tag2dict_prop(move_left(prev_tag))) 
+
+def set_dictionary_info_from_tags(chars_tags)
   reset_dict_info
 
+  prev_tag = nil
+  move_right_next_tag = false
   chars_tags.each_with_index do |(char, tag), pos| # TODO: explain this trick with ( )
-    puts "#{char}-#{tag}-#{pos}"
-    raise 'Stopped here'
+#    puts "#{pos}-#{char}-#{tag}"
+
+    if @options[:adjust_for_punctuation] && char =~ /^[[:punct:]]+$/
+      # update the dictionary property of previous character
+      prev_tag = get_tag_from_dict_info(pos-1)
+      set_dict_info(pos-1, tag2dict_prop(move_left(prev_tag)))
+
+      # remember to shift the property of the subsequent character
+      move_right_next_tag = true
+
+      # deem the punctuation mark always a standalone word
+      prop = tag2dict_prop('SW')
+
+    else
+      if move_right_next_tag
+        tag = move_right(tag)
+        move_right_next_tag = false
+      end
+      prop = tag2dict_prop(tag)
+    end
+
+    add_dict_info(pos, prop)
+  end
+
+#  puts @dict_info.inspect
+end
+
+def tag2dict_prop tag
+  # we are lucky to have dictionary properties in correlation with tags
+  # SI -> d_si, SL -> d_sl...
+  if tag
+    'd_' + tag.downcase
+  end
+end
+
+# d_si -> SI, d_sw -> SW
+def dict_prop2tag prop
+  if prop
+    prop.sub(/^d_/, '').upcase
+  end
+end
+
+def move_left tag
+  case tag
+  when 'SM'
+    'SL'
+  when 'SI'
+    'SW'
+  else
+    # SL and SW are not expected
+    tag
+  end
+end
+
+def move_right tag
+  case tag
+  when 'SL'
+    'SW'
+  when 'SM'
+    'SI'
+  else
+    tag
   end
 end
 
@@ -217,7 +339,6 @@ def extract_chars_and_tags(lines)
 end
 
 ######################################################################
-# TODO: add option to autoadd current word to the dictionary
 
 while block = gets("")
 
@@ -225,10 +346,11 @@ while block = gets("")
 
   if @options[:use_gold_tags]
     chars_tags = extract_chars_and_tags(lines)
-    find_dictionary_words_from_tags(chars_tags)
+    #puts chars_tags.inspect
 
-    puts chars_tags.inspect
-    exit 100
+    set_dictionary_info_from_tags(chars_tags)
+    #show_dict_info(chars_tags)
+    #exit 100
 
   else
     # extract individual characters
