@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+
+# # #
+# ../data/corpus.tok.txt
+#
+
+pipe = IO.popen("stdbuf -i0 -o0 -e0 fold -s -w50", "w+")
+
+while line = gets
+  puts "IN: #{line}"
+
+  pipe.puts line
+  pipe.puts "SHILO\n\n"
+  pipe.flush
+
+  while l = pipe.gets
+    puts "OUT: #{l}"
+  end
+end
+
