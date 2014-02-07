@@ -10,7 +10,7 @@ require 'optparse'
 tagset = {
   'SI' => 'initial character, space on the left',
   'SM' => 'middle character, no spaces around',
-  'SL' => 'last character, space on the ritht',
+  'SL' => 'last character, space on the right',
   'SW' => 'character is a word, spaces on both sides'
 }
 
