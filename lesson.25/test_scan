@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+ts = "This_DT is_BEZ a_AT tagged_JJed sentence_NN ._."
+tw = /(\S+)_(\S+)/
+
+ts.scan(tw) do |word, tag|
+  puts "Got word '#{word}' with tag '#{tag}'"
+end

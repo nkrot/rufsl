@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+
+smileys = [ "[:-]", ":-)", ";-)" ]
+str = "wow!:-)this is a c.o.o.l robot [:-] that smiles :-);-)"
+
+re = smileys.map {|s| Regexp.escape(s) }.join('|')
+re1 = /#{re}/ #=> /(\[:\-\]|:\-\)|;\-\))/
+#puts re.inspect
+
+puts "If the regexp does not contain groups"
+
+str.scan(re1) do |md| # md is a String
+  puts md.class #=> String
+  puts "Matched substring: '#{md}'"
+end
+
+puts "\nIf the regexp contains () groups"
+
+re2 = /(#{re})/
+str.scan(re2) do |md| # md is an Array of matches corresponding to ()-groups
+  puts md.class #=> Array
+  puts "Matched substrings: #{md}"
+end
+
+
