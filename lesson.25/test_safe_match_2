@@ -1,0 +1,48 @@
+#!/usr/bin/env ruby
+
+# # #
+# two rounds of interpretation of \ in regexps
+# 
+#
+
+def report expected, actual
+  if expected == actual
+    puts "Yes, found '#{actual}'"
+  else
+    puts "Failed, found '#{actual}' but was expecting '#{expected}'"
+  end
+end
+
+robot = "[:-]"
+str = "wow!:-)this is c.o.o.l[:-]"
+
+puts "How to find a robot '#{robot}' in the string '#{str}'"
+
+puts "\nAttempt #3 -- escaping all characters manually"
+
+#re = robot.gsub(/([.\[\]\(\)])/, "\\\\\\1") # escape only necessary chars
+re = robot.gsub(/(.)/, "\\\\\\1") #=> \[\:\-\], same as Regexp.escape(robot) produces
+puts re
+str =~ /(#{re})/
+report robot, $1
+
+puts "\nUsing #{re} directly"
+
+re2 = /\[\:\-\]/
+puts re2
+str =~ /(#{re2})/ # note, re2 is originally Regexp but still correctly interpolated in a string
+report robot, $1
+
+puts "\nToo few backslashes in the String in double quotes - won't work"
+
+re3 = "\[\:\-\]"  # important: String object in double quotes!
+puts re3
+str =~ /(#{re3})/ # when performing interpolation, backslashes are gone from a String
+report robot, $1
+
+puts "\nJust enough backslashes -- the String is defined as a literal (in single quotes)"
+
+re4 = '\[\:\-\]'  # important: String literal in single quotes
+puts re4
+str =~ /(#{re4})/ # when performing interpolation, backslashes are NOT gone from a String
+report robot, $1
