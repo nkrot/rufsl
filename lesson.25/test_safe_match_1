@@ -1,0 +1,28 @@
+#!/usr/bin/env ruby
+
+def report expected, actual
+  if expected == actual
+    puts "Yes, found '#{actual}'"
+  else
+    puts "Failed, found '#{actual}' but was expected '#{expected}'"
+  end
+end
+
+robot = "[:-]"
+str = "wow!:-)this is c.o.o.l[:-]"
+
+puts "How to find a robot '#{robot}' in the string '#{str}'"
+
+puts "Attempt #1 -- incorrect, special chars retain their special meaning"
+str =~ /(#{robot})/
+report robot, $1
+
+puts "\nAttempt #2 -- all special characters were escaped using Regexp.escape(String) and have literal meaning"
+
+re = /(#{Regexp.escape(robot)})/
+str =~ re
+report robot, $1
+
+re = Regexp.new('(' + Regexp.escape(robot) + ')')
+str =~ re
+report robot, $1
