@@ -1,0 +1,48 @@
+#!/usr/bin/env ruby
+
+# # #
+# USAGE: find_words_with_regexp queries.txt data/corpus.tok.txt
+#
+
+Encoding::default_external = 'Windows-1252'
+
+# load queries
+queries = File.read(ARGV.shift)
+  .split("\n")
+  .reject { |line| line.empty? }
+
+#puts queries.inspect
+
+######################################################################
+
+# build a single regular expression
+str = queries.map do |query|
+  Regexp.escape(query) # escape characters special to regexp
+end.join('|')
+#puts str
+
+# NOTE: it is too late to apply Regexp.escape to the ORed string
+# because | will be escaped as well
+#puts Regexp.escape("December|U.S. Public Interest Research Group")
+#=> December\|U\.S\.\ Public\ Interest\ Research\ Group
+
+re = /(#{str})/  # file: found.1
+
+re = /(#{str})/i # file: found.2 -- case insensitive search
+
+# \b is not suitable for matching the word boundary, because \b matches at - in long-legged
+re = /\b(#{str})\b/i # file: found.3 -- full words are searched
+
+# to overcome the effects of \b (mid-December), use ^|\s to match word boundaries
+# ?: notation in regexps makes the brackets non-capturing, or use $2
+re = /(?:^|\s)(#{str})(?:\s|$)/i # file: found.4
+
+######################################################################
+
+while line = gets
+  line.chomp!
+  if line =~ re
+    puts $1 + "\t" + line
+  end
+end
+
