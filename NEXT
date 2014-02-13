@@ -1,18 +1,32 @@
 
-Lesson.24 -- continue with CRF
-==========
-- continue with IO.popen
+lesson.25
+=========
+- IO.gets
+- double and single quotes
+	puts "hello"
+	puts "hel\lo"
+	puts "hel\to"
+	puts "hel\\lo"
 
-!!! get active record working on laptops. error with Zlib !!!
-!!! need to access syn-proc and run commands !!!
-- show how to build the model and use the model
-- add more (what?) properties? 
-  - longer letter sequences (to detect affixes)
-  - numeric feature of how often given char/affix occurs at the beginning or end of the wordйс
-- IO.open and IO.popen and how to run external commands in a ruby script. 
-  - piping issues.
-  - splitting a pipe into individual commands and managing them separately to bypass buffering issue. --output-data	
+regular expressions:
++ matching a string with regexp special chars and getting literal meaning of the characters
+   + test_safe_match_1
+   + test_safe_match_2
 
++ find_words_with_regexp/
+  + how to load words from a file and build a single regexp
+  + how not to build a single regexp
+  + matching case-insensitively with /i modifier
+  + how to match the word boundary: \b or more specific ^|\s and \s|$
+  + how to match that regexp and extract captures
+
++ finding all matches in the string
+   + String#match(re, pos) -- test_finding_all_matches
+   + String#scan  -- test_finding_all_matches_with_scan
+
++ String#scan with multiple groups -- test_scan
+
+- TODO: new material: MatchData
 
 
 for code review #3 (lessons 13+)
