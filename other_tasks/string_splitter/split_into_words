@@ -1,81 +1,35 @@
 #!/usr/bin/ruby
 # -*- coding: utf-8; -*-
 
-words = %w{в одном старинном рукописном травнике болгарии написано если бы знали мужчины обо всех свойствах сельдерея то бы засадили им весь огород а еще это снижает и отпугивает вредителей капусты используют сельдерей в свежем виде и листья и черешки и корнеплоды из него готовят салаты гарниры к овощным рыбными мясным блюдам они приобретают пряный сладковато-горьковатый вкус и крепкий} # аромат растение}
+require 'string_splitter'
+
+words = %w{в одном старинном рукописном травнике болгарии написано если бы знали мужчины обо всех свойствах сельдерея то бы засадили им весь огород а еще это снижает и отпугивает вредителей капусты используют сельдерей в свежем виде и листья и черешки и корнеплоды из него готовят салаты гарниры к овощным рыбными мясным блюдам они приобретают пряный сладковато-горьковатый вкус и крепкий износа носа с сто стоик тебе ктебе} # аромат растение}
 
 #sent = 'ВодномстаринномрукописномтравникеБолгариинаписано:«Еслибызналимужчиныобовсехсвойствахсельдерея,тобызасадилиимвесьогород».Аещеэторастениеснижаетиотпугиваетвредителейкапусты.Используютсельдерейвсвежемвиде–илистья,ичерешки,икорнеплоды.Изнегоготовятсалаты,гарнирыковощным,рыбнымимяснымблюдам.Ониприобретаютпряный,сладковато-горьковатыйвкусикрепкийаромат.'
 
-sent = 'водномстаринномрукописномтравникеболгариинаписано:«еслибызналимужчиныобовсехсвойствахсельдерея,тобызасадилиимвесьогород».аещеэторастениеснижаетиотпугиваетвредителейкапусты.используютсельдерейвсвежемвиде–илистья,ичерешки,икорнеплоды.изнегоготовятсалаты,гарнирыковощным,рыбнымимяснымблюдам.ониприобретаютпряный,сладковато-горьковатыйвкусикрепкийаромат.'
+sent = 'водномстаринномрукописномтравникеболгариинаписано:«еслибызналимужчиныобовсехсвойствахсельдерея,тобызасадилиимвесьогород».аещеэторастениеснижаетиотпугиваетвредителейкапусты.используютсельдерейвсвежемвиде–илистья,ичерешки,икорнеплоды.изнегоготовятсалаты,гарнирыковощным,сторыбнымимяснымблюдам.ониприобретаютпряный,сладковато-горьковатыйвкусикрепкийароматизноса.'
 
-sent = 'икрепкийаромат'
+# why double pass algorithm is important:
+#sent = 'стоиктебекрепкийаромат'
+# if two passes are applied (@allow_unknown_single_letter is used) then splittings are
+#  стоик тебе крепкий аромат
+#  сто и ктебе крепкий аромат
+#  сто и к тебе крепкий аромат
+#  с то и ктебе крепкий аромат
+#  с то и к тебе крепкий аромат
+# if all is done in a single pass, then the output is only
+#  стоик тебе крепкий аромат
+#  сто и ктебе крепкий аромат
 
-def word? wd
-  @dict.include?(wd) || !!wd.match(/^[[:punct:]\da-zA-Z]+$/)
-end
+# TODO: process case insensitively
 
 @dict = {}
 words.each{ |w| @dict[w] = nil }
-@lengths = @dict.keys.map { |w| w.length }.uniq.sort
 
-@verbose = true
-def verboser msg
-  if @verbose
-    puts msg
-  end
-end
+splitter = StringSplitter.new
+splitter.dictionary = @dict
 
-def find_head_substring(word)
-  verboser "Processing '#{word}'"
+splitter.process(sent)
+splitter.result.each {|spl| puts spl.join(' ')}
 
-  # boundary condition:
-  # remaining subword is shorter than the shortest word in @dict
-  return []  if word.length < @lengths[0]
 
-  splittings = []
-
-  found = false
-  @lengths.reverse_each do |len|
-    next  if len > word.length
-
-    head = word[0,len]
-    is_known_word = word?(head)
-
-    if len == 1 && !found && @allow_unknown_single_letter
-      is_known_word = true
-    end
-
-    verboser "length: #{len} -> #{head} -> #{is_known_word}"
-
-    if is_known_word
-      tail = word[len..-1]
-      
-      if tail.length == 0
-        splittings << head
-        found = true
-        verboser "Adding to splittings: '#{head}'"
-
-      else
-        tails = find_head_substring(tail)
-        verboser "Adding to splittings: #{tails.join(', ')}"
-        unless tails.empty?
-          tails.map!{ |tail| "#{head} #{tail}" }
-          splittings.concat tails
-          found = true
-        end
-      end
-    end
-  end
-
-  return splittings
-end
-
-splittings = find_head_substring(sent)
-
-if splittings.empty?
-  puts "Nothing!"
-  @allow_unknown_single_letter = true
-  splittings = find_head_substring(sent)
-  @allow_unknown_single_letter = false
-end
-
-puts splittings
