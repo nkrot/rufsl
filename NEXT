@@ -22,11 +22,12 @@ regular expressions:
 
 + finding all matches in the string
    + String#match(re, pos) -- test_finding_all_matches
-   + String#scan  -- test_finding_all_matches_with_scan
+   + String#scan  -- test_finding_all_matches_with_scan -> scan returns MatchData objects
 
 + String#scan with multiple groups -- test_scan
 
 - TODO: new material: MatchData
+
 
 
 for code review #3 (lessons 13+)
