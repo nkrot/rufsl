@@ -22,7 +22,7 @@ puts "\nAttempt #3 -- escaping all characters manually"
 
 #re = robot.gsub(/([.\[\]\(\)])/, "\\\\\\1") # escape only necessary chars
 re = robot.gsub(/(.)/, "\\\\\\1") #=> \[\:\-\], same as Regexp.escape(robot) produces
-puts re
+puts re                           #=> \[\:\-\]
 str =~ /(#{re})/
 report robot, $1
 
