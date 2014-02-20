@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+
+str = "Hello, World"
+
+puts "Accessing last MatchData through Regexp.last_match"
+
+str =~ /.(.[[:punct:]]..).+/
+puts Regexp.last_match.inspect
+
+puts "\nOr through the global variable $~"
+puts $~.inspect
+
+puts "\nAre Regexp.last_match and $~ the same object?"
+puts Regexp.last_match == $~
+
+puts "\nGlobal variables"
+puts "$& - the whole matched substring: '#{$&}'"
+puts "$1 - the substring in the 1st pair of (): '#{$1}'"
+
+
+

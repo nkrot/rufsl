@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+str = "Hello, World"
+
+puts "A successful match sets MatchData and global variables"
+
+str.match /([[:punct:]])/
+puts "Last match  ($~): " + $~.inspect
+puts "1st capture ($1): " + $1.inspect
+
+
+puts "\nAn unsuccessful match resets MatchData and global variables"
+
+"Hello world" =~ /([[:punct:]])/
+puts "Last match  ($~): " + $~.inspect
+puts "1st capture ($1): " + $1.inspect

@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+
+puts "Using String#match"
+
+if md = "hello".match(/l*o/)
+  puts "Inside the THEN branch"
+  puts md.inspect
+end
+
+puts "\nUsing String#=~"
+
+if pos = "hello" =~ /l*o/
+  puts "Inside the THEN branch, match starts at position #{pos}"
+  puts pos.inspect
+end

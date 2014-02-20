@@ -1,0 +1,45 @@
+#!/usr/bin/env ruby
+
+def perform_another_match
+  $my_global_var = "bbb"
+
+  puts "\n2. Match performed in a method"
+
+  "Hello, world" =~ /([[:lower:]]+)/
+
+  puts "Last match  ($~): " + $~.inspect
+  puts "1st capture ($1): " + $1.inspect
+  puts "MatchData object_id: #{$~.object_id}"
+  puts "my_global_var=#{$my_global_var}"
+
+end
+
+str = "Hello, World"
+
+puts "A successful match sets MatchData and global variables"
+
+#### 1
+
+$my_global_var = "aaa"
+
+str.match /([[:punct:]])/
+
+puts "Last match  ($~): " + $~.inspect
+puts "1st capture ($1): " + $1.inspect
+puts "MatchData object_id: #{$~.object_id}"
+puts "my_global_var=#{$my_global_var}"
+
+#### 2
+
+perform_another_match
+
+#### 3
+
+puts "\n3. Wow! Ruby is ... inconsistent"
+
+puts "Last match  ($~): " + $~.inspect
+puts "1st capture ($1): " + $1.inspect
+puts "MatchData object_id: #{$~.object_id}"
+puts "my_global_var=#{$my_global_var}"
+
+
