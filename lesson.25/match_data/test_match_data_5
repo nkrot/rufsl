@@ -3,7 +3,7 @@
 str = "Hello, World"
 
 puts "in an AND expression"
-if (md1 = str.match(/[[:punct:]]/)) && (md2 = str.match(/[[:upper:]]/)
+if (md1 = str.match(/[[:punct:]]/)) && (md2 = str.match(/[[:upper:]]/))
   puts "1st match: #{md1.inspect}"
   puts "2nd match: #{md2.inspect}"
 end
