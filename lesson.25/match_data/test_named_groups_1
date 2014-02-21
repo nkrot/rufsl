@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+sents = [
+         "Masha_NP and_CC Polina_NP speak_VB Chinese_NN",
+         "Yulia_NP thinks_VBZ Python_NN"
+]
+
+sents.each do |sent|
+  md = sent.match /(?<verb>\w+)_(?<tag>V\w+)/
+  puts "Word is: " + md[:verb]
+  puts "Tag is : " + md[:tag]
+end
