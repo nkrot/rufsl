@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+str = 'X_NN provides_VBZ a_AT flexible_JJ and_CC powerful_JJ Y_NN for_IN Z_NN'
+
+md = str.match(/((\w+)_JJ[RT]?) (\w+)_CC ((\w+)_JJ[RT]?)/)
+puts md.inspect
+
+puts "\nUsing MatchData#[]"
+
+1.upto(md.length-1) do |idx|
+  puts "parenthesis ##{idx}: '#{md[idx]}', starts at #{md.begin(idx)}, ends at #{md.end(idx)}, offset #{md.offset(idx)}"
+end

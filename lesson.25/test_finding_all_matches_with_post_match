@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+
+smileys = [ "[:-]", ":-)", ";-)" ]
+str = "wow!:-)this is a c.o.o.l robot [:-] that smiles :-);-)"
+
+re = smileys.map {|s| Regexp.escape(s) }.join('|')
+re = /(#{re})/ #=> /(\[:\-\]|:\-\)|;\-\))/
+#puts re.inspect
+
+while md = str.match(re)
+  puts "Matched substring: '#{$1}'"
+  str = md.post_match
+  puts "Remaining string (post_match): #{str}'"
+end
+
