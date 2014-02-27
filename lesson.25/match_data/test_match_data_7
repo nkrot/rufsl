@@ -1,15 +1,23 @@
 #!/usr/bin/env ruby
 
 def perform_another_match
-  $my_global_var = "bbb"
 
-  puts "\n2. Match performed in a method"
+  puts "\n2.1 Before performing a match in the method"
+
+  puts "Last match  ($~): " + $~.inspect
+  puts "1st capture ($1): " + $1.inspect
+  puts "MatchData object_id: #{$~.object_id} and #{Regexp.last_match.object_id}"
+  puts "my_global_var=#{$my_global_var}"
+
+  puts "\n2.2 Match performed in the method"
+
+  $my_global_var = "bbb"
 
   "Hello, world" =~ /([[:lower:]]+)/
 
   puts "Last match  ($~): " + $~.inspect
   puts "1st capture ($1): " + $1.inspect
-  puts "MatchData object_id: #{$~.object_id}"
+  puts "MatchData object_id: #{$~.object_id} and #{Regexp.last_match.object_id}"
   puts "my_global_var=#{$my_global_var}"
 
 end
@@ -26,7 +34,7 @@ str.match /([[:punct:]])/
 
 puts "Last match  ($~): " + $~.inspect
 puts "1st capture ($1): " + $1.inspect
-puts "MatchData object_id: #{$~.object_id}"
+puts "MatchData object_id: #{$~.object_id} and #{Regexp.last_match.object_id}"
 puts "my_global_var=#{$my_global_var}"
 
 #### 2
@@ -39,7 +47,7 @@ puts "\n3. Wow! Ruby is ... inconsistent"
 
 puts "Last match  ($~): " + $~.inspect
 puts "1st capture ($1): " + $1.inspect
-puts "MatchData object_id: #{$~.object_id}"
+puts "MatchData object_id: #{$~.object_id} and #{Regexp.last_match.object_id}"
 puts "my_global_var=#{$my_global_var}"
 
 
