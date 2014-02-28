@@ -1,32 +1,10 @@
 
-lesson.25
+lesson.27
 =========
-- IO.gets
-- double and single quotes
-	puts "hello"
-	puts "hel\lo"
-	puts "hel\to"
-	puts "hel\\lo"
+- a practice task for MatchData
+- new material on Regular expressions
 
-regular expressions:
-+ matching a string with regexp special chars and getting literal meaning of the characters
-   + test_safe_match_1
-   + test_safe_match_2
 
-+ find_words_with_regexp/
-  + how to load words from a file and build a single regexp
-  + how not to build a single regexp
-  + matching case-insensitively with /i modifier
-  + how to match the word boundary: \b or more specific ^|\s and \s|$
-  + how to match that regexp and extract captures
-
-+ finding all matches in the string
-   + String#match(re, pos) -- test_finding_all_matches
-   + String#scan  -- test_finding_all_matches_with_scan -> scan returns MatchData objects
-
-+ String#scan with multiple groups -- test_scan
-
-- TODO: new material: MatchData
 
 
 
@@ -86,9 +64,9 @@ TODO: develop testcases for Syn module and handle them out as a supplement to co
   + синтаксис РВ (повторение)
   + расширения для РВ, которые есть в руби (и возможно других языках), отличные от POSIX
     в том числе ключи /m /i /u
-  + операторы, работающие с РВ. автоматические глобальные переменные $1 $`
+  + DONE: операторы, работающие с РВ. автоматические глобальные переменные $1 $`
     TODO: найти полный список глобальных $-переменных руби
-  + MatchData
+  + DONE: MatchData
   + как работать в юникодными РВ
   + будет ли ключ /i правильно работать с диакритиками
 
