@@ -1,0 +1,10 @@
+introduce
+introduced
+navigate
+addressed
+has
+have
+had
+is
+was
+were

@@ -1,0 +1,149 @@
+#!/usr/bin/env ruby
+
+# # #
+#
+#
+
+require '../../lesson.25/syn'
+require 'optparse'
+
+Encoding::default_external = 'Windows-1252'
+
+@options = {}
+
+OptionParser.new do |opts|
+  opts.banner = "
+  Weird script for an odd task.
+This script uses external resources - files with hardcoded names. Shame on me!
+USAGE: #{File.basename($0)} [OPTIONS] corpus.tok.txt
+OPTIONS:
+"
+
+  opts.on('-h', '--help', 'help Africa survive') do
+    puts opts
+    exit 0
+  end
+
+  @options[:debug] = false
+  opts.on('-d', '--debug', 'explain what is being done') do
+    @options[:debug] = true
+  end
+
+  opts.separator " "
+end.parse!
+
+######################################################################
+
+def load_from_file fname
+  IO.read(fname).split(/\n/)
+    .reject{ |line| line.empty? || line =~ /^#/ }
+    .map{ |line| /\b#{Regexp.escape(line)}\b/i }
+end
+
+######################################################################
+
+def show_matches mds, msg=nil
+  puts msg  if msg
+  mds.each do |md|
+    puts "#{md[0]}\t#{md.offset(0)}"
+  end
+end
+
+######################################################################
+
+def group_adjacent_matches mds
+  sorted = mds.sort_by{ |md| md.begin(0) }
+
+  if @options[:debug]
+    show_matches sorted, "*** sorted mds ***"
+  end
+
+  grps = []
+
+  # build the first group
+  grp = [sorted.shift]
+  grps << grp
+
+  # attribute other MatchData objects to a group
+  while !sorted.empty?
+    md = sorted.shift
+
+    if grp.last.end(0)+1 == md.begin(0)
+      # the current md is adjacent to the previous md
+      # and therefore belongs to the same group
+      grp << md
+    else
+      # the current md is NOT adjacent to the previous md.
+      # Hence it should start a new group
+      grp = [md]
+      grps << grp
+    end
+  end
+
+  if @options[:debug]
+    grps.each_with_index do |grp, idx|
+      show_matches grp, "*** Group ##{idx} ***"
+    end
+  end
+
+  return grps
+end
+
+######################################################################
+# stage 1: load external resources
+
+lex_verbs = load_from_file("verbs.lex.wl")
+lex_verbs << /\b\w+ing\b/i
+lex_verbs_re = Regexp.union(lex_verbs) # build a single regexp
+
+aux_verbs = load_from_file("verbs.aux.wl")
+aux_verbs << /\bto\b/i # infinitival particle
+aux_verbs_re = Regexp.union(aux_verbs)
+
+adverbs = load_from_file("adverbs.wl")
+adverbs << /\b\w+ly\b/i
+adverbs_re = Regexp.union(adverbs)
+
+if @options[:debug]
+  puts aux_verbs.inspect
+  puts aux_verbs_re.inspect
+
+  puts lex_verbs.inspect
+  puts lex_verbs_re.inspect
+
+  puts adverbs.inspect
+  puts adverbs_re.inspect
+end
+
+######################################################################
+# stage 2. MAIN
+
+while line = gets
+  line.chomp!
+
+  lex_verbs_mds = Syn.all_matches line, lex_verbs_re
+  aux_verbs_mds = Syn.all_matches line, aux_verbs_re
+  adverbs_mds   = Syn.all_matches line, adverbs_re
+
+  if @options[:debug]
+    show_matches lex_verbs_mds, "*** all matches of lexical verbs ***"
+    show_matches aux_verbs_mds, "*** all matches of auxiliar verbs ***"
+    show_matches adverbs_mds,   "*** all matches of adverbs ***"
+  end
+
+  mds = (lex_verbs_mds + aux_verbs_mds + adverbs_mds).uniq{ |md| md.offset(0) }
+
+  if @options[:debug]
+    show_matches mds, "*** All in one, uniqued ***"
+  end
+
+  groups = group_adjacent_matches(mds)
+
+  groups.each do |grp|
+    if grp.size > 1 && grp.last[0] =~ lex_verbs_re
+      sp = grp.first.begin(0)
+      ep = grp.last.end(0)
+      puts "#{line[sp..ep]}\t#{line}"
+    end
+  end
+end
