@@ -140,7 +140,7 @@ while line = gets
   groups = group_adjacent_matches(mds)
 
   groups.each do |grp|
-    if grp.size > 1 && grp.last[0] =~ lex_verbs_re
+    if grp.size > 1 && grp.first[0] =~ aux_verbs_re && grp.last[0] =~ lex_verbs_re
       sp = grp.first.begin(0)
       ep = grp.last.end(0)
       puts "#{line[sp..ep]}\t#{line}"

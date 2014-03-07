@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+
+require '../../lesson.25/syn'
+
+# displays given array of MatchData objects
+def show_matches mds, msg=nil
+  puts msg  if msg
+  mds.each do |md|
+    puts "#{md[0]}\t#{md.offset(0)}"
+  end
+end
+
+# TODO: stage 1 - load files and build REs
+# use hardcoded names of external resources
+# verbs.lex.wl, verbs.aux.wl, adverbs.wl
+
+# TODO: stage 2 - scan text file and perform search
+
+while line = gets
+
+  # find matches
+  mds_1 = Syn.all_matches line, re1
+  mds_2 = Syn.all_matches line, re2
+
+  # group adjacent mds
+
+  # select suitable groups and output
+end
+
