@@ -1,0 +1,39 @@
+#!/usr/bin/env ruby
+
+# # #
+# compare with lesson.25/match_data/test_named_groups_2
+#
+
+prophesies = [
+  "Apocalypse starts Feb. 30, 2014, don't be late",
+  "Apocalypse starts May, 2104, it is almost here."
+]
+
+#months = "((Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sept?|Oct|Nov|Dec)[.]|May)"
+months = "(?:(?:Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sept?|Oct|Nov|Dec)[.]|May)"
+
+prophesies.each_with_index do |str, i|
+  puts "Astrologist ##{i} says: #{str}"
+
+# md = str.match /(?<month>#{months})(?<date> \d+)?, (?<year>\d+)/
+  md = str.match /(#{months})( \d+)?, (\d+)/
+
+  y = md[3]                  # md[:year]
+  m = md[1]                  # md[:month]
+  d = (md[2] || '??').strip  # md[:date]
+
+  puts "YYYY/MM/DD: #{y}/#{m}/#{d}"
+end
+
+puts "\nUsing MatchData#[] to access captures"
+
+prophesies.each_with_index do |str, i|
+  puts "\nAstrologist ##{i} says: #{str}"
+  md = str.match /(#{months})( \d+)?, (\d+)/
+
+  puts "Captures are: "+ md.captures.inspect
+  1.upto(md.length-1) do |idx|
+    puts "Parenthesis ##{idx}: #{md[idx]}"
+  end
+end
+
