@@ -1,9 +1,12 @@
 
-lesson.27
+lesson.29
 =========
-- a practice task for MatchData
-- ? new material on Regular expressions
-  Regexp.union
+- analysis of find_predicates
+- non-capturing parenthesis in regexp
+- regexp modifiers: /i /m /x /o
+  what is shown in Regexp#inspect
+- anchors: ^ $ vs. \A \Z
+- Regexp.union
 
 
 

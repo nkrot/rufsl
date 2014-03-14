@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+re = /(?#starts hours)([01]?[0-9]|2[0-4]):(?#followed by minutes)([0-5][0-9])(:(?#ends with optional seconds)([0-5][0-9]))?/
+
+["03:15:25", "4:10", "25:10"].each do |str|
+  
+end
+

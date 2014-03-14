@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 # # #
-# compare with lesson.25/match_data/test_named_groups_2
+# contrast with lesson.25/match_data/test_named_groups_2
 #
 
 prophesies = [
