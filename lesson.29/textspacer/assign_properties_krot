@@ -1,0 +1,408 @@
+#!/usr/bin/env ruby
+# -*- coding: utf-8; -*-
+
+# # #
+#
+#
+
+Encoding::default_external = 'UTF-8'
+
+require 'ru_utf8'
+require 'optparse'
+require 'dict'
+require 'string_splitter'
+
+def validate_file_exists path
+  unless File.exists?(path)
+    raise "File not found: #{path}"
+  end
+  path
+end
+
+@options = {
+  verbose: false,
+  adjust_for_punctuation: true
+}
+
+OptionParser.new do |opts|
+  opts.banner = "
+  Assign properties
+USAGE: #{File.basename($0)} [OPTIONS] ...
+OPTIONS:
+"
+
+  @options[:dict_file] = nil
+  opts.on('--dict=FILE', 'path to dictionary file') do |val|
+    @options[:dict_file] = validate_file_exists(val)
+  end
+
+  @options[:use_gold_tags] = false
+  opts.on('--gold-corpus',
+          'tells that the file(s) being processed has/have gold tags',
+          'and that the gold tags should be used instead of the dictionary',
+          'for setting dictionary properties.') do
+    @options[:use_gold_tags] = true
+  end
+
+  @options[:verbose] = false
+  opts.on('--verbose', 'be verbose') do
+    @options[:verbose] = true
+  end
+
+  @options[:debug] = false
+  opts.on('--debug', 'run on short dictionary (hardcoded)') do 
+    @options[:debug] = true
+  end
+
+  @options[:show_progress] = false
+  opts.on('--show-progress', 'show the number of chunk being processed') do
+    @options[:show_progress] = true
+  end
+
+  opts.separator "FORMAT OF DICTIONARY FILE"
+  opts.separator "One word per line, in the correct letter case."
+  opts.separator "Any number of fields are allowed on a single line, the 1st one is assumed"
+  opts.separator "to be the word itself."
+  opts.separator " "
+end.parse!
+
+#puts @options.inspect
+
+if @options[:debug]
+  # ok
+elsif !@options[:use_gold_tags] && !@options[:dict_file]
+  $stderr.puts "ERROR: you should use either --gold-corpus or --dict=FILE options"
+  exit 1
+end
+
+def verboser msg
+  if @options[:verbose]
+    $stderr.puts msg
+  end
+end
+
+def report_progress id
+  if @options[:show_progress]
+    $stderr.print "Processing chunk ##{id}  \r"
+  end
+end
+
+######################################################################
+# DICTIONARY
+
+def create_fake_dictionary
+  @dict = {}
+
+  i = 0
+  words = %w{
+    невозможность возможность невозможно возможно можно
+    воз нос не но в
+  }
+  words.each do |w|
+    @dict[w] = i
+    i += 1
+  end
+
+  addon = %w{
+как успокоить младенца часть фото часто причины детского плача так и остаются загадкой
+кроха может просто реагировать на изменившуюся погоду все груднички метеозависимы
+или волноваться в период полнолуния при
+китай требует дешевых лекарств
+китайские власти стали признавать важность информирования населения о безопасном сексе
+две китайские фармацевтические компании подали заявки на производство дешевых версий лекарств против спида}
+
+  addon.each do |w|
+    @dict[w] = i
+    i += 1
+  end
+
+  verboser "Fake dictionary initialized, #{@dict.length} words in it"
+
+  @dict
+end
+
+######################################################################
+# initialization
+
+if @options[:debug]
+  @options[:verbose] = true
+  create_fake_dictionary
+
+elsif @options[:dict_file]
+
+  @dict = Dict.new
+  @dict.verbose = true
+  @dict.load @options[:dict_file]
+end
+
+@splitter = StringSplitter.new
+@splitter.dictionary = @dict
+@splitter.verbose = @options[:verbose]
+
+######################################################################
+# DICTIONARY INFO
+
+def reset_dict_info
+  @dict_info ||= []
+  @dict_info.clear
+end
+
+def add_dict_info pos, info
+#  puts "Adding #{info} to #{pos}"
+  @dict_info[pos] ||= []
+  @dict_info[pos] << info
+end
+
+def set_dict_info pos, info
+  if info
+#    puts "Adding #{info} at pos=#{pos}"
+    @dict_info[pos].clear
+    @dict_info[pos] << info
+  end
+end
+
+def show_dict_info chars
+  @dict_info.each_with_index do |data, idx|
+    puts "##{idx}\t#{chars[idx]}\t#{data.inspect}"
+  end
+end
+
+######################################################################
+# computes correct property from precomputed dictionary info
+
+def get_dictionary_properties(pos)
+  @dict_info[pos] || raise("Life sucks")
+end
+
+######################################################################
+# recognizing dictionary words in the data
+
+def find_dictionary_words chars
+  reset_dict_info
+
+  @splitter.process chars.join('')    # is expected to be lowercased
+  splitting = @splitter.results.first
+
+  chars.each_with_index do |char, pos|
+    word = splitting.word_at(pos)
+    word_length = word.known? ? word.length : 0
+    offset = pos - word.offset
+    add_dict_info(pos, [word_length, offset, (offset-word_length+1).abs])
+  end
+end
+
+def set_dictionary_info_from_tags(chars_tags)
+  reset_dict_info
+
+  if @options[:adjust_for_punctuation]
+    adjust_tags_from_punctuation chars_tags
+  end
+
+  offset = word_length = 0
+  chars_tags.each_with_index do |(char, tag), pos|
+    case tag
+    when 'SW'
+      offset, word_length = 0, 1
+    when 'SI'
+      offset, word_length = 0, length_of_word_at(chars_tags, pos)
+    end
+
+    add_dict_info(pos, [word_length, offset])
+    offset += 1
+  end
+end
+
+def length_of_word_at(chars_tags, s)
+  s.upto(chars_tags.length-1) do |e|
+    if chars_tags[e][-1] == 'SL'
+      return e-s+1
+    end
+  end
+end
+
+# adjusting tags from punctuation includes shifting tags to the left or to the right
+# for example, in a non-tokenized text the punctuation mark may have SL tags and
+# the character just in front of it may will be SM. adjusting tags will convert:
+#  punctuation SL -> SW
+#  previous SM -> SL
+def adjust_tags_from_punctuation chars_tags
+  prev_tag = nil
+  move_right_next_tag = false
+
+  chars_tags.each_with_index do |(char,tag), pos| # TODO: explain this trick with ( )
+#    puts "#{pos}-#{char}-#{tag}"
+
+    if char =~ /^[[:punct:]]+$/
+      # update the tag of the previous character
+      if pos > 0
+        prev_tag = chars_tags[pos-1][-1]
+        chars_tags[pos-1][-1] = move_left(prev_tag)
+      end
+
+      # remember to shift the tag of the subsequent character
+      move_right_next_tag = true
+
+      # deem the punctuation mark always a standalone word
+      chars_tags[pos][-1] = 'SW'
+
+    elsif move_right_next_tag
+      chars_tags[pos][-1] = move_right(tag)
+      move_right_next_tag = false
+    end
+  end
+  chars_tags
+end
+
+def move_left tag
+  case tag
+  when 'SM'
+    'SL'
+  when 'SI'
+    'SW'
+  else
+    # SL and SW are not expected
+    tag
+  end
+end
+
+def move_right tag
+  case tag
+  when 'SL'
+    'SW'
+  when 'SM'
+    'SI'
+  else
+    tag
+  end
+end
+
+######################################################################
+# parsing input data
+
+def extract_chars lines
+  chars = lines.map do |line|
+    unless line.empty? || line =~ /^#!#/
+      line.split(/\t/).first.downcase
+    end
+  end.compact
+  chars
+end
+
+def extract_chars_and_tags(lines)
+  chars = lines.map do |line|
+    unless line.empty? || line =~ /^#!#/
+      fields = line.split(/\t/)
+      [fields.first.downcase, fields.last]
+    end
+  end.compact
+  chars
+end
+
+######################################################################
+
+def get_lettercase_property char
+  case char
+  when /[[:lower:]]/
+    'lc_l_' + encoding(char)
+  when /[[:upper:]]/
+    'lc_u_' + encoding(char)
+  when /\d/
+    'lc_d' # digit
+  else
+    'lc_o'
+  end
+end
+
+def encoding char
+  if char =~ /\p{Cyrillic}/u
+    'cyr'
+  else
+    'lat'
+  end
+end
+
+######################################################################
+
+def get_next_word_ending pos
+  suff_len = 4 # number of last chars from each word
+
+  splitting = @splitter.results.first
+
+  # current and next words
+  cword = splitting.word_at(pos)
+  nword = splitting.word_next_of(cword)
+
+  if cword.last_char? pos
+    # suffixes of the current/next words
+    csuff = suffix_of(cword.text, suff_len).downcase
+    nsuff = nword ? suffix_of(nword.text, suff_len).downcase : '$'
+    "#{csuff} #{nsuff}"
+
+  else
+    "none"
+  end
+
+end
+
+def suffix_of word, len
+  if word.length > len
+    word[-len..-1]
+  else
+    word.dup
+  end
+end
+
+######################################################################
+# main
+
+c_in = 0
+while block = gets("")
+  c_in += 1
+
+  report_progress c_in
+
+  lines = block.split(/\n/)
+
+  if @options[:use_gold_tags]
+    chars_tags = extract_chars_and_tags(lines)
+    set_dictionary_info_from_tags(chars_tags)
+#    show_dict_info(chars_tags)
+#    exit 100
+
+  else
+    # extract individual characters
+    chars = extract_chars(lines)
+    #puts chars.inspect
+
+    find_dictionary_words(chars)
+    #show_dict_info(chars)
+  end
+
+  pos = -1
+  lines.each_with_index do |line, i|
+    line.chomp!
+
+    if line.empty? || line =~ /^#!#/
+      next
+    end
+
+    pos += 1 # corresponds to the numbering of characters in chars
+    char, *properties, tag = line.split(/\t/)
+
+    properties << char.downcase
+    properties << get_lettercase_property(char) 
+
+    # ending of the next word
+    properties << get_next_word_ending(pos)
+
+    # mark characters according to their position in the word
+    properties += get_dictionary_properties(pos)
+
+    # insert properties back into line
+    lines[i] = [char, properties, tag].flatten.join("\t")
+  end
+
+  puts lines.join("\n")
+  puts "\n"
+end
+

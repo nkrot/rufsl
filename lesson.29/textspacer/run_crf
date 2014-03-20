@@ -1,0 +1,52 @@
+#!/bin/sh
+
+# # #
+# input file hardcoded: corpus.test.txt
+# USAGE: run_crf 002 [test|test2]
+#
+
+series=$1
+shift
+
+if [ $# -eq 0 ]; then
+	test_series=test
+else
+	test_series=$1
+	shift
+fi
+
+outdir=runs/${series}
+
+srcfile=ldbsrc-ru/corpus.${test_series}.txt
+dictfile=ldbsrc-ru/dict.txt
+binfile=$outdir/textspacer.bin
+
+if [ ! -f $srcfile ]; then
+	echo "Input file not found: ${srcfile}"
+	exit 1
+fi
+
+#goldfile_vert=ldbsrc-ru/corpus.train.txt
+outfile_vert=$outdir/corpus.${test_series}.crf.out
+outfile_vert_stats=$outdir/corpus.${test_series}.crf.out.stat
+outfile_with_features=$outdir/corpus.${test_series}.feat
+outfile_with_spaces=$outdir/corpus.${test_series}.crf.txt
+outfile_with_spaces_stats=$outdir/corpus.${test_series}.crf.txt.stats
+
+if [ -f "$outfile_vert" ]; then
+	echo "WARNING: Output file already exists: ${outfile_vert}" >&2
+	echo "Will not override it"
+	exit 1
+fi
+
+mode=--dict=$dictfile
+
+echo "Stage 1: running CRF ($binfile) over pre-verticalized test files: ${srcfile}"
+cat $srcfile |
+assign_properties $mode |
+tee $outfile_with_features |
+synll_crf --bin=$binfile --skip-line='#!#EMPTYLINE' >$outfile_vert #2>$outfile_vert_stats
+
+echo "Stage 2: restoring spaces"
+cat $outfile_vert | restore_spaces >$outfile_with_spaces
+

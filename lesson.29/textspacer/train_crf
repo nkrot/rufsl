@@ -1,0 +1,37 @@
+#!/bin/sh
+
+# # #
+# Train CRF on the default train corpus (goldfile)
+# The resulting model is saved to: textspacer.bin
+#
+# USAGE: train_crf
+# USAGE: time -p train_crf
+#
+
+goldfile=ldbsrc-ru/corpus.train6000.txt
+configfile=ldbsrc-ru/crf_text_spacer.cfg
+dictfile=ldbsrc-ru/dict.txt
+
+binfile=runs/textspacer.bin
+corpus_with_features=runs/corpus.train6000.feat
+
+remove_extras() {
+	awk '!/^#!#/'
+}
+
+#mode=--gold-corpus
+mode=--dict=$dictfile
+
+echo "Stage 1. Assigning features (output: $corpus_with_features)"
+cat $goldfile |
+remove_extras |
+assign_properties $mode > $corpus_with_features
+
+echo "Stage 2. Building the model (output: $binfile)"
+cat $corpus_with_features |
+synb_crf --bin=$binfile --min-feat=2 --config=$configfile
+
+echo "Done. See files:
+  $corpus_with_features
+  $binfile"
+

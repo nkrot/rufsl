@@ -1,0 +1,40 @@
+#!/usr/bin/env ruby
+
+# # #
+# there are 736241 entries in the train corpus
+# we want
+#
+
+require 'optparse'
+
+c_total = 736241
+c_need = 6000
+
+OptionParser.new do |opts|
+  opts.banner = "
+  Randomly extract #{c_need} entries from the given verticalized corpus.
+The corpus is assumed to contain #{c_total} entries.
+USAGE: #{File.basename($0)} file
+"
+  opts.on('-h', '--help', 'display this message and exit') do
+    puts opts
+    exit 0
+  end
+
+  opts.separator " "
+end.parse!
+
+random_numbers = (1..736241).to_a.sample(c_need).sort
+
+c_in = c_out = 0
+while block = gets("")
+  c_in += 1
+  if random_numbers.include? c_in
+    puts block
+    c_out += 1
+  end
+end
+
+$stderr.puts "Total/selected: #{c_in}/#{c_out}"
+
+
