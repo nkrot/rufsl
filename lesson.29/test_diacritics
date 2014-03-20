@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+# -*- coding: iso-8859-1 -*-
+
+Encoding::default_internal = 'Windows-1252'
+
+re_upper = /^[A-ZÀÂÇÉÈÊËÎÏÔÛÙÜÿÑÆœßÄÖÜ]*$/i
+re_lower = /^[a-zàâçéèêëîïôûùüÿñæœßäöü]*$/i
+
+#re_upper = /^[[:upper:]]*$/i
+#re_lower = /^[[:lower:]]*$/i
+
+words = ["séduisant", "Étienne", "Überlappstöße"]
+
+words.each do |word|
+  [re_upper, re_lower].each do |re|
+    puts "Checking if #{word} matches #{re}"
+    puts !!(word =~ re) == true
+  end
+end
+
