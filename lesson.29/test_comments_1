@@ -1,7 +1,11 @@
 #!/usr/bin/env ruby
 
-# TODO: does not wotk for the 1st case!!!
-re = /(?#starts with hours)([01]?[0-9]|2[0-4]):(?#followed by minutes)([0-5][0-9])(?:(?#ends with optional seconds)([0-5][0-9]))?$/
+# (?#comment)  syntax
+
+# NOTE two : in the last part
+# the first one is part of (?: ) syntax
+# the other one is literal colon
+re = /(?#starts with hours)([01]?[0-9]|2[0-4]):(?#followed by minutes)([0-5][0-9])(?::(?#ends with optional seconds)([0-5][0-9]))?$/
 
 ["03:15:25", "4:10", "25:10"].each do |str|
   md = str.match(re)
