@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+str_60 = "Like as the waves make towards the pebbled shore,
+So do our minutes hasten to their end;
+Each changing place with that which goes before,
+In sequent toil all forwards do contend."
+
+puts "!!! What matches dot without /m option:"
+puts str_60.match /.+/
+
+
+puts "\n!!!What matches dot with /m option:"
+puts str_60.match /.+/m
+
