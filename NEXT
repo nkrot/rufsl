@@ -1,13 +1,27 @@
 
-lesson.29
+lesson.30 - recursion
 =========
-- analysis of find_predicates
-- non-capturing parenthesis in regexp
-- regexp modifiers: /i /m /x /o
-  what is shown in Regexp#inspect
-- anchors: ^ $ vs. \A \Z
-- Regexp.union
+- рекуррентное определение?
+  перевернуть строку/массив рекурсивно
+     1) оторвать первый символ
+     2) перевернуть все остальное
+     3) вставить оторванный символ в хвост
+- взять материалы с предыдущего года
+- фибоначчи, и мемоизация
+- ДЗ: фибоначчи без рекурсии (циклическая реализация).
+  - они должны догадаться, что надо хранить два последних
+- merge sort in place
+- tail recursion, аккумуляторы
 
+чтиво по рекурсии
+1. an introduction
+ http://www.cs.umd.edu/class/fall2002/cmsc214/Tutorial/recursion.html
+
+2. an way to trace recursion,very useful for first time understand recursion
+http://www.cs.umd.edu/class/fall2002/cmsc214/Tutorial/trace-recursion.html
+
+3. another introduction,very detailed,have template,mindset of recursion, useful exercises
+http://www-cs-faculty.stanford.edu/~eroberts/courses/cs106b/chapters/05-intro-to-recursion.pdf
 
 
 
