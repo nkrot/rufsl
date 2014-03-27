@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+
+str = "S p RING\nHas\nCome"
+re = /(?mx-i:[A-Z] .+ [A-Z])/
+
+str.match re
+puts $~[0].inspect
+

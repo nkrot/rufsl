@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+str = "I love bier and pears"
+
+if str =~ /pears/ || str =~ /bier/
+  puts $~[0]
+end
+
+if str =~ /(bier|pears)s?/
+  puts $~[0]
+end
