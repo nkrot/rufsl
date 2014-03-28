@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+
+# # #
+# computing a^n
+#
+
+a=2
+n=5
+
+res=1; # base case
+(1..n).each do |k|
+  res *= 2;
+end
+puts res
+

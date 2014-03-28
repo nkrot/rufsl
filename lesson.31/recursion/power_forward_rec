@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+
+# ugly!!!
+
+# works for non-negative numbers only
+#  exp - exponent
+#  k - the current exponent value, moves from 1 upto exp
+def power(base, exp, k=1)
+  if exp == 0
+    # base case
+    1
+  elsif exp == k
+    # stop when reached the desired exponent
+    base
+  else
+    # and solve for k+1
+    base * power(base, exp, k+1)
+  end
+end
+
+
+puts power(3,0) == 1
+puts power(3,1) == 3
+puts power(3,2) == 9
+#puts power(3,3) == 27
+puts power(3,4) == 81
+
+puts power(2,10) == 1024
+

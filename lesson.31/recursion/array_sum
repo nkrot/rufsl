@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+def array_sum arr
+  if arr.size == 0
+    0
+  else
+    arr[0] + array_sum(arr[1..-1])
+  end
+end
+
+nums = [1,1,1,4,5]
+
+puts array_sum(nums) == 12
+

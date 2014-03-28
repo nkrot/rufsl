@@ -1,0 +1,22 @@
+#!/usr/bin/ruby
+
+# 5! = 5 * 4 * 3 * 2 * 1 = 120
+# for non-negative numbers
+def factorial(num)
+  case 
+  when num < 0
+    raise "Can not compute factorial of a negative number"
+  when num < 2
+    # 0! = 1! = 1
+    1
+  else
+    num * factorial(num-1)
+  end
+end
+
+puts factorial(5) == 120
+puts factorial(0) == 1
+puts factorial(1) == 1
+puts factorial(9) == 362880
+
+#puts factorial(-3)

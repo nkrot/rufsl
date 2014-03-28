@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+
+def array_sum arr, pos
+  pos = [pos, arr.size].min
+  if pos == 0
+    0
+  else
+    arr[pos-1] + array_sum(arr, pos-1)
+  end
+end
+
+nums = [1,10,1,4,5]
+
+puts array_sum(nums, 0)  == 0
+puts array_sum(nums, 1)  == 1
+puts array_sum(nums, 2)  == 11
+puts array_sum(nums, 3)  == 12
+puts array_sum(nums, 4)  == 16
+puts array_sum(nums, 5)  == 21
+
+# if out of range
+puts array_sum(nums, 10) == 21
+
+
+
