@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+
+str_patterns = ["cats?", 'd.gs\b', "d.gs\b"]
+re_patterns = [/cats?/i, /d.gs\b/]
+
+puts "*** In strings metachars are escaped"
+puts "patterns: #{str_patterns.inspect}"
+puts Regexp.union(str_patterns).inspect
+
+puts ""
+
+puts "*** In REs metachars are respected"
+puts "patterns: #{re_patterns.inspect}"
+puts Regexp.union(re_patterns).inspect
+
+puts ""
+puts "*** Mixture of strings and REs"
+puts Regexp.union(str_patterns + re_patterns).inspect
+

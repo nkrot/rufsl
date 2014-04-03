@@ -1,0 +1,4 @@
+# the list of strings
+d.g
+ducks
+

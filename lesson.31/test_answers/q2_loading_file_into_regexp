@@ -1,0 +1,38 @@
+#!/usr/bin/env ruby
+
+# # #
+# USAGE: ThisScrip patterns.txt
+#
+
+wordlist_file = ARGV.shift
+
+words = File.read(wordlist_file)
+  .split(/\n/)
+  .reject {|line| line.empty? || line =~ /^#/}
+
+puts "Loaded words (as an array)"
+puts words.inspect
+
+puts "\nUnion of words in a single RE"
+re = Regexp.union(words)
+puts re.inspect
+
+puts "\nWord boundaries and case-insensitivity added"
+re = /\b(#{re})\b/i
+puts re.inspect
+
+#
+puts "\n***** alternative implementation ****\n\n"
+#
+words = File.read(wordlist_file)
+  .split(/\n/)
+  .reject { |line| line.empty? || line =~ /^#/ }
+  .map { |line| /\b#{Regexp.escape(line)}\b/i }
+
+puts "Loaded words (as an array of REs)"
+puts words.inspect
+
+puts "\nUnion of REs in a single RE"
+re = Regexp.union(words)
+puts re.inspect
+
