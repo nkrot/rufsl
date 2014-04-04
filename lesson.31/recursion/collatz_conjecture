@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+
+@debug = !true
+def verboser msg
+  if @debug
+    puts msg
+  end
+end
+
+def collatz n
+  verboser "Solving for #{n}"
+  if n == 1
+    1
+  elsif n.even?
+    verboser " is even"
+    collatz n/2
+  else
+    verboser " is odd"
+    collatz 3*n+1
+  end
+end
+
+puts collatz(100) == 1
+puts collatz(21)  == 1

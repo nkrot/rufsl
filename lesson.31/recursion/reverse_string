@@ -9,4 +9,5 @@ def reverse(str)
 end
 
 puts reverse("") == ""
+puts reverse("bamboo") == "oobmab"
 puts reverse("alpha centauri") == "alpha centauri".reverse
