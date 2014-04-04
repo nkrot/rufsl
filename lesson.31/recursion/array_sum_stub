@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+def array_sum arr
+  # Think about base case(s)
+  
+  # Think about a subtast and how to solve it recursively
+end
+
+nums = [1,1,1,4,5]
+
+puts array_sum(nums) == 12
+

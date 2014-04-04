@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+# exp - exponent
+# works for non-negative numbers only
+def power(base, exp)
+  if exp == 0
+    raise 'failed'
+  else
+    base * power(base, exp-1)
+  end
+end
+
+
+puts power(3,4) == 81
+
+puts power(2,10) == 1024
+
