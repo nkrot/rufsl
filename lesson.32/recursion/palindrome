@@ -1,0 +1,37 @@
+#!/usr/bin/env ruby
+
+# # #
+# Test if given string is a palindrome
+# recursive implementation
+#
+
+@debug = !true
+
+def verboser msg
+  if @debug
+    puts msg
+  end
+end
+
+def palindrome? str
+  if str.length < 2
+    verboser "base case reached: '#{str}'"
+    true
+  else
+    str.match /^(.)(.*)(.)$/
+    head, body, tail = $~.captures
+    verboser "#{head}/#{body}/#{tail}"
+    head == tail && palindrome?(body)
+  end
+end
+
+puts palindrome?("civic") == true
+puts palindrome?("civil") == false
+
+puts palindrome?("sees")  == true
+puts palindrome?("seen")  == false
+
+puts palindrome?("deified") == true
+puts palindrome?("nebelregennegerleben") == true
+
+puts palindrome?("trust") == false
