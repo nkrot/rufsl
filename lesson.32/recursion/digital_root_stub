@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+def digital_root num
+  if num < ...
+
+  else
+
+  end
+end
+
+puts digital_root(1)    == 1
+puts digital_root(999)  == 9
+puts digital_root(9999) == 9
+puts digital_root(1729) == 1
+puts digital_root(1111111111) == 1
+
