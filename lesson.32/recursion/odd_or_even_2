@@ -1,0 +1,26 @@
+#!/usr/bin/env ruby
+
+def even? n
+  if n == 0
+      return true
+   else
+      return odd? n-1
+   end
+end
+
+def odd? n
+  if n == 1
+    return true
+  else
+    return even? n-1
+  end
+end
+
+puts odd?(1)
+puts even?(2)
+
+puts odd?(11)
+puts even?(12)
+
+#puts even?(1)
+#puts odd?(2)

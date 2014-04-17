@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+
+# # #
+# Euclidean algorithm of finding greatest common devisor of two nonnegative numbers
+#
+# If x is evenly divisible by y, then y is the greatest common divisor.
+# Otherwise, the greatest common divisor of x and y is always equal to the greatest
+#  common divisor of y and the remainder of x divided by y.
+#
+
+def gcd x, y
+  r = x % y   # r - remainder
+  if r == 0
+    y
+  else
+    gcd(y, r)
+  end
+end
+
+puts gcd(1071, 462) == 21
+puts gcd(462, 1071) == 21
+
+puts gcd(2015, 15) == 5

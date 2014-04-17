@@ -1,0 +1,13 @@
+#!/usr/bin/ruby
+
+def reverse(str, res="")
+  if str.empty?
+    res
+  else
+    reverse(str[0..-2], res << str[-1,1])
+  end
+end
+
+puts reverse("") == ""
+puts reverse("bamboo") == "oobmab"
+puts reverse("alpha centauri") == "alpha centauri".reverse

@@ -1,0 +1,27 @@
+#!/usr/bin/env ruby
+
+# # #
+# A number is even if its predecessor is odd.
+# A number is odd if is not even.
+# The number 0 is even by definition.
+#
+# works for nonnegative integers only
+#
+
+def odd? n
+  false
+end
+
+def even? n
+  false
+end
+
+puts even?(0)  == true
+puts even?(2)  == true
+puts even?(22) == true
+
+puts even?(1)  == false
+puts even?(21) == false
+
+puts even?(999) == false
+puts odd?(999)  == true
