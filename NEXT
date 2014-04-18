@@ -1,22 +1,17 @@
 
-lesson.30 - recursion
+lesson.33 - recursion
 =========
 
-- рекуррентное определение?
-  перевернуть строку/массив рекурсивно
-     1) оторвать первый символ
-     2) перевернуть все остальное
-     3) вставить оторванный символ в хвост
-- взять материалы с предыдущего года
 - фибоначчи, и мемоизация
-- ДЗ: фибоначчи без рекурсии (циклическая реализация).
-  - они должны догадаться, что надо хранить два последних
-- merge sort in place
-- tail recursion, аккумуляторы
+- ДЗ: фибоначчи без рекурсии (циклическая реализация). достаточно хранить два последних числа
+- merge sort in place (ivan)
+- что выбрать для code review 4?
+
+чтиво по рекурсии
+---------------
 http://cs.stackexchange.com/questions/1418/when-to-use-recursion
 http://en.wikipedia.org/wiki/Divide_and_conquer_algorithm
 
-чтиво по рекурсии
 1. an introduction
  http://www.cs.umd.edu/class/fall2002/cmsc214/Tutorial/recursion.html
 
@@ -26,9 +21,13 @@ http://www.cs.umd.edu/class/fall2002/cmsc214/Tutorial/trace-recursion.html
 3. another introduction,very detailed,have template,mindset of recursion, useful exercises
 http://www-cs-faculty.stanford.edu/~eroberts/courses/cs106b/chapters/05-intro-to-recursion.pdf
 
-memoization:
-http://en.wikipedia.org/wiki/George_Santayana:
-Santayana's famous aphorism "Those who cannot remember the past are condemned to repeat it" is inscribed on a plaque at the Auschwitz concentration camp in Polish translation and English back-translation (above), and on a subway placard in Germany (below)
+
+Задачки на рекурсивные структуры данных
+-------------------
+- посчитать что-нибудь в дереве. например, количество существительных или найти самое длинное слово в дереве. Если два одной длины, выдать то, что в более левом поддереве.
+- Я думал о чем-нибудь древесном. есть дерево, в его глубине есть, например, слово во множественном числе. задача в том, чтобы перетащить эту фичу числа на глагол, если эта фича изначально висит на субъекте (мы знаем, что это субъект, это закодировано где-то в другой фиче)
+От меня надо создать класс Tree.
+
 
 for code review #3 (lessons 13+)
 ================================
