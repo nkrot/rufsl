@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+
+#class String
+#  def prev
+#  end
+#
+#  def prev!
+#  end
+#end
+
+def shift_cipher str, n=1
+  if str.empty?
+
+  else
+
+  end
+end
+
+puts shift_cipher('abcdef', 3) == 'defghi'
+#puts shift_cipher('defghi', -3) == 'abcdef' # TODO
+
+puts shift_cipher('xyz', 2)    == 'zab'
+#puts shift_cipher('zab', -2)    == 'xyz' # TODO
+
+puts shift_cipher('ptn u`chr+ bhmdc`d ') == 'quo!vadis,!cinedae!'

@@ -1,0 +1,37 @@
+#!/usr/bin/env ruby
+
+parsing = \
+   ["w_complete_sentence",
+       ["w_cl_fin",
+		   ["w_ng_d",   "Wessen_PISG"],
+		   ["w_cl_fin", "gedenkt_VLPI3S",
+		      ["w_ng_io_n", 
+			    ["w_ng_n", "man_PSSN"],
+				["w_ng_io", 
+                   [ "w_ap_ng", "am_APPD",
+                                ["w_ncmsd", "25._ZO", "August_NCMSD" ]]]]]],
+	"?_?"]
+
+
+def show_parsing prs, level=0
+  tree = ""
+  prs.each_with_index do |node, pos|
+    tree << "\n" << indent(level)
+    if node.instance_of? Array
+      tree << show_parsing(node, level+1)
+    else
+      if pos == 0
+        tree << node # node name
+      else
+        tree << indent(1) << node # node value
+      end
+    end
+  end
+  tree
+end
+
+def indent n
+  " " * n * 3
+end
+
+puts show_parsing parsing
