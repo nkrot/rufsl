@@ -18,21 +18,7 @@ def indent n
 end
 
 def show_parsing prs, level=0
-  tree = ""
-  prs.each_with_index do |node, pos|
-    if node.instance_of? Array
-      tree << show_parsing(node, level+1)
-    else
-      if pos == 0
-        # node name
-        tree << "\n" + indent(level) + node
-      else
-        # node value, always indented one level deeper than the node name
-        tree << "\n" + indent(level+1) + node
-      end
-    end
-  end
-  tree
+  return prs.to_s
 end
 
 puts show_parsing parsing
