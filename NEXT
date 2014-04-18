@@ -5,6 +5,9 @@ lesson.33 - recursion
 - фибоначчи, и мемоизация
 - ДЗ: фибоначчи без рекурсии (циклическая реализация). достаточно хранить два последних числа
 - merge sort in place (ivan)
+- tasks for recursive data structures
+- recursive 4 queens problem
+- recursive sudoku solver
 - что выбрать для code review 4?
 
 чтиво по рекурсии
