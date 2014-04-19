@@ -1,0 +1,48 @@
+#!/usr/bin/env ruby
+
+@debug = !!ARGV.delete('--debug')
+
+def init_memory
+  puts "Initializing memory"
+  @fibo_numbers = {
+    0 => 0,
+    1 => 1
+  }
+end
+
+# return the nth number of the fibonacci series (starting from 0)
+def fibo_nth(n)
+  if @fibo_numbers[n]
+    puts "retrieving fibo for n=#{n}"  if @debug
+  else
+    puts "computing fibo for n=#{n}"  if @debug
+    @fibo_numbers[n] = fibo_nth(n-2) + fibo_nth(n-1)
+  end
+  @fibo_numbers[n]
+end
+
+# can be compressed to
+#def fibo_nth(n)
+#  @fibo_numbers[n] ||= fibo_nth(n-2) + fibo_nth(n-1)
+#end
+
+# first 21 Fibonacci numbers
+gold = [0,1,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987,1597,2584,4181,6765]
+
+unless @debug
+  init_memory
+  puts fibo_nth(2)  == gold[2]
+
+  init_memory
+  puts fibo_nth(3)  == gold[3]
+
+  init_memory
+  puts fibo_nth(4)  == gold[4]
+
+  init_memory
+  puts fibo_nth(5)  == gold[5]
+end
+
+init_memory
+puts fibo_nth(20) == gold[20]
+

@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+
+@debug = !!ARGV.delete('--debug')
+
+# return the nth number of the fibonacci series (starting from 0)
+def fibo_nth(n)
+  @fibo_numbers = {0 => 0, 1 => 1}
+  fibo_nth_ll(n)
+end
+
+def fibo_nth_ll(n)
+  @fibo_numbers[n] ||= fibo_nth_ll(n-2) + fibo_nth_ll(n-1)
+end
+
+## this works!
+#def fibo_nth(n)
+#  @fibo_numbers ||= {0 => 0, 1 => 1} # evaluated too often
+#  @fibo_numbers[n] ||= fibo_nth(n-2) + fibo_nth(n-1)
+#end
+
+# first 21 Fibonacci numbers
+gold = [0,1,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987,1597,2584,4181,6765]
+
+unless @debug
+  puts fibo_nth(2)  == gold[2]
+  puts fibo_nth(3)  == gold[3]
+  puts fibo_nth(4)  == gold[4]
+  puts fibo_nth(5)  == gold[5]
+end
+
+puts fibo_nth(20) == gold[20]
+
