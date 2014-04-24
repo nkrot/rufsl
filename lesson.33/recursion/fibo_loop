@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+# return the nth number of the fibonacci series (starting from 0)
+def fibo_nth(n)
+  a, b = 1, 0 # note the order!
+  n.times do
+    a, b = b, a+b
+  end
+  b
+end
+
+# first 21 Fibonacci numbers
+golds = [0,1,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987,1597,2584,4181,6765]
+
+golds.each_with_index do |gold, idx|
+  puts fibo_nth(idx) == gold
+end
+
