@@ -1,14 +1,25 @@
 
+!!! дабы стимулировать желание программировать свои задачи, можно
+1) потребовать, чтобы каждый придумал, какие из текущих/будущих/прошлых задач можно заскриптовать
+2) решать эти задачи на занятии
+
 lesson.33 - recursion
 =========
 
 - фибоначчи, и мемоизация
-- ДЗ: фибоначчи без рекурсии (циклическая реализация). достаточно хранить два последних числа
++ ДЗ: фибоначчи без рекурсии (циклическая реализация). достаточно хранить два последних числа
 - merge sort in place (ivan)
-- tasks for recursive data structures
-- recursive 4 queens problem
-- recursive sudoku solver
 - что выбрать для code review 4?
+
+lesson.34 (May, 2)
+==================
+? how many people will attend this lesson?
+? bruteforcing with recursion
+- tasks for recursive data structures
+- recursion as a means of bruteforcing an algorithm
+  - solving magic squares
+  - recursive 4 queens problem
+  - recursive sudoku solver
 
 чтиво по рекурсии
 ---------------
