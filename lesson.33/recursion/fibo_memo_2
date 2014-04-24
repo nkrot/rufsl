@@ -12,7 +12,7 @@ def fibo_nth_ll(n)
   @fibo_numbers[n] ||= fibo_nth_ll(n-2) + fibo_nth_ll(n-1)
 end
 
-## this works!
+## this works but is not correct: this cache is not cleared
 #def fibo_nth(n)
 #  @fibo_numbers ||= {0 => 0, 1 => 1} # evaluated too often
 #  @fibo_numbers[n] ||= fibo_nth(n-2) + fibo_nth(n-1)
