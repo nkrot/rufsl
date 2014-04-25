@@ -1,25 +1,19 @@
 
-!!! дабы стимулировать желание программировать свои задачи, можно
-1) потребовать, чтобы каждый придумал, какие из текущих/будущих/прошлых задач можно заскриптовать
-2) решать эти задачи на занятии
-
-lesson.33 - recursion
-=========
-
-- фибоначчи, и мемоизация
-+ ДЗ: фибоначчи без рекурсии (циклическая реализация). достаточно хранить два последних числа
-- merge sort in place (ivan)
-- что выбрать для code review 4?
-
 lesson.34 (May, 2)
 ==================
-? how many people will attend this lesson?
-? bruteforcing with recursion
+- work through the problems on the slides
+
+lesson.35
+===========
 - tasks for recursive data structures
+? bruteforcing with recursion
 - recursion as a means of bruteforcing an algorithm
   - solving magic squares
   - recursive 4 queens problem
   - recursive sudoku solver
+- merge sort in place (ivan)
+- что выбрать для code review 4?
+
 
 чтиво по рекурсии
 ---------------
@@ -35,13 +29,32 @@ http://www.cs.umd.edu/class/fall2002/cmsc214/Tutorial/trace-recursion.html
 3. another introduction,very detailed,have template,mindset of recursion, useful exercises
 http://www-cs-faculty.stanford.edu/~eroberts/courses/cs106b/chapters/05-intro-to-recursion.pdf
 
+4. http://chimera.labs.oreilly.com/books/1230000000393/ch02.html#_solution_39
+  здесь о том, как написать свой парсер, выдающий AST!!!
+
+
 
 Задачки на рекурсивные структуры данных
 -------------------
 - посчитать что-нибудь в дереве. например, количество существительных или найти самое длинное слово в дереве. Если два одной длины, выдать то, что в более левом поддереве.
 - Я думал о чем-нибудь древесном. есть дерево, в его глубине есть, например, слово во множественном числе. задача в том, чтобы перетащить эту фичу числа на глагол, если эта фича изначально висит на субъекте (мы знаем, что это субъект, это закодировано где-то в другой фиче)
 От меня надо создать класс Tree.
+- (на примере англ дерева) выдрать поддерево, в котором есть какая-нибудь херня (например, CC или причастие, распространающее именную группу). учесть, что дерево может быть ломанным - добавить искусственный верхний уровень
+  это паттерн visitor ?
+w__Sentence (( I_PP1A w__VB_XX (( love_VB w__N_XX (( w_NNS_HP_CC (( apples_NNS and_CC pears_NNS  ))  w__VBN_XX (( grown_VBN w__IN_N (( by_IN w__N_XX (( w_NNS (( my_PP$ grandparents_NNS  ))  w__IN_N (( in_IN w_NN (( their_PP$ garden_NN  ))   ))   ))   ))   ))   ))   ))   ))
 
+- написать преобразователь скобочной формы в дерево
+
+- Write a function that translates a number like 12345.67 to "twelve thousand three hundred forty-five dollars and sixty-seven cents."
+
+- http://www.cs.rmit.edu.au/online/blackboard/chapter/05/documents/contribute/chapter/10/practical-uses.html
+
+- сделать замену чего-нить в дереве
+
+Другие задачки
+---------------
+- найти анаграммы строки: сначала построить все permutations потом разбить их на слова. наверное, это будет работать очень долго
+- задание от Оли (пересечение трех словарей). см чат в скайпе или может оля создала syntodo?
 
 for code review #3 (lessons 13+)
 ================================

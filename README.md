@@ -15,5 +15,7 @@ The materials are also published at: https://sites.google.com/site/talpus/rufsl/
 * lesson.20 -- radix sort
 * lesson.21 -- radix sort for strings
 
-* lesson.31-33 -- recursion
+* lesson.31 -- recursion
+* lesson.32 -- tail recursion
+* lesson.33 -- recursion with memoization, Fibonacci
 
