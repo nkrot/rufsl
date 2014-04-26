@@ -1,0 +1,70 @@
+#!/usr/bin/env ruby
+
+
+class ParseTree
+  attr_accessor :name, :children
+
+  def initialize name=nil
+    @name = name  if name
+    @children = []
+  end
+
+  def set bracketed
+    tokens = bracketed.dup
+    tokens = tokens.split.to_enum  unless tokens.is_a? Array
+
+    @name = :top
+    walk(tokens)
+  end
+
+  def to_s
+    str = "#{@name} (("
+    @children.each {|ch| str << " " + ch.to_s }
+    str << " ))"
+    str
+  end
+
+  protected
+
+  def walk tokens
+    puts ".set called"
+
+    while true
+      begin
+        val = tokens.next
+        puts val
+
+        if val == '))'
+          return nil
+
+        elsif val == '(('
+          # skip
+
+        elsif tokens.peek == '(('
+          child = ParseTree.new(val)
+          child.walk(tokens)
+          @children << child
+
+        else
+          @children << val # leaf
+        end
+
+      rescue StopIteration
+        return nil
+      end
+    end
+    
+  end
+end
+
+# TODO:
+# 1. test with broken trees (those that do not have a single top node)
+# 2. to_s should not output the fake :top node
+
+ps = "w__Sentence (( I_PP1A w__VB_XX (( love_VB w__N_XX (( w_NNS_HP_CC (( apples_NNS and_CC pears_NNS  ))  w__VBN_XX (( grown_VBN w__IN_N (( by_IN w__N_XX (( w_NNS (( my_PP$ grandparents_NNS  ))  w__IN_N (( in_IN w_NN (( their_PP$ garden_NN  ))   ))   ))   ))   ))   ))   ))   ))"
+
+tree = ParseTree.new
+tree.set ps
+
+p tree
+puts tree.to_s
