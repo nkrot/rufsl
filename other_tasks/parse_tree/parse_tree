@@ -1,70 +1,152 @@
 #!/usr/bin/env ruby
 
+# TODO:
+# 1. add rdoc documentation here
+# 3. a method for checking is a tree is complete: well_formed? or single_top?
+#    remember to ignore the fakeroot
+#
+# for rdoc
+# a fake root is added to ensure that even incomplete trees are handled
 
 class ParseTree
-  attr_accessor :name, :children
+  attr_accessor :name, :children, :verbose
 
   def initialize name=nil
-    @name = name  if name
+    @name = name   if name
+    @fakeroot = false
+    @verbose = false
     @children = []
   end
 
   def set bracketed
-    tokens = bracketed.dup
-    tokens = tokens.split.to_enum  unless tokens.is_a? Array
-
+    tokens = bracketed.split.to_enum
     @name = :top
-    walk(tokens)
+    @fakeroot = true
+    set_from_bracketed(tokens)
   end
 
   def to_s
-    str = "#{@name} (("
-    @children.each {|ch| str << " " + ch.to_s }
-    str << " ))"
+    chunks = []
+    children.each { |ch| chunks << ch.to_s }
+    unless fakeroot?
+      chunks.unshift(@name, "((")
+      chunks << "))"
+    end
+    chunks.join(' ')
+  end
+
+  # display in vertical form indenting each level with 3 spaces
+  # ignore the fake added top node
+  def to_s_tree level=0
+    str = ''
+
+    if fakeroot?
+      level -= 1
+    else
+      str << indent(level) << @name.to_s
+    end
+
+    children.each do |child|
+      if child.is_a? self.class
+        str << "\n" << child.to_s_tree(level+1)
+      else
+        str << "\n" << indent(level+1) << child
+      end
+    end
+    str.sub!(/^\n/, '')
+
     str
+  end
+
+  def fakeroot?
+    @fakeroot
+  end
+
+  def words
+    words = []
+    children.each do |child|
+      if child.is_a? self.class
+        words += child.words
+      else
+        words << child
+      end
+    end
+    words
+  end
+
+  alias leaves words
+
+  def word_count
+    count = 0
+    children.each do |child|
+      count += child.is_a?(self.class) ? child.word_count : 1
+    end
+    count
   end
 
   protected
 
-  def walk tokens
-    puts ".set called"
+  def set_from_bracketed tokens
+    verboser "set_from_bracketed called"
 
     while true
       begin
         val = tokens.next
-        puts val
 
         if val == '))'
+          verboser "Seeing '#{val}' -- will return up"
           return nil
 
         elsif val == '(('
           # skip
+          verboser "Seeing '#{val}' -- will skip it"
 
         elsif tokens.peek == '(('
+          verboser "Seeing '#{val}' just before '((' -- will parse it as a subtree and add to children"
           child = ParseTree.new(val)
-          child.walk(tokens)
+          child.set_from_bracketed(tokens)
           @children << child
 
         else
+          verboser "Seeing '#{val}' -- this is a leaf, will add it to children"
           @children << val # leaf
         end
 
       rescue StopIteration
+        verboser "Scanning complete!"
         return nil
       end
     end
-    
+  end
+
+  def indent mult
+    "   " * mult
+  end
+
+  def verboser msg
+    if @verbose
+      puts msg
+    end
   end
 end
 
-# TODO:
-# 1. test with broken trees (those that do not have a single top node)
-# 2. to_s should not output the fake :top node
+if __FILE__ == $0
+  parsings = [
+    ["w__Sentence (( I_PP1A w__VB_XX (( love_VB w__N_XX (( w_NNS_HP_CC (( apples_NNS and_CC pears_NNS  ))  w__VBN_XX (( grown_VBN w__IN_N (( by_IN w__N_XX (( w_NNS (( my_PP$ grandparents_NNS  ))  w__IN_N (( in_IN w_NN (( their_PP$ garden_NN  ))   ))   ))   ))   ))   ))   ))   ))",
+     12],
 
-ps = "w__Sentence (( I_PP1A w__VB_XX (( love_VB w__N_XX (( w_NNS_HP_CC (( apples_NNS and_CC pears_NNS  ))  w__VBN_XX (( grown_VBN w__IN_N (( by_IN w__N_XX (( w_NNS (( my_PP$ grandparents_NNS  ))  w__IN_N (( in_IN w_NN (( their_PP$ garden_NN  ))   ))   ))   ))   ))   ))   ))   ))"
+    ["w__Sentence (( I_PP1A w__VB_XX (( love_VB w_NNS_HP_CC (( apples_NNS and_CC pears_NNS  ))   ))   ))  that_CS w__Sentence (( w_NNS (( my_PP$ grandprents_NNS  ))  w__VB_XX (( grow_VB w__IN_N (( in_IN w_NN (( their_PP$ garden_NN  ))   ))   ))   ))",
+     12]
+  ]
 
-tree = ParseTree.new
-tree.set ps
+  parsings.each do |(ps, et_word_count)|
+    tree = ParseTree.new
+    tree.set ps
 
-p tree
-puts tree.to_s
+#    p tree
+    puts tree.to_s
+    puts tree.to_s_tree
+    puts tree.words.inspect
+    puts tree.word_count
+  end
+end
