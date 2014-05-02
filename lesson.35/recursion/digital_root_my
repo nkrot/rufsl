@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+def digital_root num
+  if num < 10
+    num
+  else
+    digital_root(num % 10 + digital_root(num/10))
+  end
+end
+
+9999999999.times do |num|
+  puts digital_root(num)
+end
+

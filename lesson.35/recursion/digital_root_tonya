@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+
+def digital_root_krot num
+  if num < 10
+    num
+  else
+    digital_root(num % 10 + digital_root(num/10))
+  end
+end
+def digital_root num
+  if num < 10
+    num
+  else
+ 	digital_root( num % 10 + num / 10)
+  end
+end
+
+counts = {true: 0, false: 0}
+
+9999999999.times do |num|
+  n1 = digital_root_krot(num)
+  n2 = digital_root(num)
+
+  counts[n1 == n2] =+ 1
+
+  if n1 != n2
+    puts "Mismatch for num=#{num}: #{n1} vs. #{n2}"
+  end
+end
+
+puts "Equal/different: #{counts[true]}/#{counts[false]}"
