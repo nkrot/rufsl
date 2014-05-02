@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+def sum_digits num, accum=0
+  if num < 10
+    accum+num
+  else
+    # 123 % 10 = 3
+    # 123 / 10 = 12
+    sum_digits(num / 10, accum+num % 10)
+  end
+end
+
+puts 0 == sum_digits(0)
+puts 1 == sum_digits(10)
+puts 6 == sum_digits(123)
+puts 7 == sum_digits(2014)
