@@ -80,13 +80,14 @@ def indent n
   " " * n * 3
 end
 
-def show_parsing prs, level=-1
+def show_parsing nodes, level=-1
   tree = ""
-  prs.each do |node|
-    if node.instance_of? Array
-      tree << show_parsing(node, level+1)
+  level += 1
+  nodes.each do |node|
+    if node.is_a? Array
+      tree << show_parsing(node, level)
     else
-      tree << "\n" + indent(level+1) + node
+      tree << "\n" + indent(level) + node
     end
   end
   tree

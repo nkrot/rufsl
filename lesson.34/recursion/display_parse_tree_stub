@@ -49,8 +49,8 @@ def indent n
   " " * n * 3
 end
 
-def show_parsing prs, level=-1
-  return prs.to_s
+def show_parsing nodes, level=-1
+  return nodes.to_s
 end
 
 [parsing1, parsing2].each do |parsing|
