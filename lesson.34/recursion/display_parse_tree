@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-parsing = \
+parsing1 = \
    ["w_complete_sentence",
        ["w_cl_fin",
 		   ["w_ng_d",   "Wessen_PISG_0"],
@@ -13,26 +13,81 @@ parsing = \
 	"?_?_6"]
 
 
+parsing2 = \
+   ["w__Sentence",
+      ["I_PP1A", "w__VB_XX",
+                   ["love_VB", "w_NNS_HP_CC",
+                                  ["apples_NNS", "and_CC", "pears_NNS"]]],
+    "that_CS",
+    "w__Sentence",
+       ["w_NNS",
+          ["my_PP$", "grandparents_NNS"],
+        "w__VB_XX",
+          ["grow_VB", "w__IN_N",
+                        ["in_IN", "w_NN",
+                                    ["their_PP$", "garden_NN"]]]]]
+
+
+def parse_bracketed_ps tokens
+  tokens = tokens.split  if tokens.is_a? String
+#  puts tokens.inspect
+
+  children = []
+
+  while !tokens.empty?
+    current = tokens.shift
+
+    if tokens[0] && tokens[0] == '(('
+      # node name
+      children << current
+      tokens.shift # remove ((
+      children << parse_bracketed_ps(tokens)
+
+    elsif current == '))'
+      return children
+
+    else
+      # word
+      children << current
+    end
+  end
+
+  children
+end
+
 def indent n
   " " * n * 3
 end
 
-def show_parsing prs, level=0
+def show_parsing prs, level=-1
   tree = ""
   prs.each_with_index do |node, pos|
     if node.instance_of? Array
       tree << show_parsing(node, level+1)
     else
-      if pos == 0
-        # node name
-        tree << "\n" + indent(level) + node
-      else
-        # node value, always indented one level deeper than the node name
-        tree << "\n" + indent(level+1) + node
-      end
+      tree << "\n" + indent(level+1) + node
     end
   end
   tree
 end
 
-puts show_parsing parsing
+[parsing1, parsing2].each do |parsing|
+  puts show_parsing parsing
+end
+
+if ARGV.empty?
+  puts "\n" + '*' * 20
+  puts "To run the 2nd part, give an input file (sent.parsed) to the script"
+  exit 
+else
+  puts "\n### The second part ###"
+end
+
+while line = gets
+  line.chomp!
+
+  parsing = parse_bracketed_ps line
+#  puts parsing.inspect
+
+  puts show_parsing parsing
+end

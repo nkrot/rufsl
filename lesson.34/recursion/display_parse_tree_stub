@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-parsing = \
+parsing1 = \
    ["w_complete_sentence",
        ["w_cl_fin",
 		   ["w_ng_d",   "Wessen_PISG_0"],
@@ -13,12 +13,32 @@ parsing = \
 	"?_?_6"]
 
 
+parsing2 = \
+   ["w__Sentence",
+      ["I_PP1A", "w__VB_XX",
+                   ["love_VB", "w_NNS_HP_CC",
+                                  ["apples_NNS", "and_CC", "pears_NNS"]]],
+    "that_CS",
+    "w__Sentence",
+       ["w_NNS",
+          ["my_PP$", "grandparents_NNS"],
+        "w__VB_XX",
+          ["grow_VB", "w__IN_N",
+                        ["in_IN", "w_NN",
+                                    ["their_PP$", "garden_NN"]]]]]
+
+def parse_bracketed_ps tokens
+  []
+end
+
 def indent n
   " " * n * 3
 end
 
-def show_parsing prs, level=0
+def show_parsing prs, level=-1
   return prs.to_s
 end
 
-puts show_parsing parsing
+[parsing1, parsing2].each do |parsing|
+  puts show_parsing parsing
+end
