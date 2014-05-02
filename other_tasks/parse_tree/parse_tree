@@ -7,7 +7,7 @@
 # 3. see lesson.34/recursion/display_parse_tree#parse_bracketed_ps for an implementation
 #    w/o Enumeration
 #
-# for rdoc
+# for rdoc:
 # a fake root is added to ensure that even incomplete trees are handled
 
 class ParseTree
@@ -91,33 +91,34 @@ class ParseTree
   def set_from_bracketed tokens
     verboser "set_from_bracketed called"
 
-    while true
-      begin
-        val = tokens.next
+    loop do
+      #begin
+        token = tokens.next
 
-        if val == '))'
-          verboser "Seeing '#{val}' -- will return up"
-          return nil
+        case token
+        when '))'
+          verboser "Seeing '#{token}' -- will return up"
+          break
 
-        elsif val == '(('
-          # skip
-          verboser "Seeing '#{val}' -- will skip it"
+        when '(('
+          verboser "Seeing '#{token}' -- will parse it as a subtree and add to children"
 
-        elsif tokens.peek == '(('
-          verboser "Seeing '#{val}' just before '((' -- will parse it as a subtree and add to children"
-          child = ParseTree.new(val)
-          child.set_from_bracketed(tokens)
-          @children << child
+          tree = ParseTree.new
+          tree.name = @children.pop # reconsider the decision wrt to previous token:
+                                    # it was not a word but a node name
+          tree.set_from_bracketed(tokens)
+
+          @children << tree
 
         else
-          verboser "Seeing '#{val}' -- this is a leaf, will add it to children"
-          @children << val # leaf
+          verboser "Seeing '#{token}' -- this is either a word or node name, will add it to children"
+          @children << token
         end
 
-      rescue StopIteration
-        verboser "Scanning complete!"
-        return nil
-      end
+      #rescue StopIteration # wow! it is actually handled by Kernel#loop
+      #  verboser "Scanning complete!"
+      #  break
+      #end
     end
   end
 
@@ -147,8 +148,9 @@ if __FILE__ == $0
 
 #    p tree
     puts tree.to_s
+    puts tree.to_s == ps.squeeze(' ')
     puts tree.to_s_tree
     puts tree.words.inspect
-    puts tree.word_count
+    puts tree.word_count == et_word_count
   end
 end
