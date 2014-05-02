@@ -1,5 +1,12 @@
 #!/usr/bin/env ruby
 
+# # #
+# USAGE: display_parse_tree
+# or
+# USAGE: display_parse_tree sent.en.parsed
+# the result is expected to be similar to sent.en.parsed.tree
+#
+
 # ex: Wessen gedenkt man am 25. August ?
 parsing1 = \
    ["w_complete_sentence",
@@ -51,17 +58,17 @@ def parse_bracketed_ps tokens
   while !tokens.empty?
     current = tokens.shift
 
-    if tokens[0] && tokens[0] == '(('
-      # node name
-      children << current
-      tokens.shift # remove ((
+    case current
+    when '(('
+      # subtree begins (children of the most recently processed entity)
       children << parse_bracketed_ps(tokens)
 
-    elsif current == '))'
-      return children
+    when '))'
+      # done parsing current subtree
+      break
 
     else
-      # word
+      # entity: either word or node name
       children << current
     end
   end
@@ -75,7 +82,7 @@ end
 
 def show_parsing prs, level=-1
   tree = ""
-  prs.each_with_index do |node, pos|
+  prs.each do |node|
     if node.instance_of? Array
       tree << show_parsing(node, level+1)
     else
