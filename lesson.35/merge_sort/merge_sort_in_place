@@ -1,0 +1,124 @@
+#!/usr/bin/ruby
+
+# # #
+# In place implementation of merge sort algorithm
+#
+
+@debug = !true
+
+def verboser msg
+  if @debug
+    puts msg
+  end
+end
+
+######################################################################
+# MERGE SORT
+
+# this will require a tmp array into which sorting is made
+# then the sorted array is inserted into the original array
+def merge numbers, si, mi1, ei
+  mi2 = mi1+1
+  verboser "Merging: #{numbers[si..mi1].inspect} and #{numbers[mi2..ei]}"
+
+  tmp = [] # this is ugly. in real life a single tmp array is used that is the size of original array being sorted
+
+  while si <= mi1 || mi2 <= ei
+    if si <= mi1 && (mi2 > ei || numbers[si] <= numbers[mi2])
+      tmp << numbers[si]
+      si += 1
+    else
+      tmp << numbers[mi2]
+      mi2 += 1
+    end
+  end
+
+  # insert sorted values back into the original array
+  si = 1 + ei - tmp.length
+  tmp.each_with_index do |el, i|
+    numbers[si+i] = el
+  end
+
+  verboser "  Merged subset: #{tmp.inspect}"
+end
+
+def merge_sort numbers, si=0, ei=nil
+  ei ||= numbers.length-1
+
+  if ei - si < 1
+    # an array containing (n)one element is considered sorted
+    verboser "Base case reached: #{numbers[si..ei].inspect} is sorted"
+
+  else
+    # split the inverval si..ei into two approximately equal chunks
+    mi1 = si + (ei-si)/2
+    mi2 = mi1 + 1
+
+    verboser "Array #{numbers[si..ei]} split into #{numbers[si..mi1].inspect} and #{numbers[mi2..ei]}"
+
+    # sort each chunk
+    merge_sort(numbers, si, mi1)
+    merge_sort(numbers, mi2, ei)
+
+    merge(numbers, si, mi1, ei)
+  end
+
+end
+
+######################################################################
+# TESTS FOR MERGING PROCEDURE
+#
+# TODO: you may want to test merging procedure separately
+
+#[1,2,    3,4]
+#[3,4,    1,2]
+#[3,4,6,  1,2,5]
+#[3,4,6,  1,5]
+#[3,4,6,  2]
+
+
+######################################################################
+# TESTS FOR MERGE SORT
+#
+# To produce more tests you may want to use Array#permutation
+
+@counts = Hash.new {|h,k| h[k] = 0}
+
+def test_merge_sort_on data
+  orig = data.dup # method #dup makes a shallow copy of the object
+
+  merge_sort data
+
+  equal = orig.sort == data 
+  @counts[equal] += 1
+
+  unless equal
+    puts "Test failed!"
+    puts "Input data: #{orig.inspect}"
+    puts "Expected:   #{orig.sort.inspect}"
+    puts "Actual:     #{data.inspect}"
+  end
+end
+
+
+# even number of items
+test_merge_sort_on [25,31,13,68,2,10,9,-3]
+
+# odd number of items
+test_merge_sort_on [25,13,68,2,10,9,-3]
+
+# already sorted
+test_merge_sort_on [-3,2,9,10,13,25,31,68]
+
+# sorted in reverse order
+test_merge_sort_on [-3,2,9,10,13,25,31,68].reverse
+
+test_merge_sort_on [1,1,1,1]
+
+test_merge_sort_on [2,3,4,5,1]
+
+# an obligatory case is testing boundary cases: empty array
+test_merge_sort_on []
+
+puts "Tests passed/failed: #{@counts[true]}/#{@counts[false]}"
+
