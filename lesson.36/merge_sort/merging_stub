@@ -1,0 +1,42 @@
+#!/usr/bin/env ruby
+
+# merges two sorted arrays to produce a single sorted array
+def merge lefts, rights
+  merged = []
+
+  # TODO: your cool code goes here
+  # You can keep track of the current first element  in each array with the help of an aux variable.
+  # Or alternatively you can use Array#shift. This will destroy the arrays but we dont not need them.
+  # ...
+
+  return merged
+end
+
+@counts = Hash.new {|h,k| h[k] = 0}
+
+def test_merging_of_arrays arr1, arr2
+
+  gold   = (arr1 + arr2).sort
+  actual = merge arr1, arr2
+
+  equal = actual == gold
+  @counts [equal] += 1
+
+  unless equal
+    puts "Test failed!"
+    puts "Input data: #{arr1.inspect} and #{arr2.inspect}"
+    puts "Expected:   #{gold.inspect}"
+    puts "Actual:     #{actual.inspect}"
+  end
+end
+
+test_merging_of_arrays [1,2],     [3,4]
+test_merging_of_arrays [3,4],     [1,2]
+test_merging_of_arrays [3,4,6],   [1,5]
+test_merging_of_arrays [0,3,4,6], [2]
+test_merging_of_arrays [3],       [0,3,4,6]
+test_merging_of_arrays [],        [0,3,4,6]
+test_merging_of_arrays [0,3,4,6], []
+test_merging_of_arrays [],        []
+
+puts "Tests passed/failed: #{@counts[true]}/#{@counts[false]}"
