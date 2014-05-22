@@ -19,3 +19,6 @@ The materials are also published at: https://sites.google.com/site/talpus/rufsl/
 * lesson.32 -- tail recursion
 * lesson.33 -- recursion with memoization, Fibonacci
 
+* lesson.35 -- recursive data structures: represending a parse tree with arrays
+* lesson.36 -- merge sort
+

@@ -1,22 +1,27 @@
 
-lesson.34 (May, 2)
-==================
-- work through the problems on the slides
-
-lesson.35
-=========
-- tasks for recursive data structures
-
 lesson.36
 ==========
-? bruteforcing with recursion
+- Merge sort
+
+lesson.37
+=========
+- representing a parse tree with a Hash (similar to lesson.35)
+- solve the task of Polina
+
+lesson.38
+=========
+- solve the task of someone else?
+- solve a task on parse tree (find something, count something) SEE BELOW
+
+lesson.39 - bruteforcing with recursion
+=========
 - recursion as a means of bruteforcing an algorithm
   - solving magic squares
   - recursive 4 queens problem
   - recursive sudoku solver
-- merge sort in place (ivan)
 - что выбрать для code review 4?
 
+- representing a parse tree with a special class ParseTree
 
 чтиво по рекурсии
 ---------------
@@ -36,10 +41,11 @@ http://www-cs-faculty.stanford.edu/~eroberts/courses/cs106b/chapters/05-intro-to
   здесь о том, как написать свой парсер, выдающий AST!!!
 
 
-
 Задачки на рекурсивные структуры данных
 -------------------
 - посчитать что-нибудь в дереве. например, количество существительных или найти самое длинное слово в дереве. Если два одной длины, выдать то, что в более левом поддереве.  pattern Visitor?
+
+- собрать узлы верхнего уровня. и посчитать.
 
 - Я думал о чем-нибудь древесном. есть дерево, в его глубине есть, например, слово во множественном числе. задача в том, чтобы перетащить эту фичу числа на глагол, если эта фича изначально висит на субъекте (мы знаем, что это субъект, это закодировано где-то в другой фиче)
 От меня надо создать класс ParseTree.
@@ -60,10 +66,12 @@ http://www-cs-faculty.stanford.edu/~eroberts/courses/cs106b/chapters/05-intro-to
 
 - задания на использование parse_tree:
   - найти неполные деревья
-  - найти такие неполные деревья, где есть несколько подряд идущих слов, не попавших в дерево
-  - ???
+     ex: Furthermore, the present study shows that in law texts, the average distance between the heads and complements of clauses is relatively large , and that in this domain, a wide context window is therefore necessary for the morphosyntactic disambiguation of verbs.
+     ex: We show that both studies in descriptive and formal morphology as well as NLP tool and resource development benefit from the availability of such a model and an implementation thereof.
 
-- дополнительное задание для смелых: написать преобразователь скобочной формы в дерево
+  - найти такие неполные деревья, где есть несколько подряд идущих слов, не попавших в дерево. дополнительное ограничение: только в одном месте
+  - исследовать деревья, в которых остались несоединенными 2+ w__Sentence
+     This paper explores how much linguistically motivated rules can contribute to the task.
 
 - Write a function that translates a number like 12345.67 to "twelve thousand three hundred forty-five dollars and sixty-seven cents."
 

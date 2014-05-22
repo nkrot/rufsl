@@ -1,0 +1,177 @@
+#!/usr/bin/env ruby
+
+# # #
+# USAGE: display_parse_tree
+# or
+# USAGE: display_parse_tree sent.en.parsed
+# the result is expected to be similar to sent.en.parsed.tree
+#
+
+# TASK 1: give some more english trees to practice tree to hash transformation. Vertical trees are easier to transform
+# 
+
+# ex: Wessen gedenkt man am 25. August ?
+# TASK 2: transform this to a hash/array structure
+old_parsing1 = \
+   ["w_complete_sentence",
+       ["w_cl_fin",
+		   ["w_ng_d",
+              ["Wessen_PISG_0"],
+		    "w_cl_fin",
+              ["gedenkt_VLPI3S_1",
+		       "w_ng_io_n", 
+			      ["w_ng_n",
+                     ["man_PSSN_2"],
+				   "w_ng_io", 
+                     ["w_ap_ng",
+                        ["am_APPD_3",
+                         "w_ncmsd",
+                           ["25._ZO_4", "August_NCMSD_5" ]]]]]],
+	   "?_?_6"]]
+
+parsing1 = {
+  "TOP" => [ {"w_complete_sentence" => 
+              [ {"w_cl_fin" => 
+                  [ {"w_ng_d"   => 
+                      ["Wessen_PISG_0"] },
+                    {"w_cl_fin" => 
+                      [ "gedenkt_VLPI3S_1",
+                        { "w_ng_io_n" => 
+                          [ { "w_ng_n" => 
+                              ["man_PSSN_2"]},
+                            { "w_ng_io" => 
+                              [ {"w_ap_ng" => 
+                                  [ "am_APPD_3",
+                                    {"w_ncmsd" => 
+                                      ["25._ZO_4",
+                                       "August_NCMSD_5" ]}]}]}]}]}]},
+                "?_?_6" ]}]}
+
+# ex: I love apples and pears that my grandparents grow in their garden
+# old representration, as a system of embedded arrays
+old_parsing2 = \
+   ["w__Sentence",
+      ["I_PP1A",
+       "w__VB_XX",
+          ["love_VB",
+           "w_NNS_HP_CC",
+             ["apples_NNS",
+              "and_CC",
+              "pears_NNS"]]],
+    "that_CS",
+    "w__Sentence",
+       ["w_NNS",
+           ["my_PP$",
+            "grandparents_NNS"],
+        "w__VB_XX",
+           ["grow_VB",
+            "w__IN_N",
+               ["in_IN",
+                "w_NN",
+                   ["their_PP$",
+                    "garden_NN"]]]]]
+
+# new representation
+parsing2 = {
+  "TOP" => [
+            { "w__Sentence" => [ "I_PP1A",
+                                 {"w__VB_XX" => [ "love_VB",
+                                                  { "w_NNS_HP_CC" => [ "apples_NNS", "and_CC", "pears_NNS"] }]}]},
+            "that_CS",
+            { "w__Sentence" => [ {"w_NNS"    => [ "my_PP$", "grandparents_NNS"] },
+                                 {"w__VB_XX" => [ "grow_VB",
+                                                  { "w__IN_N" => [ "in_IN",
+                                                                   { "w_NN" => [ "their_PP$", "garden_NN"]}]}]}]}]
+ }
+
+
+# this task should be attempted after display_parse_tree was done
+# it is important to understand that this method should return a Hash
+#
+# Return:
+#  Hash
+def parse_bracketed_ps tokens, name="TOP"
+  children = []
+  tree = {name => children}
+
+  if tokens.is_a? String
+    tokens = tokens.split
+  end
+
+#  puts "TOKENS: #{tokens.inspect}"
+
+  while !tokens.empty?
+    current = tokens.shift
+
+    case current
+    when '(('
+      # subtree begins (children of the most recently processed entity)
+      children << parse_bracketed_ps(tokens, children.pop)
+
+    when '))'
+      # done parsing current subtree
+      break
+
+    else
+      # entity: either word or node name
+      children << current
+    end
+  end
+
+  tree
+end
+
+def indent n
+  " " * n * 3
+end
+
+# TASK:
+# 1. first keep special node TOP in the output.
+# 2. modify the code to avoid showing special node TOP
+# 3. modify the code to avoid initial \n
+def show_parsing tree, level=0
+  res = ""
+
+  tree.each do |name, children|
+    unless name == "TOP"
+      # node name
+      res << "\n" + indent(level) + name
+      # all children are indented one level more to the right
+      level += 1 # it is safe to do it as the hash <tree> contains only one key=>value pair
+    end
+
+    children.each do |child|
+      if child.is_a? Hash
+        res << show_parsing(child, level)
+      else
+        res << "\n" + indent(level) + child
+      end
+    end
+  end
+
+  if level == 0
+    res.sub!(/^\n/, "")
+  end
+
+  res
+end
+
+
+[parsing1, parsing2].each do |parsing|
+  puts show_parsing parsing
+end
+
+######################################################################
+
+puts '***** PART 2 *****'
+
+while line = gets
+  line.chomp!
+
+  parsing = parse_bracketed_ps line
+#  puts parsing.inspect
+
+  puts show_parsing parsing
+end
+
+
