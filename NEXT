@@ -1,17 +1,15 @@
 
-lesson.36
-==========
-- Merge sort
-
 lesson.37
 =========
-- representing a parse tree with a Hash (similar to lesson.35)
+- merge sort: analyse my in-place implementation (from lesson.36/merge_sort)
+  TODO: add analytical tasks? show how to debug
 - solve the task of Polina
 
 lesson.38
 =========
-- solve the task of someone else?
+- representing a parse tree with a Hash (similar to lesson.35)
 - solve a task on parse tree (find something, count something) SEE BELOW
+- solve the task of someone else?
 
 lesson.39 - bruteforcing with recursion
 =========
@@ -24,7 +22,7 @@ lesson.39 - bruteforcing with recursion
 - representing a parse tree with a special class ParseTree
 
 чтиво по рекурсии
----------------
+------------------
 http://cs.stackexchange.com/questions/1418/when-to-use-recursion
 http://en.wikipedia.org/wiki/Divide_and_conquer_algorithm
 
@@ -42,7 +40,7 @@ http://www-cs-faculty.stanford.edu/~eroberts/courses/cs106b/chapters/05-intro-to
 
 
 Задачки на рекурсивные структуры данных
--------------------
+----------------------------------------
 - посчитать что-нибудь в дереве. например, количество существительных или найти самое длинное слово в дереве. Если два одной длины, выдать то, что в более левом поддереве.  pattern Visitor?
 
 - собрать узлы верхнего уровня. и посчитать.
