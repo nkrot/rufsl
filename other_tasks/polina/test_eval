@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+
+a = [1,2,3,4]
+
+puts "Initial state of the array"
+puts a.inspect
+
+str = "a.clear"
+
+puts "Will run eval(#{a})"
+
+eval(str)
+
+puts "The final state of the array"
+puts a.inspect
+
+if a.empty?
+  puts "You data is gone! haha"
+end
