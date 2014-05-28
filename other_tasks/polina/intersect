@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 # # #
-# USAGE: ./intersect eng_negative_effect_translated_ch noun_negative.srcsmd
+# USAGE: ./intersect noun_negative.srcsmd [eng_negative_effect_translated_ch]
 #
 # use diff -b to compare the output with the original file, ignoring space chars
 
@@ -13,67 +13,27 @@ def suitable? line
   line !~ /^\s*#/ && line =~ /\S/
 end
 
-ch_word2ch_list = {}
+# load spec dict into an array
+known_words = File.read(ARGV.shift)
+  .split(/\n/)
+  .map { |word| word.chomp.strip }
+  .select { |word| suitable? word }
 
-# the first file is expected to contain pairs:
-#  English \tab ["Chinese1", "Chinese2", "Chinese3", ...]
-eng_ch_data = File.read(ARGV.shift)
+#puts known_words.inspect
 
-eng_ch_dict = eng_ch_data.split(/\n/).map do |line|
+# read the file with english chinese correspondences and from the chinese part
+# remove words that are in known_words
+while line = gets
   line.chomp!
 
   if suitable?(line)
-    eng_word, ch_data = line.split(/ *\t */)
-#    puts line
+    en_word, ch_data = line.split(/ *\t */)
+    ch_words = JSON.parse(ch_data) # same as: eval(ch_data) !!! TODO: explain
 
-    # now convert the string form Array#inspect to array
-    # method 1: using eval
-    # TODO: investigate if it recognizes multidimentional structures
-    ch_words_eval = eval(ch_data)
-#    puts data_eval.class
-#    puts data_eval.inspect
+    # delete words that are also in known_words
+    ch_words = ch_words - known_words # !!! TODO: explain set operations, show Venn diagrams
 
-    # method 2: using json
-    # TODO: investigate if it recognizes multidimentional structures, including Arrays of Hashes, etc
-    # TODO: does Array#inspect produces serialization expected by json? or should JSON.serialize be used?
-    ch_words = JSON.parse(ch_data) # the same as the above
-
-#    puts data_eval == data # all equal
-
-    # lookup table, for faster access
-    #  chinese_word => [ch_words_1, ch_words_2]
-    # where ch_words_1 and ch_words_2 are arrays.
-    ch_words.each do |word|
-      ch_word2ch_list[word] = ch_words
-    end
-
-    [eng_word, ch_words]
+    puts en_word + "\t" + ch_words.inspect
   end
 end
 
-#puts eng_ch_dict.inspect
-
-# the rest of the cmd arguments is expected to contain word in spec dict format
-while word = gets
-  word.chomp!
-
-  if suitable? word
-#    puts word
-    if ch_word2ch_list[word]
-#      puts "<" + ch_word2ch_list[word].inspect
-      ch_word2ch_list[word].delete(word)
-#      puts ">" + ch_word2ch_list[word].inspect
-    else
-#      puts "Word not found: '#{word}'"
-    end
-  end
-end
-
-eng_ch_dict.each do |en, ch_words|
-  puts en + "\t" + ch_words.inspect
-end
-
-
-# TODO
-# what is the array is empty? see
-# embolization 	 []
