@@ -1,0 +1,38 @@
+[in mergesort] Initial array: [7, 2, 0, 6, 9, 0]
+[in mergesort] Split as: [7, 2, 0] and [6, 9, 0]
+   [in mergesort] Initial array: [7, 2, 0]
+   [in mergesort] Split as: [7] and [2, 0]
+      [in mergesort] Initial array: [7]
+      [in mergesort] Base case reached: [7] is sorted! Returning
+      [in mergesort] Initial array: [2, 0]
+      [in mergesort] Split as: [2] and [0]
+         [in mergesort] Initial array: [2]
+         [in mergesort] Base case reached: [2] is sorted! Returning
+         [in mergesort] Initial array: [0]
+         [in mergesort] Base case reached: [0] is sorted! Returning
+      [in merge] Merging arrays: [2] and [0]
+      [in merge] Merged into: [0, 2]. Returning
+      [in mergesort] Returning merged: [0, 2]
+   [in merge] Merging arrays: [7] and [0, 2]
+   [in merge] Merged into: [0, 2, 7]. Returning
+   [in mergesort] Returning merged: [0, 2, 7]
+   [in mergesort] Initial array: [6, 9, 0]
+   [in mergesort] Split as: [6] and [9, 0]
+      [in mergesort] Initial array: [6]
+      [in mergesort] Base case reached: [6] is sorted! Returning
+      [in mergesort] Initial array: [9, 0]
+      [in mergesort] Split as: [9] and [0]
+         [in mergesort] Initial array: [9]
+         [in mergesort] Base case reached: [9] is sorted! Returning
+         [in mergesort] Initial array: [0]
+         [in mergesort] Base case reached: [0] is sorted! Returning
+      [in merge] Merging arrays: [9] and [0]
+      [in merge] Merged into: [0, 9]. Returning
+      [in mergesort] Returning merged: [0, 9]
+   [in merge] Merging arrays: [6] and [0, 9]
+   [in merge] Merged into: [0, 6, 9]. Returning
+   [in mergesort] Returning merged: [0, 6, 9]
+[in merge] Merging arrays: [0, 2, 7] and [0, 6, 9]
+[in merge] Merged into: [0, 0, 2, 6, 7, 9]. Returning
+[in mergesort] Returning merged: [0, 0, 2, 6, 7, 9]
+[0, 0, 2, 6, 7, 9]

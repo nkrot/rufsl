@@ -9,7 +9,7 @@ def mergesort(array)
   mid = array.size / 2
 #  puts mid.inspect
   left  = array[0, mid]
-  right = array[mid, array.size]
+  right = array[mid, array.size] # krot. this works but is not correct. see ri Array#[]
   merge(mergesort(left), mergesort(right))
 end
 
