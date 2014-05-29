@@ -1,0 +1,65 @@
+#!/usr/bin/env ruby
+# -*- coding: utf-8 -*-
+
+#
+# USAGE: dict_intersect noun_negative.srcsmd eng_negative_effect_translated_ch
+#
+
+# load library JSON
+require 'json'
+
+# сначала надо загрузить словарь noun_negative в хэш
+noun_negative_ch = {}
+
+# the first cmd argument is supposed to be spec dict
+fname = ARGV.shift
+lines = File.readlines(fname)
+
+#puts lines.inspect
+# delete \r\n
+lines.each{|item| item.gsub!(/\r?\n/,"")} # note that "\r\n" will not work, as it is a String, not Regexp
+
+# delete comments
+lines.each{|item| item.gsub!(/^#.*/,"")}
+# delete empty lines
+lines.delete("")
+#puts lines.inspect
+
+# Hash is faster than Array
+lines.each{|word | noun_negative_ch[word] = nil }
+#puts noun_negative_ch.inspect
+
+# now we read the file eng_negative_effect_translated_ch line by line
+# and remove from the right part the words that are also in noun_negative_ch hash
+# and output shortened data in the format identic to the original format
+while line = gets
+  line.chomp!
+
+  #	puts "the original line was "
+  #	puts line
+
+  # we have to pick up the Chinese part of this line:
+  # ache 	 ["痛", "酸痛", "疼", "疼痛"]
+  eng_word, ch_trans = line.split("\t")
+  #	puts eng_word
+  #	puts ch_trans
+
+  # ch_trans is a string
+  # we should make it an array
+  ch_trans_arr = JSON.parse(ch_trans)
+  #	puts ch_trans_arr.inspect
+  
+  # now we check whether the dict in noun_negative_ch
+  # already includes words, translated from English
+  ch_trans_arr.map!{ |word| 
+    if noun_negative_ch.include? word
+      nil
+    else
+      word
+    end
+  }
+  ch_trans_arr.delete(nil)
+  
+  puts eng_word + "\t" + ch_trans_arr.inspect
+end
+

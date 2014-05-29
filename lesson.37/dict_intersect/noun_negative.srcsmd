@@ -1,0 +1,193 @@
+#
+# Dictionary of nouns with negative meaning (used in QT_Advantage or QT_Disadvantage)
+#
+# used in nli and qa.
+# 24/08/2010 by A.Anisimovich
+#
+# closure - ?
+# 关闭
+嘶哑
+着火
+过载
+塌方
+失稳
+关断
+过热
+腐蚀
+侵害
+#flood
+水灾
+
+#
+# 2013.11.12, added by P.Dovnar
+# during working on QT_Failure
+#
+
+破产
+减弱
+衰退
+衰弱
+倒闭
+患难
+不和
+# danger
+危及
+危险性
+险情
+# risk
+危险
+险情
+冒险
+危险
+# damage
+损伤
+毁损
+伤害
+毁坏
+# destruction
+拆毁
+灭绝
+穷尽
+毁灭
+毁坏
+衰竭
+消灭
+# breakage
+弄破
+破缺
+#breakdown
+混乱
+中断
+破裂
+耗损
+# cracking
+开裂
+裂缝
+折断
+破解
+皲裂
+缺口
+裂隙
+裂纹
+裂口
+裂开
+# crash, collapse
+大跌
+倒塌
+垮塌
+垮台
+崩溃
+坍塌
+猛落
+坍缩
+断裂
+断交
+短路
+# block
+堵塞
+# leakage
+渗漏
+流失
+漏泄
+外流
+溢出
+漏出
+流出
+漏水
+漏电
+渗出
+# loss
+丧失
+丢失
+损耗
+去世
+亏损
+#friction
+摩擦
+冲突
+磨损
+磨擦
+# noise
+噪声
+噪音
+干扰
+响声
+吵闹声
+杂音
+喧闹
+烦扰
+# scratch
+擦伤
+# hole
+凹陷
+凹痕
+压瘪
+# mistake
+误会
+过错
+谬误
+差错
+误差
+过失
+犯错
+失误
+误区
+偏差
+
+# complaint
+牢骚
+
+# bother
+忙乱
+烦扰
+困扰
+烦闷
+
+# explosure
+爆炸
+
+#
+# 2010.12.24 added by Stolpovskaya
+#
+
+病毒
+死亡
+感染
+危机
+风险
+疲劳
+锈蚀
+衰老
+
+#
+# 2010.12.23 added by Stolpovskaya
+#
+
+污染
+毒性
+过敏
+
+#
+# 2010.12.12 added by Stolpovskaya
+#
+
+危害
+
+#
+# 2010.12.16 added by Stolpovskaya
+#
+
+损失
+
+错误
+复杂性
+坏死
+病变
+致病性
+恶化
+破坏
+损坏
+损害
+故障
+致病性
+后果

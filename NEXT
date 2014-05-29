@@ -4,6 +4,9 @@ lesson.37
 - merge sort: analyse my in-place implementation (from lesson.36/merge_sort)
   TODO: add analytical tasks? show how to debug
 - solve the task of Polina
+  - theory: how to recover object from string representation thereof (serialization/deserialization)
+  - theory: set operations (with Arrays)
+- ОБСУДИТЬ: выбрать задачу для bruteforcing with recursion из magic_squares и 4 queens
 
 lesson.38
 =========
@@ -14,8 +17,8 @@ lesson.38
 lesson.39 - bruteforcing with recursion
 =========
 - recursion as a means of bruteforcing an algorithm
-  - solving magic squares
-  - recursive 4 queens problem
+  - solving magic square
+  - recursive 8 queens problem
   - recursive sudoku solver
 - что выбрать для code review 4?
 
@@ -70,6 +73,8 @@ http://www-cs-faculty.stanford.edu/~eroberts/courses/cs106b/chapters/05-intro-to
   - найти такие неполные деревья, где есть несколько подряд идущих слов, не попавших в дерево. дополнительное ограничение: только в одном месте
   - исследовать деревья, в которых остались несоединенными 2+ w__Sentence
      This paper explores how much linguistically motivated rules can contribute to the task.
+
+  - написать свой экстрактор (заодно рассказать, как работает экстрактор в просао1)	?
 
 - Write a function that translates a number like 12345.67 to "twelve thousand three hundred forty-five dollars and sixty-seven cents."
 
