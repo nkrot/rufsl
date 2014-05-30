@@ -1,18 +1,17 @@
 
-lesson.37
+lesson.37 -- DONE
 =========
-- merge sort: analyse my in-place implementation (from lesson.36/merge_sort)
-  TODO: add analytical tasks? show how to debug
-- solve the task of Polina
+- [DEFERRED] merge sort: analyse my in-place implementation (from lesson.36/merge_sort)
+- [SRARTED] solve the task of Polina
   - theory: how to recover object from string representation thereof (serialization/deserialization)
   - theory: set operations (with Arrays)
 - ОБСУДИТЬ: выбрать задачу для bruteforcing with recursion из magic_squares и 4 queens
 
-lesson.38
+lesson.38 -- NEXT
 =========
 - representing a parse tree with a Hash (similar to lesson.35)
-- solve a task on parse tree (find something, count something) SEE BELOW
 - solve the task of someone else?
+- [maybe lesson.39] solve a task on parse tree (find something, count something) SEE BELOW
 
 lesson.39 - bruteforcing with recursion
 =========
