@@ -1,0 +1,51 @@
+#!/usr/bin/env ruby
+# -*- coding: utf-8; -*-
+
+require 'json'
+
+h = {
+  :hello  => ["Hallo", ["Hola", "Buenos días"]],
+  "world" => ["Welt", "Mundo"]
+}
+
+# 
+# #inspect and #to_json are similar but not identical
+# JSON can not handle Symbol and Symbol but transforms it to String
+# If you work with String/NUmeric/Array/Hash only, both methods
+# are identical
+#
+
+puts "Conventional inspect:"
+puts h.inspect
+
+puts "JSON"
+puts h.to_json
+
+puts "**** Restoration ****"
+
+puts "With conventional eval:"
+h_restored_with_eval = eval(h.inspect)
+puts " KEYS: #{h_restored_with_eval.keys.inspect}"
+puts " VALUES: #{h_restored_with_eval.values.inspect}"
+h_restored_with_eval.each do |k,v|
+  puts "  KEY: #{k}"
+  puts "  VALUE: #{v.join(",")}"
+end
+
+puts "\nWith JSON.parse:"
+h_restored_with_json = JSON.parse h.to_json
+puts " KEYS: #{h_restored_with_json.keys.inspect}"
+puts " VALUES: #{h_restored_with_json.values.inspect}"
+h_restored_with_json.each do |k,v|
+  puts "  KEY: #{k}"
+  puts "  VALUE: #{v.join(",")}"
+end
+
+#puts "\nWith JSON.parse:"
+#h_restored_with_eval = JSON.parse h.inspect # FAILS, can not recognize Symbols
+#puts " KEYS: #{h_restored_with_eval.keys.inspect}"
+#puts " VALUES: #{h_restored_with_eval.values.inspect}"
+#h_restored_with_eval.each do |k,v|
+#  puts "  KEY: #{k}"
+#  puts "  VALUE: #{v.join(",")}"
+#end
