@@ -1,0 +1,191 @@
+#!/usr/bin/env ruby
+
+# # #
+#
+# TODO:
+# 1. a part of the task, add --help help
+# 2. maybe we want also a simple script that extracts {F,U}->S testcases from the tc report. Can it be given as homework assignment?
+#
+# USAGE: ThisScript full_report.tc testcases.tc 
+# USAGE: ThisScript brief_report.tc testcases.tc 
+#
+# in the full report, identify F->S testcases explicitly
+# in the brief report identify by subtracting set of ->F testcases from 
+#  the set of all testcases in testcases.tc
+#  as this behaviour is dangerous (the logic can fail), perhaps turning it on
+#  is better done by an option, not but default.
+#
+# in order to identify testcases, use combination of id and input fields
+#
+# what is the result?
+# output testcases.tc in which
+# --autofix -- update reqstate to SUCCESS
+# by default mark somehow such testcases
+#   #NEW#reqstate	SUCCESS
+#
+# 
+
+Encoding::default_external = 'Windows-1252'
+
+require 'optparse'
+
+OptionParser.new do |opts|
+  opts.banner = "
+TODO: the script does what it does :) the worst description ever
+USAGE: #{File.basename($0)} [OPTIONS] tc_report_file tc_file
+OPTIONS:
+"
+
+  opts.on('-h', '--help', 'display this message and exit') do
+    puts opts
+    exit 0
+  end
+
+  opts.separator " "
+
+end.parse!
+
+######################################################################
+
+@key_fields = ["id", "input"]
+@tc_parse_re = /^(input|id|state|reqstate)\s(.+)/i
+
+######################################################################
+
+def make_key data
+  key = ""
+
+  @key_fields.each do |field|
+    unless data.key? field
+      msg = "Not enough data to build a key. Need #{@key_fields}.join(', ') but have not found #{field}"
+      if field == 'id'
+        data ['id'] = "UNKNOWNID"
+        $stderr.puts msg
+        $stderr.puts "Assuming fake value #{data['id']}"
+      else
+        raise msg
+      end
+    end
+
+    key << "@" << data[field]
+  end
+
+  key
+end
+
+######################################################################
+
+def make_key_from_testcase(tc)
+  testcase_data = {}
+
+  lines = tc.split(/\n/)
+  lines.each do |line|
+    if line =~ @tc_parse_re
+      add_testcase_data(testcase_data, $1, $2, -1)
+    end
+  end
+
+  unless testcase_data.empty?
+    make_key testcase_data
+  end
+end
+
+######################################################################
+
+def update_reqstate(tc, new_reqstate)
+  lines = tc.split(/\n/)
+  lines.map! do |line|
+    if line =~ /^reqstate/
+      line = "reqstate\t#{new_reqstate}"
+    end
+    line
+  end
+  lines.join("\n")
+end
+
+######################################################################
+
+def add_testcase_data storage, key, value, fnr=0
+    key = key.downcase
+
+    if storage.key? key
+      raise "ERROR: a testcase at FNR=#{fnr} contains duplicate key: #{key}"
+    end
+
+    storage[key] = value
+end
+
+
+######################################################################
+# parse the report file and extract relevant data
+# 1. use ID+INPUT to identify the testcase
+# 2. we only need data for testcases that changed their state
+#    from UNKNOWN/FAILED to SUCCESS
+#
+# TODO: alternatively, could use LDBUnitTest library for parsing testcases
+
+# key   = ID+INPUT
+# value = new state, if changed
+selected_testcases = {}
+
+# variables used for parsing the report file
+testcase_data = {}
+fnr = 0
+
+report_file = ARGV.shift
+File.readlines(report_file).each do |line|
+  fnr += 1
+
+  case line
+  when /^case_start/
+    testcase_data.clear
+
+  when @tc_parse_re
+    add_testcase_data(testcase_data, $1, $2, fnr)
+
+  when /^case_end/
+    key = make_key(testcase_data)
+    if selected_testcases.key? key
+      msg = "More than one testcase in the report file #{report_file} have equal values in the fields: #{@key_fields.join(', ')}"
+      msg << ":\n#{key}"
+      raise msg # TODO: now looks cryptic. should use raw values of the relevant fields
+    end
+    if testcase_data['state'] == 'SUCCESS' && testcase_data['state'] != testcase_data['reqstate']
+      selected_testcases[key] = testcase_data['state']
+    end
+  end
+  
+#  puts ">>" + line
+end
+
+#puts selected_testcases.inspect
+
+$stderr.puts "There are #{selected_testcases.length} testcases that need changed their state and will be updated"
+
+if selected_testcases.length == 0
+  $stderr.puts "Nothing to do. Exiting. Good bye!"
+  exit 0
+end
+
+######################################################################
+
+# TODO: remove leading \n that results from splitting by case_end
+while tc = gets("case_end")
+#  puts tc
+#  puts "====="
+
+  if tc =~ /^case_end/
+    key = make_key_from_testcase(tc)
+#    puts key
+
+    if selected_testcases.include? key
+#      puts tc
+#      puts "====="
+      tc = update_reqstate(tc, selected_testcases[key])
+    end
+  end
+
+  puts tc
+end
+
+
