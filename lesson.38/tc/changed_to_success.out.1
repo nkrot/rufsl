@@ -1,0 +1,164 @@
+
+
+case_start
+source file	ldbsrc-English/testcases/qa/tg_syn_qa_oa_Failure.tc
+reqstate	FAILED
+state	SUCCESS
+input	Literature indicates that elevated temperatures and time will result in destruction of carotenoids
+etalon_start
+...
+QA	carotenoids_NNS	QT_Failure_NOTAG	ADV_2_6_2_NOTAG a2_1_NOTAG ext_else_NOTAG ext_2_else_CD AAd_25_NOTAG fe_3_else_NOTAG from_Disadvantage_f2_else_NOTAG fe_3_NOTAG	destruction_NN due_to_IN elevated_JJed temperature_NN
+QA	carotenoids_NNS	QT_Failure_NOTAG	ADV_2_6_2_NOTAG a2_1_NOTAG ext_else_NOTAG ext_2_else_CD AAd_25_NOTAG fe_3_else_NOTAG from_Disadvantage_f2_else_NOTAG fe_3_NOTAG	destruction_NN due_to_IN elevated_JJed time_NN
+etalon_end
+actual_start
+QA	elevated_JJed	QT_OfType_NOTAG	SNP_1_NOTAG TYPE_3_NOTAG fe_3_NOTAG	elevated_JJed temperature_NN
+QA	temperatures_NNS	QT_Type_NOTAG	SNP_1_NOTAG TYPE_3_NOTAG fe_3_NOTAG	elevated_JJed temperature_NN
+QA	carotenoids_NNS	QT_Failure_NOTAG	Failure_ngce_4_NOTAG a4_else_NOTAG AAd_23_NOTAG AAd_23_NOTAG fe_3_NOTAG	destruction_NN due_to_IN elevated_JJed temperature_NN
+QA	carotenoids_NNS	QT_Failure_NOTAG	Failure_ngce_4_NOTAG a4_else_NOTAG AAd_23_NOTAG AAd_23_NOTAG fe_3_NOTAG	destruction_NN due_to_IN elevated_JJed time_NN
+QA	destruction_NN	QT_Cause_NOTAG	NGCE_CAUSE_NG_NOTAG fe_3_else_NOTAG m4_a3_pers_NOTAG fe_3_NOTAG	elevated_JJed temperature_NN
+QA	destruction_NN	QT_Cause_NOTAG	NGCE_CAUSE_NG_NOTAG fe_3_else_NOTAG m4_a3_pers_NOTAG fe_3_NOTAG	elevated_JJed time_NN
+QA	temperatures_NNS	QT_Effect_NOTAG	NGCE_EFF_NG_NOTAG m4_a3_pers_NOTAG e2fe_2_NOTAG fe_3_NOTAG	destruction_NN of_IN carotenoid_NN
+QA	time_NN	QT_Effect_NOTAG	NGCE_EFF_NG_NOTAG m4_a3_pers_NOTAG e2fe_2_NOTAG fe_3_NOTAG	destruction_NN of_IN carotenoid_NN
+QA	temperatures_NNS	QT_Function_NOTAG	SAO_3_NOTAG m4_a3_pers_NOTAG fe_3_NOTAG	destruction_NN of_IN carotenoid_NN
+QA	time_NN	QT_Function_NOTAG	SAO_3_NOTAG m4_a3_pers_NOTAG fe_3_NOTAG	destruction_NN of_IN carotenoid_NN
+QA	indicate_VB	QT_Subject_NOTAG	SAO_METHOD_12_NOTAG m_2_NOTAG a_ext_3_NOTAG ext_else_NOTAG ext_2_else_CD fe_2_NOTAG	literature_NN
+QA	temperatures_NNS	QT_Disadvantage_NOTAG	ADV_2_6_2_NOTAG a_ext_2_NOTAG ext_else_NOTAG ext_2_else_CD fe_3_else_NOTAG fe_3_NOTAG	destruction_NN of_IN carotenoid_NN
+QA	time_NN	QT_Disadvantage_NOTAG	ADV_2_6_2_NOTAG a_ext_2_NOTAG ext_else_NOTAG ext_2_else_CD fe_3_else_NOTAG fe_3_NOTAG	destruction_NN of_IN carotenoid_NN
+QA	destruction_NN	QT_Subject_NOTAG	SAO_METHOD_12_1_NOTAG m_4_NOTAG a_ext_2_NOTAG ext_else_NOTAG ext_2_else_CD fe_3_NOTAG	elevated_JJed temperature_NN
+QA	destruction_NN	QT_Subject_NOTAG	SAO_METHOD_12_1_NOTAG m_4_NOTAG a_ext_2_NOTAG ext_else_NOTAG ext_2_else_CD fe_3_NOTAG	time_NN
+QA	in_IN	QT_IndirectObject_NOTAG	SAO_IO_1_NOTAG a_ext_3_NOTAG ext_else_NOTAG ext_2_else_CD fe_3_NOTAG	in_IN destruction_NN of_IN carotenoid_NN
+QA	result_VB	QT_Object_NOTAG	SAO_OBJ_2_NOTAG a_ext_3_NOTAG ext_else_NOTAG ext_2_else_CD fe_2_NOTAG	destruction_NN of_IN carotenoid_NN
+QA	destruction_NN	QT_Object_NOTAG	SAO_OBJ_1_NOTAG a_ext_3_NOTAG ext_else_NOTAG ext_2_else_CD fe_3_NOTAG	carotenoid_NN
+actual_end
+diff_start
+= QA	carotenoids_NNS	QT_Failure_NOTAG	ADV_2_6_2_NOTAG a2_1_NOTAG ext_else_NOTAG ext_2_else_CD AAd_25_NOTAG fe_3_else_NOTAG from_Disadvantage_f2_else_NOTAG fe_3_NOTAG	destruction_NN due_to_IN elevated_JJed temperature_NN
+= QA	carotenoids_NNS	QT_Failure_NOTAG	ADV_2_6_2_NOTAG a2_1_NOTAG ext_else_NOTAG ext_2_else_CD AAd_25_NOTAG fe_3_else_NOTAG from_Disadvantage_f2_else_NOTAG fe_3_NOTAG	destruction_NN due_to_IN elevated_JJed time_NN
+> QA	elevated_JJed	QT_OfType_NOTAG	SNP_1_NOTAG TYPE_3_NOTAG fe_3_NOTAG	elevated_JJed temperature_NN
+> QA	temperatures_NNS	QT_Type_NOTAG	SNP_1_NOTAG TYPE_3_NOTAG fe_3_NOTAG	elevated_JJed temperature_NN
+> QA	destruction_NN	QT_Cause_NOTAG	NGCE_CAUSE_NG_NOTAG fe_3_else_NOTAG m4_a3_pers_NOTAG fe_3_NOTAG	elevated_JJed temperature_NN
+> QA	destruction_NN	QT_Cause_NOTAG	NGCE_CAUSE_NG_NOTAG fe_3_else_NOTAG m4_a3_pers_NOTAG fe_3_NOTAG	elevated_JJed time_NN
+> QA	temperatures_NNS	QT_Effect_NOTAG	NGCE_EFF_NG_NOTAG m4_a3_pers_NOTAG e2fe_2_NOTAG fe_3_NOTAG	destruction_NN of_IN carotenoid_NN
+> QA	time_NN	QT_Effect_NOTAG	NGCE_EFF_NG_NOTAG m4_a3_pers_NOTAG e2fe_2_NOTAG fe_3_NOTAG	destruction_NN of_IN carotenoid_NN
+> QA	temperatures_NNS	QT_Function_NOTAG	SAO_3_NOTAG m4_a3_pers_NOTAG fe_3_NOTAG	destruction_NN of_IN carotenoid_NN
+> QA	time_NN	QT_Function_NOTAG	SAO_3_NOTAG m4_a3_pers_NOTAG fe_3_NOTAG	destruction_NN of_IN carotenoid_NN
+> QA	indicate_VB	QT_Subject_NOTAG	SAO_METHOD_12_NOTAG m_2_NOTAG a_ext_3_NOTAG ext_else_NOTAG ext_2_else_CD fe_2_NOTAG	literature_NN
+> QA	temperatures_NNS	QT_Disadvantage_NOTAG	ADV_2_6_2_NOTAG a_ext_2_NOTAG ext_else_NOTAG ext_2_else_CD fe_3_else_NOTAG fe_3_NOTAG	destruction_NN of_IN carotenoid_NN
+> QA	time_NN	QT_Disadvantage_NOTAG	ADV_2_6_2_NOTAG a_ext_2_NOTAG ext_else_NOTAG ext_2_else_CD fe_3_else_NOTAG fe_3_NOTAG	destruction_NN of_IN carotenoid_NN
+> QA	destruction_NN	QT_Subject_NOTAG	SAO_METHOD_12_1_NOTAG m_4_NOTAG a_ext_2_NOTAG ext_else_NOTAG ext_2_else_CD fe_3_NOTAG	elevated_JJed temperature_NN
+> QA	destruction_NN	QT_Subject_NOTAG	SAO_METHOD_12_1_NOTAG m_4_NOTAG a_ext_2_NOTAG ext_else_NOTAG ext_2_else_CD fe_3_NOTAG	time_NN
+> QA	in_IN	QT_IndirectObject_NOTAG	SAO_IO_1_NOTAG a_ext_3_NOTAG ext_else_NOTAG ext_2_else_CD fe_3_NOTAG	in_IN destruction_NN of_IN carotenoid_NN
+> QA	result_VB	QT_Object_NOTAG	SAO_OBJ_2_NOTAG a_ext_3_NOTAG ext_else_NOTAG ext_2_else_CD fe_2_NOTAG	destruction_NN of_IN carotenoid_NN
+> QA	destruction_NN	QT_Object_NOTAG	SAO_OBJ_1_NOTAG a_ext_3_NOTAG ext_else_NOTAG ext_2_else_CD fe_3_NOTAG	carotenoid_NN
+diff_end
+case_end
+
+
+case_start
+source file	ldbsrc-English/testcases/qa/tg_syn_qa_oa_Failure.tc
+reqstate	FAILED
+state	SUCCESS
+id	from_Disadvantage_FfD_3_0a_NOTAG
+input	Another problem could be the failure of the vital cooling fan, which allows components in the power supply to overheat.
+etalon_start
+...
+QA	components_NNS	QT_Failure_NOTAG	SAO_METHOD_12_NOTAG m4_adv_NOTAG a2_1_NOTAG ext_else_NOTAG ext_2_else_CD AAd_25_NOTAG fe_3_else_NOTAG from_Disadvantage_FfD_3_0a_NOTAG fail_1_NOTAG fe_3_NOTAG	overheating_NN due_to_IN failure_NN of_IN vital_JJ cooling_NN fan_NN
+etalon_end
+actual_start
+QA	power_NN	QT_OfType_NOTAG	SNP_1_NOTAG TYPE_3_NOTAG fe_3_NOTAG	power_NN supply_NN
+QA	supply_NN	QT_Type_NOTAG	SNP_1_NOTAG TYPE_3_NOTAG fe_3_NOTAG	power_NN supply_NN
+QA	overheating_NN	QT_Cause_NOTAG	NGCE_CAUSE_NG_NOTAG fe_3_else_NOTAG m4_a3_pers_NOTAG fe_3_NOTAG	failure_NN of_IN vital_JJ cooling_NN fan_NN
+QA	failure_NN	QT_Effect_NOTAG	NGCE_EFF_NG_NOTAG m4_a3_pers_NOTAG e2fe_2_NOTAG fe_3_NOTAG	overheating_NN
+QA	components_NNS	QT_Function_NOTAG	SAO_1_NOTAG a4_else_NOTAG AAd_25_NOTAG fe_3_NOTAG	overheating_NN
+QA	fan_NN	QT_Failure_NOTAG	SAO_ADV_1b_f_rev_NOTAG a4_else_NOTAG AAd_23_NOTAG fe_3_NOTAG	failure_NN as_IN problem_NN
+QA	overheat_VB	QT_Subject_NOTAG	SAO_METHOD_12_NOTAG m_2_NOTAG a_ext_3_NOTAG ext_2_NOTAG AAd_23_NOTAG fe_2_NOTAG	component_NN in_IN power_NN supply_NN
+QA	components_NNS	QT_Failure_NOTAG	SAO_METHOD_12_NOTAG m4_adv_NOTAG a_ext_2_NOTAG ext_else_NOTAG ext_2_else_CD d2fe_1_NOTAG from_Disadvantage_FfD_3_0a_NOTAG fail_1b_NOTAG f3_else_NOTAG fe_3_NOTAG	overheating_NN due_to_IN failure_NN of_IN vital_JJ cooling_NN fan_NN
+QA	failure_NN	QT_Disadvantage_NOTAG	SAO_METHOD_12_NOTAG m4_adv_NOTAG a_ext_2_NOTAG ext_else_NOTAG ext_2_else_CD fe_3_else_NOTAG fe_3_NOTAG	overheating_NN of_IN component_NN
+QA	allow_VB	QT_Subject_NOTAG	SAO_METHOD_12_NOTAG m_2_NOTAG a_ext_3_NOTAG ext_else_NOTAG ext_2_else_CD fe_2_NOTAG	failure_NN of_IN vital_JJ cooling_NN fan_NN
+QA	allow_VB	QT_Object_NOTAG	SAO_OBJ_2_NOTAG a_ext_3_NOTAG ext_else_NOTAG ext_2_else_CD fe_2_NOTAG	overheating_NN of_IN component_NN
+QA	components_NNS	QT_Location_NOTAG	LOCAT_6_REC_NOTAG 12_CD m4_a3_pers_NOTAG fe_3_NOTAG	in_IN power_NN supply_NN
+actual_end
+diff_start
+= QA	components_NNS	QT_Failure_NOTAG	SAO_METHOD_12_NOTAG m4_adv_NOTAG a2_1_NOTAG ext_else_NOTAG ext_2_else_CD AAd_25_NOTAG fe_3_else_NOTAG from_Disadvantage_FfD_3_0a_NOTAG fail_1_NOTAG fe_3_NOTAG	overheating_NN due_to_IN failure_NN of_IN vital_JJ cooling_NN fan_NN
+> QA	power_NN	QT_OfType_NOTAG	SNP_1_NOTAG TYPE_3_NOTAG fe_3_NOTAG	power_NN supply_NN
+> QA	supply_NN	QT_Type_NOTAG	SNP_1_NOTAG TYPE_3_NOTAG fe_3_NOTAG	power_NN supply_NN
+> QA	overheating_NN	QT_Cause_NOTAG	NGCE_CAUSE_NG_NOTAG fe_3_else_NOTAG m4_a3_pers_NOTAG fe_3_NOTAG	failure_NN of_IN vital_JJ cooling_NN fan_NN
+> QA	failure_NN	QT_Effect_NOTAG	NGCE_EFF_NG_NOTAG m4_a3_pers_NOTAG e2fe_2_NOTAG fe_3_NOTAG	overheating_NN
+> QA	components_NNS	QT_Function_NOTAG	SAO_1_NOTAG a4_else_NOTAG AAd_25_NOTAG fe_3_NOTAG	overheating_NN
+> QA	fan_NN	QT_Failure_NOTAG	SAO_ADV_1b_f_rev_NOTAG a4_else_NOTAG AAd_23_NOTAG fe_3_NOTAG	failure_NN as_IN problem_NN
+> QA	overheat_VB	QT_Subject_NOTAG	SAO_METHOD_12_NOTAG m_2_NOTAG a_ext_3_NOTAG ext_2_NOTAG AAd_23_NOTAG fe_2_NOTAG	component_NN in_IN power_NN supply_NN
+> QA	failure_NN	QT_Disadvantage_NOTAG	SAO_METHOD_12_NOTAG m4_adv_NOTAG a_ext_2_NOTAG ext_else_NOTAG ext_2_else_CD fe_3_else_NOTAG fe_3_NOTAG	overheating_NN of_IN component_NN
+> QA	allow_VB	QT_Subject_NOTAG	SAO_METHOD_12_NOTAG m_2_NOTAG a_ext_3_NOTAG ext_else_NOTAG ext_2_else_CD fe_2_NOTAG	failure_NN of_IN vital_JJ cooling_NN fan_NN
+> QA	allow_VB	QT_Object_NOTAG	SAO_OBJ_2_NOTAG a_ext_3_NOTAG ext_else_NOTAG ext_2_else_CD fe_2_NOTAG	overheating_NN of_IN component_NN
+> QA	components_NNS	QT_Location_NOTAG	LOCAT_6_REC_NOTAG 12_CD m4_a3_pers_NOTAG fe_3_NOTAG	in_IN power_NN supply_NN
+diff_end
+case_end
+
+
+case_start
+source file	ldbsrc-English/testcases/qa/tg_syn_qa_oa_Failure.tc
+reqstate	FAILED
+state	SUCCESS
+input	In the case the input light temporarily breaks, this feedback control cannot be sustained until the input light is restored.
+etalon_start
+...
+-QA	light_NN	QT_Failure_NOTAG	Failure_02_NOTAG m4_a3_pers_NOTAG AAd_25_NOTAG fe_3_NOTAG	break_NN
+etalon_end
+actual_start
+QA	input_NN	QT_OfType_NOTAG	SNP_1_NOTAG TYPE_3_NOTAG fe_3_NOTAG	input_NN light_NN
+QA	light_NN	QT_Type_NOTAG	SNP_1_NOTAG TYPE_3_NOTAG fe_3_NOTAG	input_NN light_NN
+QA	feedback_NN	QT_OfType_NOTAG	SNP_1_NOTAG TYPE_3_NOTAG fe_3_NOTAG	feedback_NN control_NN
+QA	control_NN	QT_Type_NOTAG	SNP_1_NOTAG TYPE_3_NOTAG fe_3_NOTAG	feedback_NN control_NN
+QA	input_NN	QT_OfType_NOTAG	SNP_1_NOTAG TYPE_3_NOTAG fe_3_NOTAG	input_NN light_NN
+QA	light_NN	QT_Type_NOTAG	SNP_1_NOTAG TYPE_3_NOTAG fe_3_NOTAG	input_NN light_NN
+QA	light_NN	QT_Failure_NOTAG	Failure_02_NOTAG a4_else_NOTAG fe_3_NOTAG	temporary_JJ break_NN
+QA	light_NN	QT_Function_NOTAG	SAO_1_NOTAG a4_else_NOTAG AAd_25_NOTAG fe_3_NOTAG	break_NN
+QA	break_VB	QT_Subject_NOTAG	SAO_METHOD_12_NOTAG m_2_NOTAG a_ext_3_NOTAG ext_else_NOTAG ext_2_else_CD fe_2_NOTAG	input_NN light_NN
+QA	sustain_VB	QT_Object_NOTAG	SAO_OBJ_2_NOTAG a_ext_3_NOTAG ext_else_NOTAG ext_2_else_CD fe_2_NOTAG	feedback_NN control_NN
+QA	restore_VB	QT_Object_NOTAG	SAO_OBJ_2_NOTAG a_ext_3_NOTAG ext_else_NOTAG ext_2_else_CD fe_2_NOTAG	input_NN light_NN
+actual_end
+diff_start
+= -QA	light_NN	QT_Failure_NOTAG	Failure_02_NOTAG m4_a3_pers_NOTAG AAd_25_NOTAG fe_3_NOTAG	break_NN
+> QA	light_NN	QT_Failure_NOTAG	Failure_02_NOTAG a4_else_NOTAG fe_3_NOTAG	temporary_JJ break_NN
+> QA	input_NN	QT_OfType_NOTAG	SNP_1_NOTAG TYPE_3_NOTAG fe_3_NOTAG	input_NN light_NN
+> QA	light_NN	QT_Type_NOTAG	SNP_1_NOTAG TYPE_3_NOTAG fe_3_NOTAG	input_NN light_NN
+> QA	feedback_NN	QT_OfType_NOTAG	SNP_1_NOTAG TYPE_3_NOTAG fe_3_NOTAG	feedback_NN control_NN
+> QA	control_NN	QT_Type_NOTAG	SNP_1_NOTAG TYPE_3_NOTAG fe_3_NOTAG	feedback_NN control_NN
+> QA	input_NN	QT_OfType_NOTAG	SNP_1_NOTAG TYPE_3_NOTAG fe_3_NOTAG	input_NN light_NN
+> QA	light_NN	QT_Type_NOTAG	SNP_1_NOTAG TYPE_3_NOTAG fe_3_NOTAG	input_NN light_NN
+> QA	light_NN	QT_Function_NOTAG	SAO_1_NOTAG a4_else_NOTAG AAd_25_NOTAG fe_3_NOTAG	break_NN
+> QA	break_VB	QT_Subject_NOTAG	SAO_METHOD_12_NOTAG m_2_NOTAG a_ext_3_NOTAG ext_else_NOTAG ext_2_else_CD fe_2_NOTAG	input_NN light_NN
+> QA	sustain_VB	QT_Object_NOTAG	SAO_OBJ_2_NOTAG a_ext_3_NOTAG ext_else_NOTAG ext_2_else_CD fe_2_NOTAG	feedback_NN control_NN
+> QA	restore_VB	QT_Object_NOTAG	SAO_OBJ_2_NOTAG a_ext_3_NOTAG ext_else_NOTAG ext_2_else_CD fe_2_NOTAG	input_NN light_NN
+diff_end
+case_end
+
+
+case_start
+source file	ldbsrc-English/testcases/qa/tg_syn_qa_oa_Failure.tc
+reqstate	FAILED
+state	SUCCESS
+input	The technique of FIG. 4 works even when the spectra are completely overlapping, a condition that would cause the schemes in FIGS. 1 and 2 to fail.
+etalon_start
+...
+-QA	schemes_NNS	QT_Failure_NOTAG	ce_1_NOTAG m4_a3_pers_NOTAG AAd_23_NOTAG fe_FF_2_0_NOTAG	fails_VBZ because_CS condition_NN
+-QA	schemes_NNS	QT_Failure_NOTAG	ce_1_NOTAG a4_else_NOTAG AAd_23_NOTAG fe_3_NOTAG	failing_NN due_to_IN condition_NN
+etalon_end
+actual_start
+QA	works_VBZ	QT_Condition_NOTAG	CS_Cond_3_r3_NOTAG a4_else_NOTAG AS_9_NOTAG fe_2_NOTAG	complete_JJ overlapping_NN of_IN spectrum_NN
+QA	schemes_NNS	QT_Failure_NOTAG	ce_1_NOTAG a4_else_NOTAG AAd_23_NOTAG fe_3_NOTAG	failure_NN due_to_IN condition_NN
+QA	schemes_NNS	QT_Function_NOTAG	SAO_1_NOTAG a4_else_NOTAG AAd_25_NOTAG fe_3_NOTAG	failure_NN
+QA	spectra_NNS	QT_Function_NOTAG	SAO_1_NOTAG a4_else_NOTAG AAd_25_NOTAG fe_3_NOTAG	overlapping_NN
+QA	fail_VB	QT_Subject_NOTAG	SAO_METHOD_12_NOTAG m_2_NOTAG a_ext_3_NOTAG ext_else_NOTAG ext_2_else_CD fe_2_NOTAG	scheme_NN
+QA	overlap_VB	QT_Subject_NOTAG	SAO_METHOD_12_NOTAG m_2_NOTAG a_ext_3_NOTAG ext_else_NOTAG ext_2_else_CD fe_2_NOTAG	spectrum_NN
+actual_end
+diff_start
+= -QA	schemes_NNS	QT_Failure_NOTAG	ce_1_NOTAG m4_a3_pers_NOTAG AAd_23_NOTAG fe_FF_2_0_NOTAG	fails_VBZ because_CS condition_NN
+> QA	schemes_NNS	QT_Failure_NOTAG	ce_1_NOTAG a4_else_NOTAG AAd_23_NOTAG fe_3_NOTAG	failure_NN due_to_IN condition_NN
+= -QA	schemes_NNS	QT_Failure_NOTAG	ce_1_NOTAG a4_else_NOTAG AAd_23_NOTAG fe_3_NOTAG	failing_NN due_to_IN condition_NN
+> QA	works_VBZ	QT_Condition_NOTAG	CS_Cond_3_r3_NOTAG a4_else_NOTAG AS_9_NOTAG fe_2_NOTAG	complete_JJ overlapping_NN of_IN spectrum_NN
+> QA	schemes_NNS	QT_Function_NOTAG	SAO_1_NOTAG a4_else_NOTAG AAd_25_NOTAG fe_3_NOTAG	failure_NN
+> QA	spectra_NNS	QT_Function_NOTAG	SAO_1_NOTAG a4_else_NOTAG AAd_25_NOTAG fe_3_NOTAG	overlapping_NN
+> QA	fail_VB	QT_Subject_NOTAG	SAO_METHOD_12_NOTAG m_2_NOTAG a_ext_3_NOTAG ext_else_NOTAG ext_2_else_CD fe_2_NOTAG	scheme_NN
+> QA	overlap_VB	QT_Subject_NOTAG	SAO_METHOD_12_NOTAG m_2_NOTAG a_ext_3_NOTAG ext_else_NOTAG ext_2_else_CD fe_2_NOTAG	spectrum_NN
+diff_end
+case_end

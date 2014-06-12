@@ -1,0 +1,96 @@
+#!/usr/bin/env ruby
+
+# # #
+# ri IO#gets
+# separator is included in data (compare with \n that are included when doing conventional reading
+# using
+#   while line = gets 
+#
+
+require 'optparse'
+
+OptionParser.new do |opts|
+  opts.banner = "
+  From the run_ldb_unit_test report file (that contains both the REQSTATE and STATE fields)
+extract testcases that changed their state from FAILED/UNKNOWN to SUCCESS
+USAGE: #{File.basename($0)} [OPTIONS] tc_report_file(s)
+OPTIONS:
+"
+  opts.on('-h', '--help', 'display this message and exit') do
+    puts opts
+    exit 0
+  end
+
+  opts.separator " "
+end.parse!
+
+Encoding::default_external = 'Windows-1252'
+
+c_in = c_out = 0
+
+if true
+  #
+  # algorithm that reads by chunks where a chuhk is a single testcase
+  #
+  $stderr.puts "Using algorithm #1"
+
+  while block = gets("case_end")
+
+    if block =~ /case_end/
+      c_in += 1
+      if block =~ /^reqstate\s(FAILED|UNKNOWN)/ && block =~ /^state\sSUCCESS/
+        c_out += 1
+        puts block
+      end
+    end
+  end
+
+else
+  #
+  # Algorithm that reads line by line
+  #
+  $stderr.puts "Using algorithm #2"
+
+  memory = []
+  inside_tc = found_state = found_reqstate = false
+
+  while line = gets
+
+    if inside_tc
+      memory << line
+    end
+
+    if found_state && found_reqstate
+      if memory.empty?
+        puts line
+      else
+        c_out += 1
+        puts memory.join
+        inside_tc = false
+        memory.clear
+      end
+    end
+
+    case
+    when line =~ /^case_start/
+      c_in += 1
+      inside_tc = true
+      memory.clear
+      memory << "\n" << line
+
+    when line =~ /^case_end/
+      inside_tc = found_state = found_reqstate = false
+
+    when line =~ /^reqstate\s(FAILED|UNKNOWN)/
+      found_reqstate = true
+
+    when line =~ /^state\sSUCCESS/
+      found_state = true
+    end
+
+  end
+end
+
+$stderr.puts "Testcases total/outputted: #{c_in}/#{c_out}"
+
+

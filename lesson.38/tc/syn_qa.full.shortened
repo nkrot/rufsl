@@ -1,0 +1,148 @@
+
+case_start
+source file	ldbsrc-English/testcases/qa/tg_syn_qa_oa_Failure.tc
+reqstate	SUCCESS
+state	SUCCESS
+id	QT_Failure.1
+input	Approximately nine of every ten transmission failures are attributable to overheating and transmission fluid contaminants
+etalon_start
+QA	transmission_NN	QT_Failure_NOTAG		transmission_NN fluid_NN contaminant_NN
+QA	transmission_NN	QT_Failure_NOTAG		overheating_NN
+...
+etalon_end
+actual_start
+QA	failures_NNS	QT_Number_NOTAG	NG_NUMBER_1_NOTAG m_1_NOTAG fe_3_NOTAG	nine_CD of_IN ten_CD transmission_NN failures_NNS
+QA	transmission_NN fluid_NN	QT_OfType_NOTAG	SNP_1_NOTAG TYPE_3_NOTAG fe_3_NOTAG	transmission_NN fluid_NN contaminant_NN
+QA	fluid_NN contaminants_NNS	QT_Type_NOTAG	SNP_1_NOTAG TYPE_3_NOTAG fe_3_NOTAG	transmission_NN fluid_NN contaminant_NN
+QA	transmission_NN	QT_Failure_NOTAG	Failure_2_NOTAG a4_else_NOTAG AAd_23_NOTAG fe_3_NOTAG	overheating_NN
+QA	transmission_NN	QT_Failure_NOTAG	Failure_2_NOTAG a4_else_NOTAG AAd_23_NOTAG fe_3_NOTAG	transmission_NN fluid_NN contaminant_NN
+QA	to_TO	QT_IndirectObject_NOTAG	SAO_IO_1_NOTAG a_ext_3_NOTAG ext_else_NOTAG ext_2_else_CD fe_3_NOTAG	to_TO overheating_NN
+QA	to_TO	QT_IndirectObject_NOTAG	SAO_IO_1_NOTAG a_ext_3_NOTAG ext_else_NOTAG ext_2_else_CD fe_3_NOTAG	to_TO transmission_NN fluid_NN contaminant_NN
+QA	be_BE	QT_Subject_NOTAG	SAO_SUBJ_4_NOTAG a_ext_3_NOTAG ext_else_NOTAG ext_2_else_CD fe_2_NOTAG	transmission_NN failure_NN
+actual_end
+diff_start
+= QA	transmission_NN	QT_Failure_NOTAG		transmission_NN fluid_NN contaminant_NN
+= QA	transmission_NN	QT_Failure_NOTAG		overheating_NN
+> QA	failures_NNS	QT_Number_NOTAG	NG_NUMBER_1_NOTAG m_1_NOTAG fe_3_NOTAG	nine_CD of_IN ten_CD transmission_NN failures_NNS
+> QA	transmission_NN fluid_NN	QT_OfType_NOTAG	SNP_1_NOTAG TYPE_3_NOTAG fe_3_NOTAG	transmission_NN fluid_NN contaminant_NN
+> QA	fluid_NN contaminants_NNS	QT_Type_NOTAG	SNP_1_NOTAG TYPE_3_NOTAG fe_3_NOTAG	transmission_NN fluid_NN contaminant_NN
+> QA	to_TO	QT_IndirectObject_NOTAG	SAO_IO_1_NOTAG a_ext_3_NOTAG ext_else_NOTAG ext_2_else_CD fe_3_NOTAG	to_TO overheating_NN
+> QA	to_TO	QT_IndirectObject_NOTAG	SAO_IO_1_NOTAG a_ext_3_NOTAG ext_else_NOTAG ext_2_else_CD fe_3_NOTAG	to_TO transmission_NN fluid_NN contaminant_NN
+> QA	be_BE	QT_Subject_NOTAG	SAO_SUBJ_4_NOTAG a_ext_3_NOTAG ext_else_NOTAG ext_2_else_CD fe_2_NOTAG	transmission_NN failure_NN
+diff_end
+case_end
+
+case_start
+source file	ldbsrc-English/testcases/qa/tg_syn_qa_oa_Failure.tc
+reqstate	FAILED
+state	SUCCESS
+input	Literature indicates that elevated temperatures and time will result in destruction of carotenoids
+etalon_start
+...
+QA	carotenoids_NNS	QT_Failure_NOTAG	ADV_2_6_2_NOTAG a2_1_NOTAG ext_else_NOTAG ext_2_else_CD AAd_25_NOTAG fe_3_else_NOTAG from_Disadvantage_f2_else_NOTAG fe_3_NOTAG	destruction_NN due_to_IN elevated_JJed temperature_NN
+QA	carotenoids_NNS	QT_Failure_NOTAG	ADV_2_6_2_NOTAG a2_1_NOTAG ext_else_NOTAG ext_2_else_CD AAd_25_NOTAG fe_3_else_NOTAG from_Disadvantage_f2_else_NOTAG fe_3_NOTAG	destruction_NN due_to_IN elevated_JJed time_NN
+etalon_end
+actual_start
+QA	elevated_JJed	QT_OfType_NOTAG	SNP_1_NOTAG TYPE_3_NOTAG fe_3_NOTAG	elevated_JJed temperature_NN
+QA	temperatures_NNS	QT_Type_NOTAG	SNP_1_NOTAG TYPE_3_NOTAG fe_3_NOTAG	elevated_JJed temperature_NN
+QA	carotenoids_NNS	QT_Failure_NOTAG	Failure_ngce_4_NOTAG a4_else_NOTAG AAd_23_NOTAG AAd_23_NOTAG fe_3_NOTAG	destruction_NN due_to_IN elevated_JJed temperature_NN
+QA	carotenoids_NNS	QT_Failure_NOTAG	Failure_ngce_4_NOTAG a4_else_NOTAG AAd_23_NOTAG AAd_23_NOTAG fe_3_NOTAG	destruction_NN due_to_IN elevated_JJed time_NN
+QA	destruction_NN	QT_Cause_NOTAG	NGCE_CAUSE_NG_NOTAG fe_3_else_NOTAG m4_a3_pers_NOTAG fe_3_NOTAG	elevated_JJed temperature_NN
+QA	destruction_NN	QT_Cause_NOTAG	NGCE_CAUSE_NG_NOTAG fe_3_else_NOTAG m4_a3_pers_NOTAG fe_3_NOTAG	elevated_JJed time_NN
+QA	temperatures_NNS	QT_Effect_NOTAG	NGCE_EFF_NG_NOTAG m4_a3_pers_NOTAG e2fe_2_NOTAG fe_3_NOTAG	destruction_NN of_IN carotenoid_NN
+QA	time_NN	QT_Effect_NOTAG	NGCE_EFF_NG_NOTAG m4_a3_pers_NOTAG e2fe_2_NOTAG fe_3_NOTAG	destruction_NN of_IN carotenoid_NN
+QA	temperatures_NNS	QT_Function_NOTAG	SAO_3_NOTAG m4_a3_pers_NOTAG fe_3_NOTAG	destruction_NN of_IN carotenoid_NN
+QA	time_NN	QT_Function_NOTAG	SAO_3_NOTAG m4_a3_pers_NOTAG fe_3_NOTAG	destruction_NN of_IN carotenoid_NN
+QA	indicate_VB	QT_Subject_NOTAG	SAO_METHOD_12_NOTAG m_2_NOTAG a_ext_3_NOTAG ext_else_NOTAG ext_2_else_CD fe_2_NOTAG	literature_NN
+QA	temperatures_NNS	QT_Disadvantage_NOTAG	ADV_2_6_2_NOTAG a_ext_2_NOTAG ext_else_NOTAG ext_2_else_CD fe_3_else_NOTAG fe_3_NOTAG	destruction_NN of_IN carotenoid_NN
+QA	time_NN	QT_Disadvantage_NOTAG	ADV_2_6_2_NOTAG a_ext_2_NOTAG ext_else_NOTAG ext_2_else_CD fe_3_else_NOTAG fe_3_NOTAG	destruction_NN of_IN carotenoid_NN
+QA	destruction_NN	QT_Subject_NOTAG	SAO_METHOD_12_1_NOTAG m_4_NOTAG a_ext_2_NOTAG ext_else_NOTAG ext_2_else_CD fe_3_NOTAG	elevated_JJed temperature_NN
+QA	destruction_NN	QT_Subject_NOTAG	SAO_METHOD_12_1_NOTAG m_4_NOTAG a_ext_2_NOTAG ext_else_NOTAG ext_2_else_CD fe_3_NOTAG	time_NN
+QA	in_IN	QT_IndirectObject_NOTAG	SAO_IO_1_NOTAG a_ext_3_NOTAG ext_else_NOTAG ext_2_else_CD fe_3_NOTAG	in_IN destruction_NN of_IN carotenoid_NN
+QA	result_VB	QT_Object_NOTAG	SAO_OBJ_2_NOTAG a_ext_3_NOTAG ext_else_NOTAG ext_2_else_CD fe_2_NOTAG	destruction_NN of_IN carotenoid_NN
+QA	destruction_NN	QT_Object_NOTAG	SAO_OBJ_1_NOTAG a_ext_3_NOTAG ext_else_NOTAG ext_2_else_CD fe_3_NOTAG	carotenoid_NN
+actual_end
+diff_start
+= QA	carotenoids_NNS	QT_Failure_NOTAG	ADV_2_6_2_NOTAG a2_1_NOTAG ext_else_NOTAG ext_2_else_CD AAd_25_NOTAG fe_3_else_NOTAG from_Disadvantage_f2_else_NOTAG fe_3_NOTAG	destruction_NN due_to_IN elevated_JJed temperature_NN
+= QA	carotenoids_NNS	QT_Failure_NOTAG	ADV_2_6_2_NOTAG a2_1_NOTAG ext_else_NOTAG ext_2_else_CD AAd_25_NOTAG fe_3_else_NOTAG from_Disadvantage_f2_else_NOTAG fe_3_NOTAG	destruction_NN due_to_IN elevated_JJed time_NN
+> QA	elevated_JJed	QT_OfType_NOTAG	SNP_1_NOTAG TYPE_3_NOTAG fe_3_NOTAG	elevated_JJed temperature_NN
+> QA	temperatures_NNS	QT_Type_NOTAG	SNP_1_NOTAG TYPE_3_NOTAG fe_3_NOTAG	elevated_JJed temperature_NN
+> QA	destruction_NN	QT_Cause_NOTAG	NGCE_CAUSE_NG_NOTAG fe_3_else_NOTAG m4_a3_pers_NOTAG fe_3_NOTAG	elevated_JJed temperature_NN
+> QA	destruction_NN	QT_Cause_NOTAG	NGCE_CAUSE_NG_NOTAG fe_3_else_NOTAG m4_a3_pers_NOTAG fe_3_NOTAG	elevated_JJed time_NN
+> QA	temperatures_NNS	QT_Effect_NOTAG	NGCE_EFF_NG_NOTAG m4_a3_pers_NOTAG e2fe_2_NOTAG fe_3_NOTAG	destruction_NN of_IN carotenoid_NN
+> QA	time_NN	QT_Effect_NOTAG	NGCE_EFF_NG_NOTAG m4_a3_pers_NOTAG e2fe_2_NOTAG fe_3_NOTAG	destruction_NN of_IN carotenoid_NN
+> QA	temperatures_NNS	QT_Function_NOTAG	SAO_3_NOTAG m4_a3_pers_NOTAG fe_3_NOTAG	destruction_NN of_IN carotenoid_NN
+> QA	time_NN	QT_Function_NOTAG	SAO_3_NOTAG m4_a3_pers_NOTAG fe_3_NOTAG	destruction_NN of_IN carotenoid_NN
+> QA	indicate_VB	QT_Subject_NOTAG	SAO_METHOD_12_NOTAG m_2_NOTAG a_ext_3_NOTAG ext_else_NOTAG ext_2_else_CD fe_2_NOTAG	literature_NN
+> QA	temperatures_NNS	QT_Disadvantage_NOTAG	ADV_2_6_2_NOTAG a_ext_2_NOTAG ext_else_NOTAG ext_2_else_CD fe_3_else_NOTAG fe_3_NOTAG	destruction_NN of_IN carotenoid_NN
+> QA	time_NN	QT_Disadvantage_NOTAG	ADV_2_6_2_NOTAG a_ext_2_NOTAG ext_else_NOTAG ext_2_else_CD fe_3_else_NOTAG fe_3_NOTAG	destruction_NN of_IN carotenoid_NN
+> QA	destruction_NN	QT_Subject_NOTAG	SAO_METHOD_12_1_NOTAG m_4_NOTAG a_ext_2_NOTAG ext_else_NOTAG ext_2_else_CD fe_3_NOTAG	elevated_JJed temperature_NN
+> QA	destruction_NN	QT_Subject_NOTAG	SAO_METHOD_12_1_NOTAG m_4_NOTAG a_ext_2_NOTAG ext_else_NOTAG ext_2_else_CD fe_3_NOTAG	time_NN
+> QA	in_IN	QT_IndirectObject_NOTAG	SAO_IO_1_NOTAG a_ext_3_NOTAG ext_else_NOTAG ext_2_else_CD fe_3_NOTAG	in_IN destruction_NN of_IN carotenoid_NN
+> QA	result_VB	QT_Object_NOTAG	SAO_OBJ_2_NOTAG a_ext_3_NOTAG ext_else_NOTAG ext_2_else_CD fe_2_NOTAG	destruction_NN of_IN carotenoid_NN
+> QA	destruction_NN	QT_Object_NOTAG	SAO_OBJ_1_NOTAG a_ext_3_NOTAG ext_else_NOTAG ext_2_else_CD fe_3_NOTAG	carotenoid_NN
+diff_end
+case_end
+
+case_start
+source file	ldbsrc-English/testcases/qa/tg_syn_qa_oa_Failure.tc
+reqstate	FAILED
+state	FAILED
+id	Fail_14
+input	This approach suffers from manufacturing problems and high costs.
+etalon_start
+QA	approach_NN	QT_Failure_NOTAG	Failure_2_4_NOTAG a4_else_NOTAG AAd_25_NOTAG fe_3_NOTAG	manufacturing_NN problem_NN
+-QA	approach_NN	QT_Failure_NOTAG	Failure_2_4_NOTAG a4_else_NOTAG AAd_25_NOTAG fe_3_NOTAG	high_JJ cost_NN
+...
+etalon_end
+actual_start
+QA	high_JJ	QT_OfType_NOTAG	SNP_1_NOTAG TYPE_3_NOTAG fe_3_NOTAG	high_JJ cost_NN
+QA	costs_NNS	QT_Type_NOTAG	SNP_1_NOTAG TYPE_3_NOTAG fe_3_NOTAG	high_JJ cost_NN
+QA	approach_NN	QT_Failure_NOTAG	Failure_2_4_NOTAG a4_else_NOTAG AAd_23_NOTAG fe_3_NOTAG	high_JJ cost_NN
+QA	from_IN	QT_IndirectObject_NOTAG	SAO_IO_1_NOTAG a_ext_3_NOTAG ext_else_NOTAG ext_2_else_CD fe_3_NOTAG	from_IN high_JJ cost_NN
+QA	suffer_VB	QT_Object_NOTAG	SAO_OBJ_2_NOTAG a_ext_3_NOTAG ext_else_NOTAG ext_2_else_CD fe_2_NOTAG	high_JJ cost_NN
+actual_end
+diff_start
+> QA	approach_NN	QT_Failure_NOTAG	Failure_2_4_NOTAG a4_else_NOTAG AAd_25_NOTAG fe_3_NOTAG	high_JJ cost_NN
+< QA	approach_NN	QT_Failure_NOTAG	Failure_2_4_NOTAG a4_else_NOTAG AAd_25_NOTAG fe_3_NOTAG	manufacturing_NN problem_NN
+> QA	high_JJ	QT_OfType_NOTAG	SNP_1_NOTAG TYPE_3_NOTAG fe_3_NOTAG	high_JJ cost_NN
+> QA	costs_NNS	QT_Type_NOTAG	SNP_1_NOTAG TYPE_3_NOTAG fe_3_NOTAG	high_JJ cost_NN
+> QA	from_IN	QT_IndirectObject_NOTAG	SAO_IO_1_NOTAG a_ext_3_NOTAG ext_else_NOTAG ext_2_else_CD fe_3_NOTAG	from_IN high_JJ cost_NN
+> QA	suffer_VB	QT_Object_NOTAG	SAO_OBJ_2_NOTAG a_ext_3_NOTAG ext_else_NOTAG ext_2_else_CD fe_2_NOTAG	high_JJ cost_NN
+diff_end
+case_end
+
+case_start
+source file	ldbsrc-English/testcases/qa/tg_syn_qa_oa_Failure.tc
+reqstate	SUCCESS
+state	SUCCESS
+id	???
+input	We suggest that the lower part of the eastward-dipping fault was "captured" from the North American plate, possibly by rapid propagation of an active volcanic rift across the discontinuity.
+etalon_start
+QA	North_JJ American_JNP	QT_OfType_NOTAG	SNP_1_NOTAG TYPE_3_NOTAG fe_3_NOTAG	North_JJ American_JNP plate_NN
+QA	American_JNP plate_NN	QT_Type_NOTAG	SNP_1_NOTAG TYPE_3_NOTAG fe_3_NOTAG	North_JJ American_JNP plate_NN
+QA	rapid_JJ	QT_OfType_NOTAG	REC_NOTAG TYPE_3_NOTAG fe_3_NOTAG	rapid_JJ propagation_NN
+QA	propagation_NN	QT_Type_NOTAG	REC_NOTAG TYPE_3_NOTAG fe_3_NOTAG	rapid_JJ propagation_NN
+-QA	dipping_NN	QT_Failure_NOTAG	Failure_4_NOTAG a4_else_NOTAG AAd_25_NOTAG fe_3_NOTAG	the_ATI lower_JJR part_NN of_IN the_ATI eastward_JJ -_DA dipping_NN fault_NN due_to_IN North_JJ American_JNP plate_NN
+QA	from_IN	QT_IndirectObject_NOTAG	SAO_IO_1_NOTAG a2_2_NOTAG ext_else_NOTAG ext_2_else_CD AAd_25_NOTAG fe_3_NOTAG	from_IN North_JJ American_JNP plate_NN
+QA	be_BE	QT_Subject_NOTAG	SAO_SUBJ_4_NOTAG a2_2_NOTAG ext_else_NOTAG ext_2_else_CD AAd_25_NOTAG fe_2_NOTAG	part_NN of_IN eastward_JJ -_DA dipping_NN fault_NN
+etalon_end
+actual_start
+QA	North_JJ American_JNP	QT_OfType_NOTAG	SNP_1_NOTAG TYPE_3_NOTAG fe_3_NOTAG	North_JJ American_JNP plate_NN
+QA	American_JNP plate_NN	QT_Type_NOTAG	SNP_1_NOTAG TYPE_3_NOTAG fe_3_NOTAG	North_JJ American_JNP plate_NN
+QA	rapid_JJ	QT_OfType_NOTAG	REC_NOTAG TYPE_3_NOTAG fe_3_NOTAG	rapid_JJ propagation_NN
+QA	propagation_NN	QT_Type_NOTAG	REC_NOTAG TYPE_3_NOTAG fe_3_NOTAG	rapid_JJ propagation_NN
+QA	from_IN	QT_IndirectObject_NOTAG	SAO_IO_1_NOTAG a_ext_3_NOTAG ext_else_NOTAG ext_2_else_CD fe_3_NOTAG	from_IN North_JJ American_JNP plate_NN
+QA	be_BE	QT_Subject_NOTAG	SAO_SUBJ_4_NOTAG a_ext_3_NOTAG ext_else_NOTAG ext_2_else_CD fe_2_NOTAG	part_NN of_IN eastward_JJ -_DA dipping_NN fault_NN
+actual_end
+diff_start
+= QA	North_JJ American_JNP	QT_OfType_NOTAG	SNP_1_NOTAG TYPE_3_NOTAG fe_3_NOTAG	North_JJ American_JNP plate_NN
+= QA	American_JNP plate_NN	QT_Type_NOTAG	SNP_1_NOTAG TYPE_3_NOTAG fe_3_NOTAG	North_JJ American_JNP plate_NN
+= QA	rapid_JJ	QT_OfType_NOTAG	REC_NOTAG TYPE_3_NOTAG fe_3_NOTAG	rapid_JJ propagation_NN
+= QA	propagation_NN	QT_Type_NOTAG	REC_NOTAG TYPE_3_NOTAG fe_3_NOTAG	rapid_JJ propagation_NN
+= QA	from_IN	QT_IndirectObject_NOTAG	SAO_IO_1_NOTAG a2_2_NOTAG ext_else_NOTAG ext_2_else_CD AAd_25_NOTAG fe_3_NOTAG	from_IN North_JJ American_JNP plate_NN
+= QA	be_BE	QT_Subject_NOTAG	SAO_SUBJ_4_NOTAG a2_2_NOTAG ext_else_NOTAG ext_2_else_CD AAd_25_NOTAG fe_2_NOTAG	part_NN of_IN eastward_JJ -_DA dipping_NN fault_NN
+= -QA	dipping_NN	QT_Failure_NOTAG	Failure_4_NOTAG a4_else_NOTAG AAd_25_NOTAG fe_3_NOTAG	the_ATI lower_JJR part_NN of_IN the_ATI eastward_JJ -_DA dipping_NN fault_NN due_to_IN North_JJ American_JNP plate_NN
+diff_end
+case_end
+
