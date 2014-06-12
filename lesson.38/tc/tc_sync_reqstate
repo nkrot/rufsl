@@ -2,28 +2,7 @@
 
 # # #
 #
-# TODO:
-# 1. a part of the task, add --help help
-# 2. maybe we want also a simple script that extracts {F,U}->S testcases from the tc report. Can it be given as homework assignment?
 #
-# USAGE: ThisScript full_report.tc testcases.tc 
-# USAGE: ThisScript brief_report.tc testcases.tc 
-#
-# in the full report, identify F->S testcases explicitly
-# in the brief report identify by subtracting set of ->F testcases from 
-#  the set of all testcases in testcases.tc
-#  as this behaviour is dangerous (the logic can fail), perhaps turning it on
-#  is better done by an option, not but default.
-#
-# in order to identify testcases, use combination of id and input fields
-#
-# what is the result?
-# output testcases.tc in which
-# --autofix -- update reqstate to SUCCESS
-# by default mark somehow such testcases
-#   #NEW#reqstate	SUCCESS
-#
-# 
 
 Encoding::default_external = 'Windows-1252'
 
@@ -31,7 +10,8 @@ require 'optparse'
 
 OptionParser.new do |opts|
   opts.banner = "
-TODO: the script does what it does :) the worst description ever
+  This script changes the value of REQSTATE to SUCCESS of the testcases in tc_file
+based on the actual status of them in the report file tc_report_file.
 USAGE: #{File.basename($0)} [OPTIONS] tc_report_file tc_file
 OPTIONS:
 "
@@ -47,8 +27,11 @@ end.parse!
 
 ######################################################################
 
-@key_fields = ["id", "input"]
+# regular expression that parses single-line fields in testcases
 @tc_parse_re = /^(input|id|state|reqstate)\s(.+)/i
+
+# fields used to build a unique code ("key") that identifies a testcase
+@key_fields = ["id", "input"]
 
 ######################################################################
 
@@ -115,7 +98,6 @@ def add_testcase_data storage, key, value, fnr=0
     storage[key] = value
 end
 
-
 ######################################################################
 # parse the report file and extract relevant data
 # 1. use ID+INPUT to identify the testcase
@@ -168,9 +150,10 @@ if selected_testcases.length == 0
 end
 
 ######################################################################
+# process file(s) with testcases
+# 
 
-# TODO: remove leading \n that results from splitting by case_end
-while tc = gets("case_end")
+while tc = gets("case_end\n")
 #  puts tc
 #  puts "====="
 
