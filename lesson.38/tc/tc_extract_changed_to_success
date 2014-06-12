@@ -1,10 +1,7 @@
 #!/usr/bin/env ruby
 
 # # #
-# ri IO#gets
-# separator is included in data (compare with \n that are included when doing conventional reading
-# using
-#   while line = gets 
+#
 #
 
 require 'optparse'
@@ -30,7 +27,7 @@ c_in = c_out = 0
 
 if true
   #
-  # algorithm that reads by chunks where a chuhk is a single testcase
+  # algorithm that reads by chunks where a chunk is a single testcase
   #
   $stderr.puts "Using algorithm #1"
 
