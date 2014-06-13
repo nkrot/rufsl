@@ -7,26 +7,31 @@ lesson.37 -- DONE
   - theory: set operations (with Arrays)
 - ОБСУДИТЬ: выбрать задачу для bruteforcing with recursion из magic_squares и 4 queens
 
-lesson.38 -- NEXT
+lesson.38 -- DONE
 =========
-- a few slides on serialization/deserialization
-- solve the task of someone else?
++ a few slides on serialization/deserialization
++ solve the task of someone else?
   + tc/tc_extract_changed_to_success
   - tc/tc_sync_reqstate
- Q: кто возьмется довести скрипты до конца (включая --help) и выложить их в prosao1. И написать письмо всем
 
-- representing a parse tree with a Hash (similar to lesson.35)
-- [maybe lesson.39] solve a task on parse tree (find something, count something) SEE BELOW
+lesson.39 -- NEXT
+=========
+- решение lesson.38/tc/tc_sync_reqstate
+  - Q: кто выложит скрипты в testutils/ldb_unit_testing/bin
+- классы
+  - разработка классов SAO, r__SimpleNounPhrase
 
-lesson.39 - bruteforcing with recursion
+lesson.++ - bruteforcing with recursion
 =========
 - recursion as a means of bruteforcing an algorithm
   - solving magic square
   - recursive 8 queens problem
   - recursive sudoku solver
 - что выбрать для code review 4?
-
 - representing a parse tree with a special class ParseTree
+- representing a parse tree with a Hash (similar to lesson.35)
+- [maybe lesson.39] solve a task on parse tree (find something, count something) SEE BELOW
+
 
 чтиво по рекурсии
 ------------------
