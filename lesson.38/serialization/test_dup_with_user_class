@@ -1,0 +1,51 @@
+#!/usr/bin/env ruby
+
+class Person
+  attr_accessor :name, :age, :children
+
+  def initialize name, age
+    @name = name
+    @age = age
+    @children = []
+  end
+
+  def add_child person
+    @children << person
+  end
+end
+
+bill = Person.new("Bill", 32)
+anna = Person.new("Anna", 31)
+
+kim  = Person.new("Kim",   7)
+john = Person.new("Jonny", 6)
+
+bill.add_child kim
+bill.add_child john
+
+anna.add_child kim
+anna.add_child john
+
+puts "Bill as he was created:"
+puts bill.inspect
+
+fake_bill = bill.dup
+fake_bill.name.upcase!
+fake_bill.age += 100
+fake_bill.add_child Person.new("barsik", 2)
+fake_bill.children[0].name = "Joaquin"
+fake_bill.children[0].add_child anna
+
+puts "\nBill's clone as he was created:"
+puts fake_bill.inspect
+
+puts "\nBill, is that you? What did they do with you?!"
+puts bill.inspect
+
+puts "\nKim! ... Kim??? Kimberlyiiii!!!"
+puts kim.inspect
+
+# try it out!
+#require 'yaml'
+#puts YAML.dump(fake_bill)
+

@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+
+h = {"one" => "uno", "two" => "dos", "three" => "tres"}
+a = ["hello", h, 42]
+
+puts "a: " + a.inspect
+
+# use this line to obtain data like in the file: test_deserialize.dump
+#print Marshal.dump(a)
+
+dump_data = File.read("test_deserialize.dump")
+b = Marshal.load(dump_data)
+puts "b: "+ b.inspect
+
+puts "a object id: #{a.object_id}"
+puts "b object id: #{b.object_id}"
+
+puts "\nChanging hash in b will affect a? -- NO"
+b[1]["three"] = "DREI"
+b[1]["four"]  = "quattro"
+
+puts "a: " + a.inspect
+puts "b: " + b.inspect
+

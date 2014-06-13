@@ -1,0 +1,32 @@
+#!/usr/bin/ruby
+
+h = {"one" => "uno", "two" => "dos", "three" => "tres"}
+a = ["hello", h, 42]
+
+puts "a: " + a.inspect
+
+puts "Making a SHALLOW copy with #dup"
+b = a.dup
+puts "b: " + b.inspect
+
+puts "a object id: #{a.object_id}"
+puts "b object id: #{b.object_id}"
+
+puts "Changing string in b will affect a? -- yes"
+b[0].upcase!
+#b[0] = b[0].upcase # this does no affect value in a, because here we create a copy of string
+
+puts "a: " + a.inspect
+puts "b: " + b.inspect
+
+puts "Changing hash in b will affect a? -- yes"
+b[1]["three"] = "DREI"
+b[1]["four"]  = "quattro"
+
+puts "a: " + a.inspect
+puts "b: " + b.inspect
+
+puts "Changing numeric in b will affect a? -- no"
+b[2] += 10
+puts "a: " + a.inspect
+puts "b: " + b.inspect

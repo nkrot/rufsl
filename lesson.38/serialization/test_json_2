@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+require 'json'
+
+h = {"one" => "uno", "two" => "dos", "three" => "tres"}
+a = ["hello", 42]
+
+puts "Works with Array#inspect"
+puts JSON.parse(a.inspect)
+
+puts "Does not work with Hash#inspect"
+puts JSON.parse(h.inspect)
