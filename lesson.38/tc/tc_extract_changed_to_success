@@ -31,7 +31,7 @@ if true
   #
   $stderr.puts "Using algorithm #1"
 
-  while block = gets("case_end")
+  while block = gets("case_end") # TODO: contrast with: gets("case_end\n")
 
     if block =~ /case_end/
       c_in += 1
