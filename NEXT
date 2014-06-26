@@ -20,7 +20,9 @@ lesson.39 -- NEXT
   - Q: кто выложит скрипты в testutils/ldb_unit_testing/bin
   - маша расскажет о своем скрипте. потом я о своем
 - классы
+  - Person. добавить методы типа older_than?/younger_than?
   - разработка классов SAO, r__SimpleNounPhrase
+- домашнее задание: спроектировать класс для SAO. какие методы вы хотите видеть в нем?
 
 lesson.++ - bruteforcing with recursion
 =========

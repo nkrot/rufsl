@@ -2,38 +2,63 @@
 # TODO
 # 1. add tests
 #
-# snp.set("This is an apple")
-# snp1 = SimpleNounPhrase.new("A tasty apple")
 
 class SimpleNounPhrase
+  attr_reader :fieldname, :relname
+  attr_accessor :data
 
-  def initialize
+  def initialize text=nil
+    @relname   = "r__SimpleNounPhrase"
+    @fieldname = "NounPhrase"
+    @data = nil
+
+    set_data(text)  if text
   end
 
-#  def nounphrase
-#  end
-
-  def set
+  def set val
+    set_data val
   end
 
   def to_s
+    [@relname, @data].join("\t")
   end
 
   def to_v
+    "Relation #{@relname}\n  NounPhrase     : #{@data}"
   end
 
-  # array of words
-  # TODO: mutable? should changes to words be exported to the object?
   def words
-    @data.split
+    if @data
+      @data.split
+    else
+      []
+    end
   end
 
-  def =~
+  def =~ re
+    @data =~ re
   end
 
-  # TODO: leave it as a task
   def !~ re
-      !(self =~ re) 
+    !(self =~ re) 
+  end
+
+  def length
+    words.length
+  end
+
+  private
+
+  def set_data str
+    if str =~ /#{@relname}\t/
+      @data = $~.post_match
+
+    elsif str =~ /\t/
+      raise "Does not look like a relation of type: #{@relname}"
+
+    else
+      @data = str
+    end
   end
 end
 
