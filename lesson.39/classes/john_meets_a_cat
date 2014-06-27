@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+
+require './person_7'
+require './cat'
+
+class Person
+  alias orig_greet greet
+
+  def greet other
+    if other.is_a? Cat
+      puts "Hello, kitty. You are so cute!"
+    else
+      orig_greet other
+    end
+  end
+end
+
+john = Person.new("John", "male",   20)
+mary = Person.new("Mary", "female", 20)
+barsik = Cat.new("Barsik", 3)
+
+john.greet barsik
+john.greet mary
+
