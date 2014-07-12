@@ -1,23 +1,30 @@
 #!/usr/bin/env ruby
 
+# # #
 # TODO:
 # 1. add rdoc documentation here
 # 2. a method for checking is a tree is complete: well_formed? or single_top?
 #    remember to ignore the fakeroot
 # 3. see lesson.34/recursion/display_parse_tree#parse_bracketed_ps for an implementation
 #    w/o Enumeration
+# 4. add a backlink to the parent
+# 5. DFS/WFS scanning
+# 6. [DONE] Store leaves as ParseTree objects. this is good for being able to
+#    a) retrieve such nodes and be able to access their parent through a backlink
 #
 # for rdoc:
 # a fake root is added to ensure that even incomplete trees are handled
 
 class ParseTree
   attr_accessor :name, :children, :verbose
+  attr_reader :leaf
 
-  def initialize name=nil
+  def initialize name=nil, is_leaf=false
     @name = name   if name
     @fakeroot = false
     @verbose = false
     @children = []
+    @leaf = is_leaf
   end
 
   def set bracketed
@@ -28,13 +35,17 @@ class ParseTree
   end
 
   def to_s
-    chunks = []
-    children.each { |ch| chunks << ch.to_s }
-    unless fakeroot?
-      chunks.unshift(@name, "((")
-      chunks << "))"
+    if leaf?
+      name
+    else
+      chunks = []
+      children.each { |ch| chunks << ch.to_s }
+      unless fakeroot?
+        chunks.unshift(@name, "((")
+        chunks << "))"
+      end
+      chunks.join(' ')
     end
-    chunks.join(' ')
   end
 
   # display in vertical form indenting each level with 3 spaces
@@ -48,11 +59,11 @@ class ParseTree
       str << indent(level) << @name.to_s
     end
 
-    children.each do |child|
-      if child.is_a? self.class
-        str << "\n" << child.to_s_tree(level+1)
+    children.each do |ch|
+      if ch.leaf?
+        str << "\n" << indent(level+1) << ch.name
       else
-        str << "\n" << indent(level+1) << child
+        str << "\n" << ch.to_s_tree(level+1)
       end
     end
     str.sub!(/^\n/, '')
@@ -60,30 +71,32 @@ class ParseTree
     str
   end
 
+  def leaf?
+    @leaf
+  end
+
   def fakeroot?
     @fakeroot
   end
 
-  def words
-    words = []
-    children.each do |child|
-      if child.is_a? self.class
-        words += child.words
+  def leaves
+    leaves = []
+    children.each do |ch|
+      if ch.leaf?
+        leaves << ch
       else
-        words << child
+        leaves += ch.leaves
       end
     end
-    words
+    leaves
   end
 
-  alias leaves words
+  def words
+    leaves.map { |node| node.name }
+  end
 
   def word_count
-    count = 0
-    children.each do |child|
-      count += child.is_a?(self.class) ? child.word_count : 1
-    end
-    count
+    leaves.length
   end
 
   protected
@@ -93,27 +106,28 @@ class ParseTree
 
     loop do
       #begin
-        token = tokens.next
+      token = tokens.next
 
-        case token
-        when '))'
-          verboser "Seeing '#{token}' -- will return up"
-          break
+      case token
+      when '))'
+        verboser "Seeing '#{token}' -- will return up"
+        break
 
-        when '(('
-          verboser "Seeing '#{token}' -- will parse it as a subtree and add to children"
+      when '(('
+        verboser "Seeing '#{token}' -- will parse it as a subtree and add to children"
 
-          tree = ParseTree.new
-          tree.name = @children.pop # reconsider the decision wrt to previous token:
-                                    # it was not a word but a node name
-          tree.set_from_bracketed(tokens)
+        # reconsider the decision wrt to previous token:
+        # it was not a word but a new node (subtree) name
+        tree = @children.last
+        tree.leaf = false
+        tree.set_from_bracketed(tokens)
 
-          @children << tree
+      else
+        verboser "Seeing '#{token}' -- this is either a word or node name, will add it to children"
+        tree = ParseTree.new(token, leaf=true)
+        @children << tree
 
-        else
-          verboser "Seeing '#{token}' -- this is either a word or node name, will add it to children"
-          @children << token
-        end
+      end
 
       #rescue StopIteration # wow! it is actually handled by Kernel#loop
       #  verboser "Scanning complete!"
@@ -126,12 +140,18 @@ class ParseTree
     "   " * mult
   end
 
+  def leaf= val
+    @leaf = val
+  end
+
   def verboser msg
     if @verbose
       puts msg
     end
   end
 end
+
+######################################################################
 
 if __FILE__ == $0
   parsings = [
@@ -150,6 +170,8 @@ if __FILE__ == $0
     puts tree.to_s
     puts tree.to_s == ps.squeeze(' ')
     puts tree.to_s_tree
+
+#    puts tree.leaves.inspect
     puts tree.words.inspect
     puts tree.word_count == et_word_count
   end
