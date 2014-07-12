@@ -1,4 +1,3 @@
-#!/usr/bin/env ruby
 
 # # #
 # TODO:
@@ -7,10 +6,7 @@
 #    remember to ignore the fakeroot
 # 3. see lesson.34/recursion/display_parse_tree#parse_bracketed_ps for an implementation
 #    w/o Enumeration
-# 4. add a backlink to the parent
-# 5. DFS/WFS scanning
-# 6. [DONE] Store leaves as ParseTree objects. this is good for being able to
-#    a) retrieve such nodes and be able to access their parent through a backlink
+# 5. DFS/WFS scanning, why?
 #
 # for rdoc:
 # a fake root is added to ensure that even incomplete trees are handled
@@ -22,9 +18,11 @@ class ParseTree
   def initialize name=nil, is_leaf=false
     @name = name   if name
     @fakeroot = false
-    @verbose = false
     @children = []
+    @parent = nil
     @leaf = is_leaf
+
+    @verbose = false
   end
 
   def set bracketed
@@ -48,7 +46,7 @@ class ParseTree
     end
   end
 
-  # display in vertical form indenting each level with 3 spaces
+  # Display in vertical form indenting each level with 3 spaces
   # ignore the fake added top node
   def to_s_tree level=0
     str = ''
@@ -99,6 +97,23 @@ class ParseTree
     leaves.length
   end
 
+  def parent
+    if fakeroot? || @parent.fakeroot?
+      nil
+    else
+      @parent
+    end
+  end
+
+  # TODO: what if the node already has a parent? should child be unlinked from this parent?
+  # do we want
+  def parent= p
+    @parent = p
+    unless p.children.include?(self)
+      p.children << self
+    end
+  end
+
   protected
 
   def set_from_bracketed tokens
@@ -125,7 +140,7 @@ class ParseTree
       else
         verboser "Seeing '#{token}' -- this is either a word or node name, will add it to children"
         tree = ParseTree.new(token, leaf=true)
-        @children << tree
+        tree.parent = self
 
       end
 
@@ -153,16 +168,22 @@ end
 
 ######################################################################
 
-if __FILE__ == $0
+if false && __FILE__ == $0
   parsings = [
     ["w__Sentence (( I_PP1A w__VB_XX (( love_VB w__N_XX (( w_NNS_HP_CC (( apples_NNS and_CC pears_NNS  ))  w__VBN_XX (( grown_VBN w__IN_N (( by_IN w__N_XX (( w_NNS (( my_PP$ grandparents_NNS  ))  w__IN_N (( in_IN w_NN (( their_PP$ garden_NN  ))   ))   ))   ))   ))   ))   ))   ))",
-     12],
+     12,
+     %w{w__Sentence w__VB_XX w_NNS_HP_CC w_NNS_HP_CC w_NNS_HP_CC w__VBN_XX w__IN_N w_NNS w_NNS w__IN_N w_NN w_NN}
+    ],
 
-    ["w__Sentence (( I_PP1A w__VB_XX (( love_VB w_NNS_HP_CC (( apples_NNS and_CC pears_NNS  ))   ))   ))  that_CS w__Sentence (( w_NNS (( my_PP$ grandprents_NNS  ))  w__VB_XX (( grow_VB w__IN_N (( in_IN w_NN (( their_PP$ garden_NN  ))   ))   ))   ))",
-     12]
+    ["w__Sentence (( I_PP1A w__VB_XX (( love_VB w_NNS_HP_CC (( apples_NNS and_CC pears_NNS  ))   ))   ))  that_CS w__Sentence (( w_NNS (( my_PP$ grandparents_NNS  ))  w__VB_XX (( grow_VB w__IN_N (( in_IN w_NN (( their_PP$ garden_NN  ))   ))   ))   ))",
+     12,
+     ["w__Sentence", "w__VB_XX", "w_NNS_HP_CC", "w_NNS_HP_CC", "w_NNS_HP_CC", nil, "w_NNS", "w_NNS", "w__VB_XX", "w__IN_N", "w_NN", "w_NN" ]
+    ]
   ]
 
-  parsings.each do |(ps, et_word_count)|
+  require 'pp'
+
+  parsings.each_with_index do |(ps, et_word_count, parents)|
     tree = ParseTree.new
     tree.set ps
 
@@ -174,5 +195,17 @@ if __FILE__ == $0
 #    puts tree.leaves.inspect
     puts tree.words.inspect
     puts tree.word_count == et_word_count
+
+    # check backreferences to parents
+    tree.leaves.each_with_index do |leaf, idx|
+      p = leaf.parent
+      p = p.name  if p
+      puts "#{parents[idx] == p}: " + leaf.name.to_s + " < " + p.to_s
+    end
+
+#    puts "LEAF:"
+#    pp leaf
+#    puts "PARENT: "
+#    pp leaf.parent
   end
 end
