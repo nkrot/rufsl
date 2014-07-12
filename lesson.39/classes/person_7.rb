@@ -109,13 +109,19 @@ if $0 == __FILE__
   puts "John has #{john.children.count} child(ren)"
 
   # will throw an error
-  if !true
+  puts ""
+  begin
     john.add_child Person.new("Thor", "male", 100)
     puts "John has #{john.children.count} child(ren)"
+  rescue Exception =>e
+    puts "An exception was thrown:"
+    puts e.message
+    puts e.backtrace
+    puts ""
   end
 
   # modifying @children directly
-  if !true
+  if true
     john.children << Person.new("Thor", "male", 100)
     puts "John has #{john.children.count} child(ren)"
   end
