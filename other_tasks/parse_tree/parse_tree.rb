@@ -1,7 +1,7 @@
 #
 # TODO:
 # 1. add rdoc documentation here
-# 2. a method for checking is a tree is complete: well_formed? or single_top?
+# 2. a method for checking if a tree is complete: well_formed? or single_top?
 #    remember to ignore the fakeroot
 # 3. see lesson.34/recursion/display_parse_tree#parse_bracketed_ps for an implementation
 #    w/o Enumeration
