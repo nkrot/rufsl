@@ -1,5 +1,4 @@
-
-# # #
+#
 # TODO:
 # 1. add rdoc documentation here
 # 2. a method for checking is a tree is complete: well_formed? or single_top?
@@ -10,6 +9,7 @@
 #
 # for rdoc:
 # a fake root is added to ensure that even incomplete trees are handled
+#
 
 class ParseTree
   attr_accessor :name, :children, :verbose
@@ -165,4 +165,5 @@ class ParseTree
     end
   end
 end
+
 
