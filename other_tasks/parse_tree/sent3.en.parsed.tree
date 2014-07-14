@@ -1,0 +1,77 @@
+==================================================
+w__Sentence 
+   w__RB_XX 
+      Furthermore_RB 
+   ,_, 
+   w_NN 
+      the_ATI 
+      w_NN 
+         present_JJ 
+         study_NN 
+   shows_VBZ 
+that_CS 
+w__Sentence 
+   w__IN_N 
+      in_IN 
+      w_NNS 
+         law_NN 
+         texts_NNS 
+   ,_, 
+   w__Sentence 
+      w__N_XX 
+         w_NN 
+            the_ATI 
+            w_NN 
+               average_JJ 
+               distance_NN 
+         w__IN_N 
+            between_IN 
+            w_NNS 
+               w_NNS 
+                  the_ATI 
+                  w_NNS_HP_CC 
+                     heads_NNS 
+                     and_CC 
+                     complements_NNS 
+               of_IN 
+               clauses_NNS 
+      w__BES_XX 
+         is_BEZ 
+         w_RB_JJ 
+            relatively_RB 
+            large_JJ 
+,_, 
+and_CC 
+that_CS 
+w__Sentence 
+   w__IN_N 
+      in_IN 
+      w_NN 
+         this_DT 
+         domain_NN 
+   ,_, 
+   w__Sentence 
+      w_NN 
+         a_AT 
+         w_NN 
+            wide_JJ 
+            w_NN 
+               context_NN 
+               window_NN 
+      w__BES_XX 
+         is_BEZ 
+         w__JJ_XX 
+            w_RB_JJ 
+               therefore_RB 
+               necessary_JJ 
+            w__IN_N 
+               for_IN 
+               w_NN 
+                  w_NN 
+                     the_ATI 
+                     w_NN 
+                        morphosyntactic_JJ 
+                        disambiguation_NN 
+                  of_IN 
+                  verbs_NNS 
+._. 
