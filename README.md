@@ -22,3 +22,9 @@ The materials are also published at: https://sites.google.com/site/talpus/rufsl/
 * lesson.35 -- recursive data structures: represending a parse tree with arrays
 * lesson.36 -- merge sort
 
+* lesson.39 -- tasks inspired by the students: utilities for working with LUT testcases
+   + tc_extract_changed_to_success
+   + tc_sync_reqstate
+
+
+
