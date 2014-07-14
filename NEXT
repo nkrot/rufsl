@@ -16,7 +16,7 @@ lesson.38 -- DONE
 
 lesson.40
 =========
-+ по материалам lesson.39
++ классы, на материале lesson.39
 
 
 lesson.41 -- NEXT
@@ -61,36 +61,43 @@ http://www-cs-faculty.stanford.edu/~eroberts/courses/cs106b/chapters/05-intro-to
 Задачки на рекурсивные структуры данных
 ----------------------------------------
 - посчитать что-нибудь в дереве. например, количество существительных или найти самое длинное слово в дереве. Если два одной длины, выдать то, что в более левом поддереве.  pattern Visitor?
+   - нужен each который просмотрит все узлы. или обойтись методом leaves/words?
 
 - собрать узлы верхнего уровня. и посчитать.
 
 - Я думал о чем-нибудь древесном. есть дерево, в его глубине есть, например, слово во множественном числе. задача в том, чтобы перетащить эту фичу числа на глагол, если эта фича изначально висит на субъекте (мы знаем, что это субъект, это закодировано где-то в другой фиче)
 От меня надо создать класс ParseTree.
 
-- (на примере англ дерева) *выдрать поддерево*, в котором есть какая-нибудь херня (например, CC или причастие, распространающее именную группу). учесть, что дерево может быть ломанным - добавить искусственный верхний уровень
+- (на примере англ дерева) *выдрать поддерево*, в котором есть какая-нибудь херня (например, CC или причастие, распространяющее именную группу). учесть, что дерево может быть ломанным - добавить искусственный верхний уровень
   это паттерн visitor ?
-
-- найти sibling-ов заданного узла/слова (= найти родителя, у которого есть данные ребенок)
 
 + other_tasks/parse_tree/
    + от меня: преобразование скобочной формы в дерево
    + задание: написать #to_s
    + задание: написать #to_s_tree, 3 пробела = 1 уровень
       - здесь используется child.is_a?(self.class)
+   + задание: дать возможность произвольно указывать, сколько пробелов имеет один отступ. Сохранив значение по умолчанию: 1 уровень = 3 пробела
    + задание: посчитать количество слов (листьев) в дереве -- #word_count
       - здесь нужно показать, что такое is_a?
       - показать на рисунке с деревом, как работает вычисление суммы
    + задание: [после #word_count] собрать все слова (листья)
-      - это обход графа в глубину (DFS - depth first search)
 
 - задания на использование parse_tree:
   - найти неполные деревья
-     ex: Furthermore, the present study shows that in law texts, the average distance between the heads and complements of clauses is relatively large , and that in this domain, a wide context window is therefore necessary for the morphosyntactic disambiguation of verbs.
-     ex: We show that both studies in descriptive and formal morphology as well as NLP tool and resource development benefit from the availability of such a model and an implementation thereof.
+     (sent2) ex: We show that both studies in descriptive and formal morphology as well as NLP tool and resource development benefit from the availability of such a model and an implementation thereof.
+     (sent3) ex: Furthermore, the present study shows that in law texts, the average distance between the heads and complements of clauses is relatively large , and that in this domain, a wide context window is therefore necessary for the morphosyntactic disambiguation of verbs.
 
   - найти такие неполные деревья, где есть несколько подряд идущих слов, не попавших в дерево. дополнительное ограничение: только в одном месте
   - исследовать деревья, в которых остались несоединенными 2+ w__Sentence
      This paper explores how much linguistically motivated rules can contribute to the task.
+  - выделить слова, которые остались на верхнем уровне, и вывести только верхний уровень:
+      w__Sentence that_CS w__Sentence , and that w__Sentence
+      или даже с контекстом
+      w__Sentence (( ... shows_VBZ )) that_CS w__Sentence (( in_IN ... large_JJ )) ,_, and_CC that_CS w__Sentence (( in_IN ... verbs_NNS ))
+  - необычная последовательность узлов: that_CS w__N_XX_HP_CC
+      w__Sentence (( we_PP1SA show_VB )) that_CS w__N_XX_HP_CC (( both_ABX ... implementation_NN )) thereof_RB ._.
+      - Чтобы найти такую внутри, нужно обходить все узлы и смотреть сразу на всех его детей
+         .each { |node| node.children }
 
   - написать свой экстрактор (заодно рассказать, как работает экстрактор в просао1)	?
 
