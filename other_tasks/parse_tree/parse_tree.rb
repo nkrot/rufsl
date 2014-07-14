@@ -5,7 +5,11 @@
 #    remember to ignore the fakeroot
 # 3. see lesson.34/recursion/display_parse_tree#parse_bracketed_ps for an implementation
 #    w/o Enumeration
-# 5. DFS/WFS scanning, why?
+# 4. iterator .each over the child nodes only?
+# 5. iterators over the complete tree (DFS/WFS). why do we need it?
+# 6. .find and .find_all (use enumerable) to find a node/all nodes where data (.name)
+#    matches given condition
+# 7. add position in the sentence to word nodes?
 #
 # for rdoc:
 # a fake root is added to ensure that even incomplete trees are handled
