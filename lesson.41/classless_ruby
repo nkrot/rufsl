@@ -1,0 +1,10 @@
+#!/usr/bin/awk -f
+
+BEGIN {
+	str = "hello"
+	split(str str, arr, "")
+
+	print "Length of string is: " length(str)
+	print "Length of array is: " length(arr)
+	exit 0
+}

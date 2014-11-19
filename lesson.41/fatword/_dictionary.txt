@@ -1,0 +1,44 @@
+Da	CS RP QVP QG
+Da	uninformative_adv noun_surname_prefix male_name cnj_subordinating cafm_units adv_no_adj
+die	ATDFN ATDFA ATDPN ATDPA PSPN PSPA PSFN PSFA
+die	universal_animacy uninformative_ng prn_relative geoname dt_no_attr NGCE_uninformative_ng
+Auswahl	NCFSN NCFSG NCFSD NCFSA
+Auswahl	uninf_noun quantitative_noun noun_2_verb cafm_abstract_nouns abstract_not_main_topic CAFM_UNINF_NOUN
+an	APPD APPA APC RP QVP
+an	male_name adv_no_adj
+in	APPD APPA
+in	units_size uninformative_adj_lemma prefixes_woc noun_geo_name_abbr adj_unchangeable
+Färbe	VLPI1S VLPM2S VLPS3S
+Färbe	vb_stem
+mitteln	VLINF VLPI1P VLPI3P NCNPD
+mitteln	verb_2_noun vb_technical vb_stem uninformative_noun uninf_noun noun_2_verb abstract_not_main_topic NGCE_uninformative_noun
+für	APPN APPA
+für	
+Keratinfasern	NCMPD
+Keratinfasern	
+einsetzbaren	JPMG JPMD JPMA JPNG JPND JPFG JPFD JPPN JPPG JPPD JPPA
+einsetzbaren	cafm_uninformative_jj_param
+Farbstoffen	NCMPD
+Farbstoffen	
+beschränkt	JP JPP VLPP VLPI2P VLPI3S VLPM2P
+beschränkt	sentim_bad adj_with_attribute adj_person_character
+ist	VSPI3S
+ist	wdc_no_noun vb_aux sein
+,	,
+,	
+besteht	VLPI2P VLPI3S VLPM2P
+besteht	vb_stem
+weiterhin	RP
+weiterhin	adv_no_adj
+ein	ATIMN ATINN ATINA DZ RP QVP
+ein	male_name dt_no_attr adv_no_adj
+Bedarf	VLPI1S VLPI3S NCMSN NCMSD NCMSA
+Bedarf	uninformative_noun noun_post_infz cafm_abstract_nouns abstract_not_main_topic NGCE_uninformative_noun
+an	APPD APPA APC RP QVP
+an	male_name adv_no_adj
+derartigen	JPMG JPMD JPMA JPNG JPND JPFG JPFD JPPN JPPG JPPD JPPA NCNSG NCNSD NCXPN NCXPG NCXPD
+derartigen	uninformative_adj_light uninformative_adj QA_uninformative_adj NGCE_uninformative_adj
+Farbstoffen	NCMPD
+Farbstoffen	
+.	.
+.	NER_FILTER

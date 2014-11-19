@@ -1,0 +1,5 @@
+Sentence tagged	Da_CS_0:1 die_ATDFN_3:5 Auswahl_NCFSN_7:13 an_APPD_15:16 in_APPD_18:19 Färbe_wdcSV_21:25 mitteln_NCNPD_26:32 für_APPA_34:36 Keratinfasern_NCMPD_38:50 einsetzbaren_JPPD_52:63 Farbstoffen_NCMPD_65:75 beschränkt_VLPP_77:86 ist_VSPI3S_88:90 ,_,_91:91 besteht_VLPI3S_93:99 weiterhin_RP_101:109 ein_ATIMN_111:113 Bedarf_NCMSN_115:120 an_APPD_122:123 derartigen_JPPD_125:134 Farbstoffen_NCMPD_136:146 ._._147:147
+SAO					in_APPD_18:19	Färbe_wdcSV_21:25 mitteln_NCNPD_26:32				r__NounPhrase_additional_NCFSN_-1:-1
+SAO		beschränken_VLINF_77:86				einsetzbaren_JPPD_52:63 Farbstoffen_NCMPD_65:75		beschränkt_VLPP_77:86 ist_VSPI3S_88:90		r__VerbPhrase_NCFSN_-1:-1
+SAO	ein_ATIMN_111:113 Bedarf_NCMSN_115:120	bestehen_VLINF_93:99			an_APPD_122:123	derartigen_JPPD_125:134 Farbstoffen_NCMPD_136:146	weiterhin_RP_101:109	besteht_VLPI3S_93:99		r__VerbPhrase_NCFSN_-1:-1
+
